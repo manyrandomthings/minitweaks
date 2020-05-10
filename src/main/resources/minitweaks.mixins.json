@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "package": "mini_tweaks.mixins",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "CreeperGriefMixin",
+    "PhantomSpawningMixin",
+    "DragonEggMixin",
+    "ItemDespawnMixin",
+    "ItemAccessorMixin",
+    "MinecraftServerNoopMixin"
+  ],
+  "client": [
+    "MinecraftClientNoopMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

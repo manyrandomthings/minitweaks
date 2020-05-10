@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "minitweaks",
+  "version": "${version}",
+
+  "name": "Mini Tweaks",
+  "description": "Some small additions to carpet mod",
+  "authors": [
+    "manyrandomthings"
+  ],
+  "contact": {
+    "homepage": "https://github.com/manyrandomthings/minitweaks",
+    "sources": "https://github.com/manyrandomthings/minitweaks"
+  },
+
+  "license": "GNU LGPL V3",
+  "icon": "assets/minitweaks/icon.png",
+
+  "environment": "*",
+  "mixins": [
+    "minitweaks.mixins.json"
+  ],
+
+  "depends": {
+    "minecraft": ">=1.15.0",
+    "fabricloader": ">=0.7.4",
+    "carpet": "*"
+  }
+}
