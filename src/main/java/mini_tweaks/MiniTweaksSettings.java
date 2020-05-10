@@ -52,7 +52,7 @@ public class MiniTweaksSettings {
     )
     public static ExplosionType creeperBlockDamage = ExplosionType.DEFAULT;
 
-
+    // death items despawn time
     @Rule(
         desc = "How many minutes it takes for a player's items to despawn after death",
         extra = "-1 for infinte, 0 for instant despawn",
@@ -63,31 +63,14 @@ public class MiniTweaksSettings {
     )
     public static int deathItemsDespawnMinutes = 5;
 
-
-    // phantom spawning
-    @Rule(
-        desc = "Amount of ticks before Phantoms start having a chance to spawn",
-        options = {"72000", "360000", "720000"},
-        validate = Validator.NONNEGATIVE_NUMBER.class,
-        strict = false,
-        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL}
-    )
-    public static int phantomSpawningTime = 72000;
-
-
-    // dragon egg placing
-    @Rule(
-        desc = "Dragon eggs will always be placed on the portal after defeating the dragon",
-        category = {MiniTweaksRuleCategory.MODNAME, RuleCategory.SURVIVAL}
-    )
-    public static boolean renewableDragonEgg = false;
-
+    // ghast fireball fire
     @Rule(
         desc = "Disable random fire from ghast fireballs",
         category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL}
     )
     public static boolean disableGhastFire = false;
 
+    // ghast fireball block breaking
     @Rule(
         desc = "Set ghast explosion block damage type, regardless of mobGriefing gamerule",
         extra = {
@@ -99,4 +82,21 @@ public class MiniTweaksSettings {
         category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL}
     )
     public static ExplosionType ghastBlockDamage = ExplosionType.DEFAULT;
+
+    // phantom spawning
+    @Rule(
+        desc = "Amount of ticks before Phantoms start having a chance to spawn",
+        options = {"72000", "360000", "720000"},
+        validate = Validator.NONNEGATIVE_NUMBER.class,
+        strict = false,
+        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL}
+    )
+    public static int phantomSpawningTime = 72000;
+
+    // dragon egg placing
+    @Rule(
+        desc = "Dragon eggs will always be placed on the portal after defeating the dragon",
+        category = {MiniTweaksRuleCategory.MODNAME, RuleCategory.SURVIVAL}
+    )
+    public static boolean renewableDragonEgg = false;
 }
