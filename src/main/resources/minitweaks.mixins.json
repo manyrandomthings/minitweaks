@@ -8,6 +8,7 @@
     "DragonEggMixin",
     "ItemDespawnMixin",
     "ItemAccessorMixin",
+    "FireballMixin",
     "MinecraftServerNoopMixin"
   ],
   "client": [

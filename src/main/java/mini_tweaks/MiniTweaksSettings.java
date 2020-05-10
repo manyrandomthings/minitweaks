@@ -5,10 +5,27 @@ import carpet.settings.Rule;
 import carpet.settings.RuleCategory;
 import carpet.settings.Validator;
 import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.world.explosion.Explosion.DestructionType;
 
 public class MiniTweaksSettings {
-    public enum CreeperExplosionType {
+    public enum ExplosionType {
         DEFAULT, NONE, BREAK, DESTROY
+    }
+
+    public static DestructionType getExplosionType(ExplosionType option, DestructionType original) {
+        // No blocks broken
+        if(option == ExplosionType.NONE) {
+            return DestructionType.NONE;
+        }
+        // Blocks are broken but all are dropped (like tnt)
+        else if(option == ExplosionType.BREAK) {
+            return DestructionType.BREAK;
+        }
+        // Blocks are broken and some are destroyed (like default creepers)
+        else if(option == ExplosionType.DESTROY) {
+            return DestructionType.DESTROY;
+        }
+        return original;
     }
 
     private static class ItemDespawnTimeValidator extends Validator<Integer> {
@@ -33,7 +50,7 @@ public class MiniTweaksSettings {
         },
         category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL}
     )
-    public static CreeperExplosionType creeperBlockDamage = CreeperExplosionType.DEFAULT;
+    public static ExplosionType creeperBlockDamage = ExplosionType.DEFAULT;
 
 
     @Rule(
@@ -64,4 +81,22 @@ public class MiniTweaksSettings {
         category = {MiniTweaksRuleCategory.MODNAME, RuleCategory.SURVIVAL}
     )
     public static boolean renewableDragonEgg = false;
+
+    @Rule(
+        desc = "Disable random fire from ghast fireballs",
+        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL}
+    )
+    public static boolean disableGhastFire = false;
+
+    @Rule(
+        desc = "Set ghast explosion block damage type, regardless of mobGriefing gamerule",
+        extra = {
+            "default: uses default explosion",
+            "none: no blocks broken",
+            "break: all broken blocks are dropped (like tnt)",
+            "destroy: broken blocks are sometimes dropped (like default creepers)"
+        },
+        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL}
+    )
+    public static ExplosionType ghastBlockDamage = ExplosionType.DEFAULT;
 }

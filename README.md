@@ -25,6 +25,24 @@ How many minutes it takes for a player's items to despawn after death
 * Additional notes:  
   * You must choose a value from -1 (infinite) to 32  
   
+## disableGhastFire
+Disable random fire from ghast fireballs  
+* Type: `boolean`  
+* Default value: `false`  
+* Required options: `true`, `false`  
+* Categories: `minitweaks`, `mobs`, `survival`  
+
+# ghastBlockDamage
+Set ghast explosion block damage type, regardless of mobGriefing gamerule  
+default: uses default explosion  
+none: no blocks broken  
+break: all broken blocks are dropped (like tnt)  
+destroy: broken blocks are sometimes dropped (like default creepers)  
+* Type: `String`  
+* Default value: `default`  
+* Required options: `default`, `none`, `break`, `destroy`  
+* Categories: `minitweaks`, `mobs`, `survival`  
+
 ## phantomSpawningTime
 Amount of ticks before Phantoms start having a chance to spawn  
 * Type: `int`  
