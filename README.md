@@ -58,3 +58,11 @@ Dragon eggs will always be placed on the portal after defeating the dragon
 * Default value: `false`  
 * Required options: `true`, `false`  
 * Categories: `minitweaks`, `mobs`, `survival`  
+
+## slimeLooting
+Bigger slimes spawn more smaller slimes when killed with looting  
+Additional slimes can be up to as many levels of looting as you have (up to +3 with looting 3, etc)  
+* Type: `boolean`  
+* Default value: `false`  
+* Required options: `true`, `false`  
+* Categories: `minitweaks`, `mobs`, `survival`  

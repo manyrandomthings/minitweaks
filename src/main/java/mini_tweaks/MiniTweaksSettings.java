@@ -99,4 +99,12 @@ public class MiniTweaksSettings {
         category = {MiniTweaksRuleCategory.MODNAME, RuleCategory.SURVIVAL}
     )
     public static boolean renewableDragonEgg = false;
+
+    // slime looting
+    @Rule(
+        desc = "Bigger slimes spawn more smaller slimes when killed with looting",
+        extra = "Additional slimes can be up to as many levels of looting as you have (up to +3 with looting 3, etc)",
+        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL}
+    )
+    public static boolean slimeLooting = false;
 }

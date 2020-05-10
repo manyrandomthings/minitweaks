@@ -9,6 +9,7 @@
     "ItemDespawnMixin",
     "ItemAccessorMixin",
     "FireballMixin",
+    "SlimeLooting",
     "MinecraftServerNoopMixin"
   ],
   "client": [
