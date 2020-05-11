@@ -31,8 +31,15 @@ Disable random fire from ghast fireballs
 * Default value: `false`  
 * Required options: `true`, `false`  
 * Categories: `minitweaks`, `mobs`, `survival`  
-
-# ghastBlockDamage
+  
+## noFeatherFallingTrample
+Prevents farmland from being trampled if you have feather falling on  
+* Type: `boolean`  
+* Default value: `false`  
+* Required options: `true`, `false`  
+* Categories: `minitweaks`, `survival`  
+  
+## ghastBlockDamage
 Set ghast explosion block damage type, regardless of mobGriefing gamerule  
 default: uses default explosion  
 none: no blocks broken  
@@ -42,7 +49,7 @@ destroy: broken blocks are sometimes dropped (like default creepers)
 * Default value: `default`  
 * Required options: `default`, `none`, `break`, `destroy`  
 * Categories: `minitweaks`, `mobs`, `survival`  
-
+  
 ## phantomSpawningTime
 Amount of ticks before Phantoms start having a chance to spawn  
 * Type: `int`  
@@ -58,7 +65,7 @@ Dragon eggs will always be placed on the portal after defeating the dragon
 * Default value: `false`  
 * Required options: `true`, `false`  
 * Categories: `minitweaks`, `mobs`, `survival`  
-
+  
 ## slimeLooting
 Bigger slimes spawn more smaller slimes when killed with looting  
 Additional slimes can be up to as many levels of looting as you have (up to +3 with looting 3, etc)  

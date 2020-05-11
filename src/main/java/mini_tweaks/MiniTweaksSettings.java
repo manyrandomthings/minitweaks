@@ -83,6 +83,13 @@ public class MiniTweaksSettings {
     )
     public static ExplosionType ghastBlockDamage = ExplosionType.DEFAULT;
 
+    // farmland feather falling
+    @Rule(
+        desc = "Prevents farmland from being trampled if you have feather falling on",
+        category = {MiniTweaksRuleCategory.MODNAME, RuleCategory.SURVIVAL}
+    )
+    public static boolean noFeatherFallingTrample = false;
+
     // phantom spawning
     @Rule(
         desc = "Amount of ticks before Phantoms start having a chance to spawn",
