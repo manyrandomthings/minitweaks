@@ -63,6 +63,13 @@ public class MiniTweaksSettings {
     )
     public static int deathItemsDespawnMinutes = 5;
 
+    // blaze fireball fire
+    @Rule(
+        desc = "Disable fires made from blaze fireballs",
+        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL}
+    )
+    public static boolean disableBlazeFire = false;
+
     // ghast fireball fire
     @Rule(
         desc = "Disable random fire from ghast fireballs",
