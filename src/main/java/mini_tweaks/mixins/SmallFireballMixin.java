@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 
 @Mixin(SmallFireballEntity.class)
 public class SmallFireballMixin {
-    @Redirect(method = "onCollision", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;isAir(Lnet/minecraft/util/math/BlockPos;)Z"))
+    @Redirect(method = "onBlockHit", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;isAir(Lnet/minecraft/util/math/BlockPos;)Z"))
     private boolean preventFire(World world, BlockPos pos) {
         if(MiniTweaksSettings.disableBlazeFire) {
             // trick into thinking the block isn't air so it doesn't place fire
