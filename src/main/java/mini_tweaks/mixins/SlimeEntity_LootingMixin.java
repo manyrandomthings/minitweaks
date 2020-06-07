@@ -12,8 +12,8 @@ import net.minecraft.entity.mob.SlimeEntity;
 import net.minecraft.world.World;
 
 @Mixin(SlimeEntity.class)
-public class SlimeLooting extends MobEntity {
-    protected SlimeLooting(EntityType<? extends MobEntity> type, World world) {
+public class SlimeEntity_LootingMixin extends MobEntity {
+    protected SlimeEntity_LootingMixin(EntityType<? extends MobEntity> type, World world) {
         super(type, world);
     }
 

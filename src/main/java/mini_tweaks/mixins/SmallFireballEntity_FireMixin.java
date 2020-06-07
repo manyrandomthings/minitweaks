@@ -10,7 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 @Mixin(SmallFireballEntity.class)
-public class SmallFireballMixin {
+public class SmallFireballEntity_FireMixin {
     @Redirect(method = "onCollision", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;isAir(Lnet/minecraft/util/math/BlockPos;)Z"))
     private boolean preventFire(World world, BlockPos pos) {
         if(MiniTweaksSettings.disableBlazeFire) {

@@ -6,14 +6,14 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import mini_tweaks.MiniTweaks;
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.server.MinecraftServer;
 
-@Mixin(MinecraftClient.class)
-public class MinecraftClientNoopMixin {
+@Mixin(MinecraftServer.class)
+public class MinecraftServer_NoopMixin {
     // this is here just to load the ExampleExtension class, otherwise noone would load it / need it
     // if you have already you own mixins that use your extension class in any shape or form
     // you don't need this one
-    // This one is for the client
+    // You need this one to run a server properly
     @Inject(method = "<init>", at = @At("RETURN"))
     private void loadMe(CallbackInfo ci) {
         MiniTweaks.noop();

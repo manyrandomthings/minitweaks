@@ -12,7 +12,7 @@ import net.minecraft.world.explosion.Explosion;
 import net.minecraft.world.explosion.Explosion.DestructionType;
 
 @Mixin(FireballEntity.class)
-public class FireballMixin {
+public class FireballEntity_ExplosionGriefMixin {
     @Redirect(method = "onCollision", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;createExplosion(Lnet/minecraft/entity/Entity;DDDFZLnet/minecraft/world/explosion/Explosion$DestructionType;)Lnet/minecraft/world/explosion/Explosion;"))
     private Explosion modifyFireballExplosion(World world, Entity entity, double x, double y, double z, float power, boolean createFire, DestructionType destructionType) {
         // get disableGhastFire option for disabling fire
