@@ -16,8 +16,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 @Mixin(FarmlandBlock.class)
-public class FarmlandTrampleMixin extends Block {
-    public FarmlandTrampleMixin(Settings settings) {
+public class FarmlandBlock_TrampleMixin extends Block {
+    public FarmlandBlock_TrampleMixin(Settings settings) {
         super(settings);
     }
 

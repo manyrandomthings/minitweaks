@@ -3,19 +3,19 @@
   "package": "mini_tweaks.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "CreeperGriefMixin",
-    "PhantomSpawningMixin",
-    "DragonEggMixin",
-    "ItemDespawnMixin",
-    "ItemAccessorMixin",
-    "FireballMixin",
-    "SlimeLooting",
-    "FarmlandTrampleMixin",
-    "SmallFireballMixin",
-    "MinecraftServerNoopMixin"
+    "CreeperEntity_ExplosionGriefMixin",
+    "PhantomSpawner_SpawnTimeMixin",
+    "EnderDragonFight_DragonEggMixin",
+    "PlayerInventory_ItemDespawnMixin",
+    "ItemEntity_AgeAccessorMixin",
+    "FireballEntity_ExplosionGriefMixin",
+    "SlimeEntity_LootingMixin",
+    "FarmlandBlock_TrampleMixin",
+    "SmallFireballEntity_FireMixin",
+    "MinecraftServer_NoopMixin"
   ],
   "client": [
-    "MinecraftClientNoopMixin"
+    "MinecraftClient_NoopMixin"
   ],
   "injectors": {
     "defaultRequire": 1
