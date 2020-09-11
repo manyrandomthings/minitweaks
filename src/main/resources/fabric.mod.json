@@ -22,8 +22,8 @@
   ],
 
   "depends": {
-    "minecraft": ">=1.15.0",
-    "fabricloader": ">=0.7.4",
-    "carpet": "*"
+    "minecraft": ">=1.16.3",
+    "fabricloader": ">=0.9.0",
+    "carpet": ">=1.4.11"
   }
 }
