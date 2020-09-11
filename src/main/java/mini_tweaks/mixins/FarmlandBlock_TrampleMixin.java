@@ -21,7 +21,7 @@ public class FarmlandBlock_TrampleMixin extends Block {
         super(settings);
     }
 
-    @Inject(method = "onLandedUpon", at = @At(value = "HEAD"), cancellable = true)
+    @Inject(method = "onLandedUpon", at = @At("HEAD"), cancellable = true)
     private void featherFallingCheck(World world, BlockPos pos, Entity entity, float distance, CallbackInfo ci) {
         if(entity instanceof LivingEntity && MiniTweaksSettings.noFeatherFallingTrample) {
             // check for feather falling level of 1 or more

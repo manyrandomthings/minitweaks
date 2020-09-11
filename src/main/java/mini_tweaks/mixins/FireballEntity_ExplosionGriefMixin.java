@@ -19,6 +19,7 @@ public class FireballEntity_ExplosionGriefMixin {
         boolean modifiedCreateFire = !MiniTweaksSettings.disableGhastFire;
         // get destruction type for ghastFireballBlockDamage
         DestructionType modifiedDestructionType = MiniTweaksSettings.getExplosionType(MiniTweaksSettings.ghastBlockDamage, destructionType);
+
         return world.createExplosion(entity, x, y, z, power, modifiedCreateFire, modifiedDestructionType);
     }
 }
