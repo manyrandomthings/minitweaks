@@ -66,6 +66,15 @@ Amount of ticks before Phantoms start having a chance to spawn
 * Additional notes:
   * Must be a positive number
 
+## protectionStacking
+Allows all the different protection types to stack on the same piece of armor
+* Type: `boolean`
+* Default value: `false`
+* Required options: `true`, `false`
+* Categories: `minitweaks`, `survival`
+* Additional notes:
+  * Like enchanting from 1.14-1.14.2
+
 ## renewableDragonEgg
 Dragon eggs will always be placed on the portal after defeating the dragon
 * Type: `boolean`

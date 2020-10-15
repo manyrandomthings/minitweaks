@@ -12,6 +12,7 @@
     "SlimeEntity_LootingMixin",
     "FarmlandBlock_TrampleMixin",
     "SmallFireballEntity_FireMixin",
+    "ProtectionEnchantment_ProtectionStackingMixin",
     "MinecraftServer_NoopMixin"
   ],
   "client": [

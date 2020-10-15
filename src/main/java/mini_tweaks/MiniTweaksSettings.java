@@ -107,6 +107,13 @@ public class MiniTweaksSettings {
     )
     public static int phantomSpawningTime = 72000;
 
+    @Rule(
+        desc = "Allows all the different protection types to stack on the same piece of armor",
+        extra = "Like enchanting from 1.14-1.14.2",
+        category = {MiniTweaksRuleCategory.MODNAME, RuleCategory.SURVIVAL}
+    )
+    public static boolean protectionStacking = false;
+
     // dragon egg placing
     @Rule(
         desc = "Dragon eggs will always be placed on the portal after defeating the dragon",
