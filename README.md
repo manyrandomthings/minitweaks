@@ -50,6 +50,13 @@ destroy: broken blocks are sometimes dropped (like default creepers)
 * Required options: `default`, `none`, `break`, `destroy`
 * Categories: `minitweaks`, `mobs`, `survival`
 
+## mobsDropNametag
+Named mobs drop their name tag on death
+* Type: `boolean`
+* Default value: `false`
+* Required options: `true`, `false`
+* Categories: `minitweaks`, `mobs`, `survival`
+
 ## noFeatherFallingTrample
 Prevents farmland from being trampled if you have feather falling on
 * Type: `boolean`
