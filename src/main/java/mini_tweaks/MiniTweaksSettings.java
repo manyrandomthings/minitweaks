@@ -90,6 +90,13 @@ public class MiniTweaksSettings {
     )
     public static ExplosionType ghastBlockDamage = ExplosionType.DEFAULT;
 
+    // mobs drop name tag
+    @Rule(
+        desc = "Named mobs drop their name tag on death",
+        category = {MiniTweaksRuleCategory.MODNAME, RuleCategory.SURVIVAL}
+    )
+    public static boolean mobsDropNametag = false;
+
     // farmland feather falling
     @Rule(
         desc = "Prevents farmland from being trampled if you have feather falling on",
@@ -107,6 +114,7 @@ public class MiniTweaksSettings {
     )
     public static int phantomSpawningTime = 72000;
 
+    // protection stacking
     @Rule(
         desc = "Allows all the different protection types to stack on the same piece of armor",
         extra = "Like enchanting from 1.14-1.14.2",

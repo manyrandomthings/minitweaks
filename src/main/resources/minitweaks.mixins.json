@@ -13,6 +13,7 @@
     "FarmlandBlock_TrampleMixin",
     "SmallFireballEntity_FireMixin",
     "ProtectionEnchantment_ProtectionStackingMixin",
+    "LivingEntity_NameTagMixin",
     "MinecraftServer_NoopMixin"
   ],
   "client": [
