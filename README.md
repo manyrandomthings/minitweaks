@@ -39,13 +39,6 @@ Disable random fire from ghast fireballs
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `mobs`, `survival`
 
-## noFeatherFallingTrample
-Prevents farmland from being trampled if you have feather falling on
-* Type: `boolean`
-* Default value: `false`
-* Required options: `true`, `false`
-* Categories: `minitweaks`, `survival`
-
 ## ghastBlockDamage
 Set ghast explosion block damage type, regardless of mobGriefing gamerule  
 default: uses default explosion  
@@ -56,6 +49,13 @@ destroy: broken blocks are sometimes dropped (like default creepers)
 * Default value: `default`
 * Required options: `default`, `none`, `break`, `destroy`
 * Categories: `minitweaks`, `mobs`, `survival`
+
+## noFeatherFallingTrample
+Prevents farmland from being trampled if you have feather falling on
+* Type: `boolean`
+* Default value: `false`
+* Required options: `true`, `false`
+* Categories: `minitweaks`, `survival`
 
 ## phantomSpawningTime
 Amount of ticks before Phantoms start having a chance to spawn
