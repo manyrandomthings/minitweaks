@@ -93,7 +93,7 @@ public class MiniTweaksSettings {
     // mobs drop name tag
     @Rule(
         desc = "Named mobs drop their name tag on death",
-        category = {MiniTweaksRuleCategory.MODNAME, RuleCategory.SURVIVAL}
+        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL}
     )
     public static boolean mobsDropNametag = false;
 
