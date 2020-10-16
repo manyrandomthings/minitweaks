@@ -104,6 +104,13 @@ public class MiniTweaksSettings {
     )
     public static boolean noFeatherFallingTrample = false;
 
+    // no repair cost
+    @Rule(
+        desc = "No additional cost for using an item in an anvil multiple times",
+        category = {MiniTweaksRuleCategory.MODNAME, RuleCategory.SURVIVAL}
+    )
+    public static boolean noRepairCost = false;
+
     // phantom spawning
     @Rule(
         desc = "Amount of ticks before Phantoms start having a chance to spawn",

@@ -14,6 +14,7 @@
     "SmallFireballEntity_FireMixin",
     "ProtectionEnchantment_ProtectionStackingMixin",
     "LivingEntity_NameTagMixin",
+    "ItemStack_RepairCostMixin",
     "MinecraftServer_NoopMixin"
   ],
   "client": [

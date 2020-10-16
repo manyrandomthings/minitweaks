@@ -64,6 +64,13 @@ Prevents farmland from being trampled if you have feather falling on
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `survival`
 
+## noRepairCost
+No additional cost for using an item in an anvil multiple times
+* Type: `boolean`
+* Default value: `false`
+* Required options: `true`, `false`
+* Categories: `minitweaks`, `survival`
+
 ## phantomSpawningTime
 Amount of ticks before Phantoms start having a chance to spawn
 * Type: `int`
