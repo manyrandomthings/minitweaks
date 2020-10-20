@@ -77,6 +77,13 @@ public class MiniTweaksSettings {
     )
     public static boolean disableGhastFire = false;
 
+    // dispensers use name tags
+    @Rule(
+        desc = "Dispensers use name tags on mobs",
+        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.DISPENSER}
+    )
+    public static boolean dispensersNameMobs = false;
+
     // ghast fireball block breaking
     @Rule(
         desc = "Set ghast explosion block damage type, regardless of mobGriefing gamerule",
