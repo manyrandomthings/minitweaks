@@ -32,6 +32,13 @@ Disable fires made from blaze fireballs
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `mobs`, `survival`
 
+## dispensersNameMobs
+Dispensers use name tags on mobs
+* Type: `boolean`
+* Default value: `false`
+* Required options: `true`, `false`
+* Categories: `minitweaks`, `mobs`, `dispenser`
+
 ## disableGhastFire
 Disable random fire from ghast fireballs
 * Type: `boolean`
