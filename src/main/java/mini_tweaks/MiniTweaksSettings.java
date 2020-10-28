@@ -77,6 +77,13 @@ public class MiniTweaksSettings {
     )
     public static boolean disableGhastFire = false;
 
+    // dispensers dye sheep
+    @Rule(
+        desc = "Dispensers can dye sheep",
+        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.DISPENSER}
+    )
+    public static boolean dispensersDyeSheep = false;
+
     // dispensers use name tags
     @Rule(
         desc = "Dispensers use name tags on mobs",

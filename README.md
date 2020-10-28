@@ -32,6 +32,13 @@ Disable fires made from blaze fireballs
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `mobs`, `survival`
 
+## dispensersDyeSheep
+Dispensers can dye sheep
+* Type: `boolean`
+* Default value: `false`
+* Required options: `true`, `false`
+* Categories: `minitweaks`, `mobs`, `dispenser`
+
 ## dispensersNameMobs
 Dispensers use name tags on mobs
 * Type: `boolean`
