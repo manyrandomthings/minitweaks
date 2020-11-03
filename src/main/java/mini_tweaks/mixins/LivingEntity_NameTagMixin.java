@@ -15,20 +15,20 @@ import net.minecraft.world.World;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntity_NameTagMixin extends Entity {
-  public LivingEntity_NameTagMixin(EntityType<?> type, World world) {
-    super(type, world);
-  }
-
-  @Inject(method = "onDeath", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;drop(Lnet/minecraft/entity/damage/DamageSource;)V"))
-  private void dropNameTag(CallbackInfo ci) {
-    // if rule is enabled and mob has custom name
-    if(MiniTweaksSettings.mobsDropNametag && this.hasCustomName()) {
-      // create name tag
-      ItemStack nameTag = new ItemStack(Items.NAME_TAG);
-      // set name tag to mob's name
-      nameTag.setCustomName(this.getCustomName());
-      // drop item
-      this.dropStack(nameTag);
+    public LivingEntity_NameTagMixin(EntityType<?> type, World world) {
+        super(type, world);
     }
-  }
+
+    @Inject(method = "onDeath", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;drop(Lnet/minecraft/entity/damage/DamageSource;)V"))
+    private void dropNameTag(CallbackInfo ci) {
+        // if rule is enabled and mob has custom name
+        if(MiniTweaksSettings.mobsDropNametag && this.hasCustomName()) {
+            // create name tag
+            ItemStack nameTag = new ItemStack(Items.NAME_TAG);
+            // set name tag to mob's name
+            nameTag.setCustomName(this.getCustomName());
+            // drop item
+            this.dropStack(nameTag);
+        }
+    }
 }
