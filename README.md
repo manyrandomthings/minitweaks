@@ -110,6 +110,15 @@ Dragon eggs will always be placed on the portal after defeating the dragon
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `mobs`, `survival`
 
+## shulkerCloning
+1.17 Shulker cloning  
+"A shulker hitting a shulker with a shulker bullet can make a new shulker"  
+Feature from 20w45a, subject to change
+* Type: `boolean`
+* Default value: `false`
+* Required options: `true`, `false`
+* Categories: `minitweaks`, `mobs`, `survival`, `feature`
+
 ## slimeLooting
 Bigger slimes spawn more smaller slimes when killed with looting  
 Additional slimes can be up to as many levels of looting as you have (up to +3 with looting 3, etc)  
