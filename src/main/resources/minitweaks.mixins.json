@@ -15,6 +15,7 @@
     "ProtectionEnchantment_ProtectionStackingMixin",
     "LivingEntity_NameTagMixin",
     "ItemStack_RepairCostMixin",
+    "ShulkerEntity_BulletCloneMixin",
     "MinecraftServer_NoopMixin"
   ],
   "client": [

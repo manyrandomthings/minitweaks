@@ -150,6 +150,17 @@ public class MiniTweaksSettings {
     )
     public static boolean renewableDragonEgg = false;
 
+    // 1.17 shulker cloning
+    @Rule(
+        desc = "1.17 Shulker cloning",
+        extra = {
+            "A shulker hitting a shulker with a shulker bullet can make a new shulker",
+            "Feature from 20w45a, subject to change"
+        },
+        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL, RuleCategory.FEATURE}
+    )
+    public static boolean shulkerCloning = false;
+
     // slime looting
     @Rule(
         desc = "Bigger slimes spawn more smaller slimes when killed with looting",
