@@ -77,6 +77,13 @@ public class MiniTweaksSettings {
     )
     public static boolean disableGhastFire = false;
 
+    // dispensers cure villagers
+    @Rule(
+        desc = "Dispensers feed golden apples to zombie villagers with weakness",
+        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.DISPENSER, RuleCategory.SURVIVAL}
+    )
+    public static boolean dispensersCureVillagers = false;
+
     // dispensers dye sheep
     @Rule(
         desc = "Dispensers can dye sheep",

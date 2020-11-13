@@ -17,6 +17,7 @@
     "LivingEntity_NameTagMixin",
     "ItemStack_RepairCostMixin",
     "ShulkerEntity_BulletCloneMixin",
+    "ZombieVillagerEntity_setConvertingAccessorMixin",
     "MinecraftServer_NoopMixin"
   ],
   "client": [

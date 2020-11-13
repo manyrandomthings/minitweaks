@@ -32,6 +32,13 @@ Disable fires made from blaze fireballs
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `mobs`, `survival`
 
+## dispensersCureVillagers
+Dispensers feed golden apples to zombie villagers with weakness
+* Type: `boolean`
+* Default value: `false`
+* Required options: `true`, `false`
+* Categories: `minitweaks`, `mobs`, `dispenser`, `survival`
+
 ## dispensersDyeSheep
 Dispensers can dye sheep
 * Type: `boolean`
