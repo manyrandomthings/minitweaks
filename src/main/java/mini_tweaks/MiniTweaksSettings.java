@@ -104,6 +104,14 @@ public class MiniTweaksSettings {
     )
     public static ExplosionType ghastBlockDamage = ExplosionType.DEFAULT;
 
+    // infinity+mending stacking
+    @Rule(
+        desc = "Allows infinity and mending to stack on bows",
+        extra = "Like 1.9-1.11",
+        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.ENCHANTMENT, RuleCategory.SURVIVAL}
+    )
+    public static boolean infinityMendingStacking = false;
+
     // mobs drop name tag
     @Rule(
         desc = "Named mobs drop their name tag on death",
@@ -139,7 +147,7 @@ public class MiniTweaksSettings {
     @Rule(
         desc = "Allows all the different protection types to stack on the same piece of armor",
         extra = "Like enchanting from 1.14-1.14.2",
-        category = {MiniTweaksRuleCategory.MODNAME, RuleCategory.SURVIVAL}
+        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.ENCHANTMENT, RuleCategory.SURVIVAL}
     )
     public static boolean protectionStacking = false;
 

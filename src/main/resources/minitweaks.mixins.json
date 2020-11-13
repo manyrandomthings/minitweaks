@@ -13,6 +13,7 @@
     "FarmlandBlock_TrampleMixin",
     "SmallFireballEntity_FireMixin",
     "ProtectionEnchantment_ProtectionStackingMixin",
+    "InfinityEnchantment_InfinityMendingStackingMixin",
     "LivingEntity_NameTagMixin",
     "ItemStack_RepairCostMixin",
     "ShulkerEntity_BulletCloneMixin",

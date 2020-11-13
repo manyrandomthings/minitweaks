@@ -64,6 +64,15 @@ destroy: broken blocks are sometimes dropped (like default creepers)
 * Required options: `default`, `none`, `break`, `destroy`
 * Categories: `minitweaks`, `mobs`, `survival`
 
+## infinityMendingStacking
+Allows infinity and mending to stack on bows
+* Type: `boolean`
+* Default value: `false`
+* Required options: `true`, `false`
+* Categories: `minitweaks`, `enchantment`, `survival`
+* Additional notes:
+  * Like 1.9-1.11
+
 ## mobsDropNametag
 Named mobs drop their name tag on death
 * Type: `boolean`
@@ -99,7 +108,7 @@ Allows all the different protection types to stack on the same piece of armor
 * Type: `boolean`
 * Default value: `false`
 * Required options: `true`, `false`
-* Categories: `minitweaks`, `survival`
+* Categories: `minitweaks`, `enchantment`, `survival`
 * Additional notes:
   * Like enchanting from 1.14-1.14.2
 
