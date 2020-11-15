@@ -38,6 +38,15 @@ public class MiniTweaksSettings {
         }
     }
 
+    private static class MinecartSpeedMultiplierValidator extends Validator<Double> {
+        @Override
+        public Double validate(ServerCommandSource source, ParsedRule<Double> currentRule, Double newValue, String typedString) {
+            if(newValue >= 0.1 && newValue <= 20.0) {
+                return newValue;
+            }
+            return null;
+        }
+    }
 
     // creeper block breaking
     @Rule(
@@ -118,6 +127,22 @@ public class MiniTweaksSettings {
         category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.ENCHANTMENT, RuleCategory.SURVIVAL}
     )
     public static boolean infinityMendingStacking = false;
+
+    // minecart speed multiplier
+    @Rule(
+        desc = "Minecart speed multiplier",
+        extra = {
+            "Allows maximum speed for minecarts to be increased/decreased",
+            "Default max speed is 0.4 blocks per tick (8 blocks/sec)",
+            "New max speed is (0.4 * value) blocks per tick",
+            "Must be between 0.1 and 20.0"
+        },
+        options = {"1.0", "2.0", "5.0", "10.0", "20.0"},
+        validate = MinecartSpeedMultiplierValidator.class,
+        strict = false,
+        category = {MiniTweaksRuleCategory.MODNAME, RuleCategory.EXPERIMENTAL}
+    )
+    public static double minecartSpeedMultiplier = 1.0;
 
     // mobs drop name tag
     @Rule(

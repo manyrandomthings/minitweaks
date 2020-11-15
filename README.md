@@ -80,6 +80,17 @@ Allows infinity and mending to stack on bows
 * Additional notes:
   * Like 1.9-1.11
 
+## minecartSpeedMultiplier
+Allows maximum speed for minecarts to be increased/decreased  
+Default max speed is 0.4 blocks per tick (8 blocks/sec)  
+New max speed is (0.4 * value) blocks per tick  
+* Type: `double`
+* Default value: `1.0`
+* Suggested options: `1.0`, `2.0`, `5.0`, `10.0`, `20.0`
+* Categories: `minitweaks`, `experimental`
+* Additional notes:
+  * Must be between 0.1 and 20.0
+
 ## mobsDropNametag
 Named mobs drop their name tag on death
 * Type: `boolean`

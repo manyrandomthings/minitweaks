@@ -18,6 +18,7 @@
     "ItemStack_RepairCostMixin",
     "ShulkerEntity_BulletCloneMixin",
     "ZombieVillagerEntity_setConvertingAccessorMixin",
+    "AbstractMinecartEntity_MaxSpeedMixin",
     "MinecraftServer_NoopMixin"
   ],
   "client": [
