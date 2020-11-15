@@ -107,6 +107,13 @@ public class MiniTweaksSettings {
     )
     public static boolean dispensersNameMobs = false;
 
+    // dye shulkers
+    @Rule(
+        desc = "Shulkers can be dyed",
+        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS}
+    )
+    public static boolean dyeableShulkers = false;
+
     // ghast fireball block breaking
     @Rule(
         desc = "Set ghast explosion block damage type, regardless of mobGriefing gamerule",

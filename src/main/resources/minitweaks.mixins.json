@@ -19,6 +19,8 @@
     "ShulkerEntity_BulletCloneMixin",
     "ZombieVillagerEntity_setConvertingAccessorMixin",
     "AbstractMinecartEntity_MaxSpeedMixin",
+    "ShulkerEntity_ColorTrackerKeyAccessorMixin",
+    "DyeItem_DyeShulkersMixin",
     "MinecraftServer_NoopMixin"
   ],
   "client": [

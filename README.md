@@ -60,6 +60,13 @@ Disable random fire from ghast fireballs
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `mobs`, `survival`
 
+## dyeableShulkers
+Shulkers can be dyed
+* Type: `boolean`
+* Default value: `false`
+* Required options: `true`, `false`
+* Categories: `minitweaks`, `mobs`
+
 ## ghastBlockDamage
 Set ghast explosion block damage type, regardless of mobGriefing gamerule  
 default: uses default explosion  
