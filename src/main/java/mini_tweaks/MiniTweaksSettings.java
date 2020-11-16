@@ -93,12 +93,12 @@ public class MiniTweaksSettings {
     )
     public static boolean dispensersCureVillagers = false;
 
-    // dispensers dye sheep
+    // dispensers dye mobs
     @Rule(
-        desc = "Dispensers can dye sheep",
+        desc = "Dispensers can dye sheep (and shulkers if dyeableShulkers is enabled)",
         category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.DISPENSER}
     )
-    public static boolean dispensersDyeSheep = false;
+    public static boolean dispensersDyeMobs = false;
 
     // dispensers use name tags
     @Rule(

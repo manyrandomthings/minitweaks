@@ -39,8 +39,8 @@ Dispensers feed golden apples to zombie villagers with weakness
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `mobs`, `dispenser`, `survival`
 
-## dispensersDyeSheep
-Dispensers can dye sheep
+## dispensersDyeMobs
+Dispensers can dye sheep (and shulkers if dyeableShulkers is enabled)
 * Type: `boolean`
 * Default value: `false`
 * Required options: `true`, `false`

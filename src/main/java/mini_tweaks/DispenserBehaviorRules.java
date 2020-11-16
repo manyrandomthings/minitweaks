@@ -8,6 +8,8 @@ import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.entity.mob.PathAwareEntity;
+import net.minecraft.entity.mob.ShulkerEntity;
 import net.minecraft.entity.mob.ZombieVillagerEntity;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -62,35 +64,49 @@ public class DispenserBehaviorRules {
         for(DyeColor dyeColor : DyeColor.values()) {
             DispenserBlock.registerBehavior(DyeItem.byColor(dyeColor).asItem(), new FallibleItemDispenserBehavior() {
                 public ItemStack dispenseSilently(BlockPointer pointer, ItemStack stack) {
-                    if(!MiniTweaksSettings.dispensersDyeSheep) {
+                    if(!MiniTweaksSettings.dispensersDyeMobs) {
                         this.setSuccess(true);
                         return super.dispenseSilently(pointer, stack);
                     }
 
                     // get block in front of dispenser
                     BlockPos blockPos = pointer.getBlockPos().offset(pointer.getBlockState().get(DispenserBlock.FACING));
-                    // get all sheep entities in front of dispenser
-                    List<SheepEntity> list = pointer.getWorld().getEntitiesByClass(SheepEntity.class, new Box(blockPos), (sheepEntity) -> {
-                        // select only alive sheep
-                        return sheepEntity.isAlive();
+                    // get all PathAwareEntity entities in front of dispenser (common root of sheep and shulkers)
+                    List<PathAwareEntity> list = pointer.getWorld().getEntitiesByClass(PathAwareEntity.class, new Box(blockPos), (entity) -> {
+                        // select only alive mobs
+                        return entity.isAlive();
                     });
+                    // get color of item
+                    DyeColor itemColor = ((DyeItem) stack.getItem()).getColor();
 
-                    // go through list of sheep
-                    for(SheepEntity sheepEntity : list) {
-                        // get color of item
-                        DyeColor itemColor = ((DyeItem) stack.getItem()).getColor();
+                    // go through list of entities
+                    for(PathAwareEntity entity : list) {
+                        if(entity instanceof SheepEntity) {
+                            SheepEntity sheepEntity = (SheepEntity) entity;
+                            // if sheep is not sheared and not the same color as item
+                            if(!sheepEntity.isSheared() && sheepEntity.getColor() != itemColor) {
+                                // set sheep color to item color
+                                sheepEntity.setColor(itemColor);
+                                stack.decrement(1);
+                                this.setSuccess(true);
+                                return stack;
+                            }
+                        }
+                        else if(MiniTweaksSettings.dyeableShulkers && entity instanceof ShulkerEntity) {
+                            ShulkerEntity shulkerEntity = (ShulkerEntity) entity;
 
-                        // if sheep is not sheared and not the same color as item
-                        if(!sheepEntity.isSheared() && sheepEntity.getColor() != itemColor) {
-                            // set sheep color to item color
-                            sheepEntity.setColor(itemColor);
-                            stack.decrement(1);
-                            this.setSuccess(true);
-                            return stack;
+                            // replace with shulkerEntity.getColor() in 1.17
+                            if(ShulkerEntityColorHelper.getColor(shulkerEntity) != itemColor) {
+                                // replace with shulkerEntity.setColor(itemColor) in 1.17
+                                ShulkerEntityColorHelper.setColor(shulkerEntity, itemColor);
+                                stack.decrement(1);
+                                this.setSuccess(true);
+                                return stack;
+                            }
                         }
                     }
 
-                    // fail to dispense if no sheep are available to be dyed
+                    // fail to dispense if no entities are available to be dyed
                     this.setSuccess(false);
                     return stack;
                 }
