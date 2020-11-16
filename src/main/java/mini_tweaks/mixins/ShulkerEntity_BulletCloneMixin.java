@@ -7,11 +7,13 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import mini_tweaks.MiniTweaksSettings;
+import mini_tweaks.ShulkerEntityColorHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.ShulkerEntity;
 import net.minecraft.entity.passive.GolemEntity;
+import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -45,11 +47,19 @@ public abstract class ShulkerEntity_BulletCloneMixin extends GolemEntity {
         Box box = this.getBoundingBox();
         // if shulker is open, try to teleport, and spawn new shulker if successful
         if(!this.isClosed() && this.tryTeleport()) {
-            // get odds of successfully cloning based on
+            // get odds of successfully cloning based on how many shulkers are within 8 blocks (17x17x17 area)
             int shulkersCount = this.world.getEntitiesByType(EntityType.SHULKER, box.expand(8.0D), Entity::isAlive).size();
             float cloneOdds = (float) (shulkersCount - 1) / 5.0F;
             if(cloneOdds <= this.world.random.nextFloat()) {
                 ShulkerEntity shulkerEntity = EntityType.SHULKER.create(this.world);
+                // replace with this.getColor() in 1.17
+                DyeColor dyeColor = ShulkerEntityColorHelper.getColor((ShulkerEntity) (Object) this);
+                if(dyeColor != null) {
+                    // replace with shulkerEntity.setColor(dyeColor) in 1.17
+                    ShulkerEntityColorHelper.setColor(shulkerEntity, dyeColor);
+                }
+
+
                 shulkerEntity.refreshPositionAfterTeleport(pos);
                 this.world.spawnEntity(shulkerEntity);
             }
