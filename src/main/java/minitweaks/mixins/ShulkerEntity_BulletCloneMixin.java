@@ -1,4 +1,4 @@
-package mini_tweaks.mixins;
+package minitweaks.mixins;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -6,8 +6,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import mini_tweaks.MiniTweaksSettings;
-import mini_tweaks.ShulkerEntityColorHelper;
+import minitweaks.MiniTweaksSettings;
+import minitweaks.ShulkerEntityColorHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.damage.DamageSource;

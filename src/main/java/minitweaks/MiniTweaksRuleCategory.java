@@ -1,4 +1,4 @@
-package mini_tweaks;
+package minitweaks;
 
 public class MiniTweaksRuleCategory {
     public static final String MODNAME = "minitweaks";

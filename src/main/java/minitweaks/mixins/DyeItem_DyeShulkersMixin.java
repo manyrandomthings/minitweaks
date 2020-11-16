@@ -1,12 +1,12 @@
-package mini_tweaks.mixins;
+package minitweaks.mixins;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import mini_tweaks.MiniTweaksSettings;
-import mini_tweaks.ShulkerEntityColorHelper;
+import minitweaks.MiniTweaksSettings;
+import minitweaks.ShulkerEntityColorHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.ShulkerEntity;
 import net.minecraft.entity.player.PlayerEntity;

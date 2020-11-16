@@ -1,8 +1,8 @@
-package mini_tweaks;
+package minitweaks;
 
 import java.util.List;
 
-import mini_tweaks.mixins.ZombieVillagerEntity_setConvertingAccessorMixin;
+import minitweaks.mixins.ZombieVillagerEntity_setConvertingAccessorMixin;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
 import net.minecraft.entity.LivingEntity;

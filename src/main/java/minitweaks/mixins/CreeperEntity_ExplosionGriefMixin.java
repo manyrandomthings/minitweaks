@@ -1,10 +1,10 @@
-package mini_tweaks.mixins;
+package minitweaks.mixins;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
-import mini_tweaks.MiniTweaksSettings;
+import minitweaks.MiniTweaksSettings;
 import net.minecraft.entity.mob.CreeperEntity;
 import net.minecraft.world.explosion.Explosion.DestructionType;
 

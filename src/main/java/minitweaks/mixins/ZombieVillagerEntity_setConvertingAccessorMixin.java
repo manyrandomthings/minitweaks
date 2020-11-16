@@ -1,4 +1,4 @@
-package mini_tweaks.mixins;
+package minitweaks.mixins;
 
 import java.util.UUID;
 

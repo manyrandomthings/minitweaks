@@ -16,7 +16,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "mini_tweaks.MiniTweaks"
+      "minitweaks.MiniTweaks"
     ]
   },
   "mixins": [

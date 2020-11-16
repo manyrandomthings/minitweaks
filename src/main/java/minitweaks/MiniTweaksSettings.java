@@ -1,4 +1,4 @@
-package mini_tweaks;
+package minitweaks;
 
 import carpet.settings.ParsedRule;
 import carpet.settings.Rule;

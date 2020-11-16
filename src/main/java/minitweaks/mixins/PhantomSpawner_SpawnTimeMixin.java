@@ -1,10 +1,10 @@
-package mini_tweaks.mixins;
+package minitweaks.mixins;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
-import mini_tweaks.MiniTweaksSettings;
+import minitweaks.MiniTweaksSettings;
 import net.minecraft.world.gen.PhantomSpawner;
 
 @Mixin(PhantomSpawner.class)

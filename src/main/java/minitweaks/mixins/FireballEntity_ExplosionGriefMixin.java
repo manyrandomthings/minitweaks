@@ -1,10 +1,10 @@
-package mini_tweaks.mixins;
+package minitweaks.mixins;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-import mini_tweaks.MiniTweaksSettings;
+import minitweaks.MiniTweaksSettings;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.projectile.FireballEntity;
 import net.minecraft.world.World;

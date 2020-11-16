@@ -1,6 +1,6 @@
-package mini_tweaks;
+package minitweaks;
 
-import mini_tweaks.mixins.ShulkerEntity_ColorTrackerKeyAccessorMixin;
+import minitweaks.mixins.ShulkerEntity_ColorTrackerKeyAccessorMixin;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.mob.ShulkerEntity;
