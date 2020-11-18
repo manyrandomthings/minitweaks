@@ -21,6 +21,7 @@
     "AbstractMinecartEntity_MaxSpeedMixin",
     "ShulkerEntity_ColorTrackerKeyAccessorMixin",
     "DyeItem_DyeShulkersMixin",
+    "DispenserBlock_GetBehaviorMixin",
     "MinecraftServer_NoopMixin"
   ],
   "client": [
