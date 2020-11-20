@@ -107,6 +107,18 @@ public class MiniTweaksSettings {
     )
     public static boolean dispensersNameMobs = false;
 
+    // dispensers use cauldrons
+    @Rule(
+        desc = "Dispensers use cauldrons",
+        extra = {
+            "When facing into a cauldron, dispensers can",
+            "fill/empty buckets and bottles, remove layers",
+            "from banners, and undye leather armor or shulker boxes"
+        },
+        category = {MiniTweaksRuleCategory.MODNAME, RuleCategory.SURVIVAL, RuleCategory.DISPENSER}
+    )
+    public static boolean dispensersUseCauldrons = false;
+
     // dye shulkers
     @Rule(
         desc = "Shulkers can be dyed",

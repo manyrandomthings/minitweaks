@@ -53,6 +53,15 @@ Dispensers use name tags on mobs
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `mobs`, `dispenser`
 
+## dispensersUseCauldrons
+Dispensers use cauldrons  
+When facing into a cauldron, dispensers can fill/empty buckets and bottles,  
+remove layers from banners, and undye leather armor or shulker boxes  
+* Type: `boolean`
+* Default value: `false`
+* Required options: `true`, `false`
+* Categories: `minitweaks`, `mobs`, `dispenser`
+
 ## disableGhastFire
 Disable random fire from ghast fireballs
 * Type: `boolean`
