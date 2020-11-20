@@ -17,7 +17,7 @@
     "LivingEntity_NameTagMixin",
     "ItemStack_RepairCostMixin",
     "ShulkerEntity_BulletCloneMixin",
-    "ZombieVillagerEntity_setConvertingAccessorMixin",
+    "ZombieVillagerEntity_setConvertingInvokerMixin",
     "AbstractMinecartEntity_MaxSpeedMixin",
     "ShulkerEntity_ColorTrackerKeyAccessorMixin",
     "DyeItem_DyeShulkersMixin",

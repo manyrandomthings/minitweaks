@@ -89,6 +89,10 @@ public class MiniTweaksSettings {
     // dispensers cure villagers
     @Rule(
         desc = "Dispensers feed golden apples to zombie villagers with weakness",
+        extra = {
+            "Note: dispensers curing a villager does not lower the",
+            "villager's prices due to gossips being player-specific"
+        },
         category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.DISPENSER, RuleCategory.SURVIVAL}
     )
     public static boolean dispensersCureVillagers = false;

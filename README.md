@@ -38,6 +38,8 @@ Dispensers feed golden apples to zombie villagers with weakness
 * Default value: `false`
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `mobs`, `dispenser`, `survival`
+* Additional notes:
+  * Note: dispensers curing a villager does not lower the villager's prices due to gossips being player-specific
 
 ## dispensersDyeMobs
 Dispensers can dye sheep (and shulkers if dyeableShulkers is enabled)
