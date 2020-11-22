@@ -13,19 +13,24 @@ public class MiniTweaksSettings {
     }
 
     public static DestructionType getExplosionType(ExplosionType option, DestructionType original) {
-        // No blocks broken
-        if(option == ExplosionType.NONE) {
-            return DestructionType.NONE;
+        switch(option) {
+            // No blocks broken
+            case NONE:
+                return DestructionType.NONE;
+
+            // Blocks are broken but all are dropped (like tnt)
+            case BREAK:
+                return DestructionType.BREAK;
+
+            // Blocks are broken and some are destroyed (like default creepers)
+            case DESTROY:
+                return DestructionType.DESTROY;
+
+            // Default explosion (no modification)
+            case DEFAULT:
+            default:
+                return original;
         }
-        // Blocks are broken but all are dropped (like tnt)
-        else if(option == ExplosionType.BREAK) {
-            return DestructionType.BREAK;
-        }
-        // Blocks are broken and some are destroyed (like default creepers)
-        else if(option == ExplosionType.DESTROY) {
-            return DestructionType.DESTROY;
-        }
-        return original;
     }
 
     private static class ItemDespawnTimeValidator extends Validator<Integer> {
