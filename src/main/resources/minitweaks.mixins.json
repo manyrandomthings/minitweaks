@@ -22,6 +22,7 @@
     "ShulkerEntity_ColorTrackerKeyAccessorMixin",
     "DyeItem_DyeShulkersMixin",
     "DispenserBlock_GetBehaviorMixin",
+    "ShovelItem_PathMixin",
     "MinecraftServer_NoopMixin"
   ],
   "client": [

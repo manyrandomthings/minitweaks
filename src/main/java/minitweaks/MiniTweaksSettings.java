@@ -188,6 +188,13 @@ public class MiniTweaksSettings {
     )
     public static boolean mobsDropNametag = false;
 
+    // more paveable blocks
+    @Rule(
+        desc = "More dirt-like blocks can be made into path blocks (from 1.17)",
+        category = {MiniTweaksRuleCategory.MODNAME, RuleCategory.SURVIVAL, MiniTweaksRuleCategory.BACKPORT}
+    )
+    public static boolean morePaveableBlocks = false;
+
     // farmland feather falling
     @Rule(
         desc = "Prevents farmland from being trampled if you have feather falling on",
@@ -234,7 +241,7 @@ public class MiniTweaksSettings {
             "A shulker hitting a shulker with a shulker bullet can make a new shulker",
             "Feature from 20w45a, subject to change"
         },
-        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL, RuleCategory.FEATURE}
+        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL, MiniTweaksRuleCategory.BACKPORT}
     )
     public static boolean shulkerCloning = false;
 
