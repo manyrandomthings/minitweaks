@@ -125,6 +125,13 @@ Named mobs drop their name tag on death
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `mobs`, `survival`
 
+## morePaveableBlocks
+More dirt-like blocks can be made into path blocks (from 1.17)
+* Type: `boolean`
+* Default value: `false`
+* Required options: `true`, `false`
+* Categories: `minitweaks`, `survival`, `backport`
+
 ## noFeatherFallingTrample
 Prevents farmland from being trampled if you have feather falling on
 * Type: `boolean`
@@ -171,7 +178,7 @@ Feature from 20w45a, subject to change
 * Type: `boolean`
 * Default value: `false`
 * Required options: `true`, `false`
-* Categories: `minitweaks`, `mobs`, `survival`, `feature`
+* Categories: `minitweaks`, `mobs`, `survival`, `backport`
 
 ## slimeLooting
 Bigger slimes spawn more smaller slimes when killed with looting  
