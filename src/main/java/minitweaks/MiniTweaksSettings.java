@@ -227,6 +227,13 @@ public class MiniTweaksSettings {
     )
     public static boolean protectionStacking = false;
 
+    // quick harvesting
+    @Rule(
+        desc = "Right click crops with a hoe to harvest and replant",
+        category = {MiniTweaksRuleCategory.MODNAME, RuleCategory.SURVIVAL, RuleCategory.FEATURE}
+    )
+    public static boolean quickHarvesting = false;
+
     // dragon egg placing
     @Rule(
         desc = "Dragon eggs will always be placed on the portal after defeating the dragon",

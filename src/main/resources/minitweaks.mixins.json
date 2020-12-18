@@ -23,6 +23,7 @@
     "DyeItem_DyeShulkersMixin",
     "DispenserBlock_GetBehaviorMixin",
     "ShovelItem_PathMixin",
+    "HoeItem_HarvestMixin",
     "MinecraftServer_NoopMixin"
   ],
   "client": [

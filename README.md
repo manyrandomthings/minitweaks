@@ -164,6 +164,13 @@ Allows all the different protection types to stack on the same piece of armor
 * Additional notes:
   * Like enchanting from 1.14-1.14.2
 
+## quickHarvesting
+Right click crops with a hoe to harvest and replant
+* Type: `boolean`
+* Default value: `false`
+* Required options: `true`, `false`
+* Categories: `minitweaks`, `survival`, `feature`
+
 ## renewableDragonEgg
 Dragon eggs will always be placed on the portal after defeating the dragon
 * Type: `boolean`
