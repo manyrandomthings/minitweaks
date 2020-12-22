@@ -21,5 +21,8 @@
     "minecraft": ">=1.16.4",
     "fabricloader": ">=0.10.0",
     "carpet": ">=1.4.15"
+  },
+  "custom": {
+    "modmenu:parent": "carpet"
   }
 }
