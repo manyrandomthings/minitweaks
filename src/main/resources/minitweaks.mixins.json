@@ -24,6 +24,7 @@
     "DispenserBlock_GetBehaviorMixin",
     "ShovelItem_PathMixin",
     "HoeItem_HarvestMixin",
+    "PistonBlockEntity_WaterMixin",
     "MinecraftServer_NoopMixin"
   ],
   "client": [

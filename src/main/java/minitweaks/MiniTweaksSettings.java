@@ -195,6 +195,13 @@ public class MiniTweaksSettings {
     )
     public static boolean morePaveableBlocks = false;
 
+    // moveable waterlogged blocks
+    @Rule(
+        desc = "Waterlogged blocks stay waterlogged when moved with a piston",
+        category = {MiniTweaksRuleCategory.MODNAME, RuleCategory.FEATURE}
+    )
+    public static boolean moveableWaterloggedBlocks = false;
+
     // farmland feather falling
     @Rule(
         desc = "Prevents farmland from being trampled if you have feather falling on",

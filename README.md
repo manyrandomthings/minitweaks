@@ -5,19 +5,19 @@ Requires [fabric-carpet](https://github.com/gnembon/fabric-carpet)
 
 # Mini Tweaks Settings
 ## creeperBlockDamage
-Set creeper explosion block damage type, regardless of mobGriefing gamerule  
-default: uses default explosion  
-none: no blocks broken  
-break: all broken blocks are dropped (like tnt)  
-destroy: broken blocks are sometimes dropped (like default creepers)  
+Set creeper explosion block damage type, regardless of mobGriefing gamerule
+default: uses default explosion
+none: no blocks broken
+break: all broken blocks are dropped (like tnt)
+destroy: broken blocks are sometimes dropped (like default creepers)
 * Type: `String`
 * Default value: `default`
 * Required options: `default`, `none`, `break`, `destroy`
 * Categories: `minitweaks`, `mobs`, `survival`
 
 ## deathItemsDespawnMinutes
-How many minutes it takes for a player's items to despawn after death  
--1 for infinte, 0 for instant despawn  
+How many minutes it takes for a player's items to despawn after death
+-1 for infinte, 0 for instant despawn
 * Type: `int`
 * Default value: `5`
 * Suggested options: `5`, `10`, `15`, `30`, `-1`
@@ -56,9 +56,9 @@ Dispensers use name tags on mobs
 * Categories: `minitweaks`, `mobs`, `dispenser`
 
 ## dispensersUseCauldrons
-Dispensers use cauldrons  
-When facing into a cauldron, dispensers can fill/empty buckets and bottles,  
-remove layers from banners, and undye leather armor or shulker boxes  
+Dispensers use cauldrons
+When facing into a cauldron, dispensers can fill/empty buckets and bottles,
+remove layers from banners, and undye leather armor or shulker boxes
 * Type: `boolean`
 * Default value: `false`
 * Required options: `true`, `false`
@@ -79,11 +79,11 @@ Shulkers can be dyed
 * Categories: `minitweaks`, `mobs`
 
 ## ghastBlockDamage
-Set ghast explosion block damage type, regardless of mobGriefing gamerule  
-default: uses default explosion  
-none: no blocks broken  
-break: all broken blocks are dropped (like tnt)  
-destroy: broken blocks are sometimes dropped (like default creepers)  
+Set ghast explosion block damage type, regardless of mobGriefing gamerule
+default: uses default explosion
+none: no blocks broken
+break: all broken blocks are dropped (like tnt)
+destroy: broken blocks are sometimes dropped (like default creepers)
 * Type: `String`
 * Default value: `default`
 * Required options: `default`, `none`, `break`, `destroy`
@@ -99,11 +99,11 @@ Allows infinity and mending to stack on bows
   * Like 1.9-1.11
 
 ## minecartSpeedMultiplier
-Allows maximum speed for minecarts to be increased/decreased  
-Default max speed is 0.4 blocks per tick (8 blocks/sec)  
-New max speed is (0.4 * value) blocks per tick  
-This is experimental and may cause issues, such as  
-derailing at high speeds around corners, and stopping at upwards slopes  
+Allows maximum speed for minecarts to be increased/decreased
+Default max speed is 0.4 blocks per tick (8 blocks/sec)
+New max speed is (0.4 * value) blocks per tick
+This is experimental and may cause issues, such as
+derailing at high speeds around corners, and stopping at upwards slopes
 * Type: `double`
 * Default value: `1.0`
 * Suggested options: `1.0`, `2.0`, `5.0`, `10.0`, `20.0`
@@ -131,6 +131,13 @@ More dirt-like blocks can be made into path blocks (from 1.17)
 * Default value: `false`
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `survival`, `backport`
+
+## moveableWaterloggedBlocks
+Waterlogged blocks stay waterlogged when moved with a piston
+* Type: `boolean`
+* Default value: `false`
+* Required options: `true`, `false`
+* Categories: `minitweaks`, `feature`
 
 ## noFeatherFallingTrample
 Prevents farmland from being trampled if you have feather falling on
@@ -179,8 +186,8 @@ Dragon eggs will always be placed on the portal after defeating the dragon
 * Categories: `minitweaks`, `mobs`, `survival`
 
 ## shulkerCloning
-1.17 Shulker cloning  
-"A shulker hitting a shulker with a shulker bullet can make a new shulker"  
+1.17 Shulker cloning
+"A shulker hitting a shulker with a shulker bullet can make a new shulker"
 Feature from 20w45a, subject to change
 * Type: `boolean`
 * Default value: `false`
@@ -188,8 +195,8 @@ Feature from 20w45a, subject to change
 * Categories: `minitweaks`, `mobs`, `survival`, `backport`
 
 ## slimeLooting
-Bigger slimes spawn more smaller slimes when killed with looting  
-Additional slimes can be up to as many levels of looting as you have (up to +3 with looting 3, etc)  
+Bigger slimes spawn more smaller slimes when killed with looting
+Additional slimes can be up to as many levels of looting as you have (up to +3 with looting 3, etc)
 * Type: `boolean`
 * Default value: `false`
 * Required options: `true`, `false`
