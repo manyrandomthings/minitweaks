@@ -8,28 +8,28 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.world.explosion.Explosion.DestructionType;
 
 public class MiniTweaksSettings {
-    public enum ExplosionType {
-        DEFAULT, NONE, BREAK, DESTROY
-    }
+    public enum BlockBreakingType {
+        DEFAULT, NONE, BREAK, DESTROY;
 
-    public static DestructionType getExplosionType(ExplosionType option, DestructionType original) {
-        switch(option) {
-            // No blocks broken
-            case NONE:
-                return DestructionType.NONE;
+        public DestructionType getExplosionType(DestructionType original) {
+            switch(this) {
+                // No blocks broken
+                case NONE:
+                    return DestructionType.NONE;
 
-            // Blocks are broken but all are dropped (like tnt)
-            case BREAK:
-                return DestructionType.BREAK;
+                // Blocks are broken but all are dropped (like tnt)
+                case BREAK:
+                    return DestructionType.BREAK;
 
-            // Blocks are broken and some are destroyed (like default creepers)
-            case DESTROY:
-                return DestructionType.DESTROY;
+                // Blocks are broken and some are destroyed (like default creepers)
+                case DESTROY:
+                    return DestructionType.DESTROY;
 
-            // Default explosion (no modification)
-            case DEFAULT:
-            default:
-                return original;
+                // Default explosion (no modification)
+                case DEFAULT:
+                default:
+                    return original;
+            }
         }
     }
 
@@ -64,7 +64,7 @@ public class MiniTweaksSettings {
         },
         category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL}
     )
-    public static ExplosionType creeperBlockDamage = ExplosionType.DEFAULT;
+    public static BlockBreakingType creeperBlockDamage = BlockBreakingType.DEFAULT;
 
     // death items despawn time
     @Rule(
@@ -146,7 +146,7 @@ public class MiniTweaksSettings {
         },
         category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL}
     )
-    public static ExplosionType ghastBlockDamage = ExplosionType.DEFAULT;
+    public static BlockBreakingType ghastBlockDamage = BlockBreakingType.DEFAULT;
 
     // infinity+mending stacking
     @Rule(
