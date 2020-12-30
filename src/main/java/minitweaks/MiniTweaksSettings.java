@@ -128,6 +128,19 @@ public class MiniTweaksSettings {
     )
     public static boolean dispensersUseCauldrons = false;
 
+    // dragon block breaking
+    @Rule(
+        desc = "Set dragon block damage breaking type, regardless of mobGriefing gamerule",
+        extra = {
+            "default: default block breaking",
+            "none: no blocks are broken",
+            "break: broken blocks are dropped",
+            "destroy: broken blocks are destroyed and not dropped"
+        },
+        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL}
+    )
+    public static BlockBreakingType dragonBlockDamage = BlockBreakingType.DEFAULT;
+
     // dye shulkers
     @Rule(
         desc = "Shulkers can be dyed",

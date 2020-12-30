@@ -71,6 +71,17 @@ Disable random fire from ghast fireballs
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `mobs`, `survival`
 
+## dragonBlockDamage
+Set dragon block damage breaking type, regardless of mobGriefing gamerule
+default: default block breaking
+none: no blocks are broken
+break: broken blocks are dropped
+destroy: broken blocks are destroyed and not dropped
+* Type: `String`
+* Default value: `default`
+* Required options: `default`, `none`, `break`, `destroy`
+* Categories: `minitweaks`, `mobs`, `survival`
+
 ## dyeableShulkers
 Shulkers can be dyed
 * Type: `boolean`

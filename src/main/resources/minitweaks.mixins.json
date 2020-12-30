@@ -25,6 +25,7 @@
     "ShovelItem_PathMixin",
     "HoeItem_HarvestMixin",
     "PistonBlockEntity_WaterMixin",
+    "EnderDragonEntity_BreakBlocksMixin",
     "MinecraftServer_NoopMixin"
   ],
   "client": [
