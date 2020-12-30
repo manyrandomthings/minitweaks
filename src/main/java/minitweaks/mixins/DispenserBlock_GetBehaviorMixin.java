@@ -37,6 +37,11 @@ public abstract class DispenserBlock_GetBehaviorMixin {
         this.blockPointer = blockPointerImpl;
     }
 
+    @Inject(method = "dispense", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/DispenserBlock;getBehaviorForItem(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/block/dispenser/DispenserBehavior;", shift = At.Shift.AFTER))
+    private void getBlockInFront(ServerWorld serverWorld, BlockPos pos, CallbackInfo ci) {
+        this.blockPointer = null;
+    }
+
     @Inject(method = "getBehaviorForItem", at = @At("HEAD"), cancellable = true)
     private void getCustomBehavior(ItemStack stack, CallbackInfoReturnable<DispenserBehavior> cir) {
         Item item = stack.getItem();
