@@ -169,6 +169,16 @@ public class MiniTweaksSettings {
     )
     public static boolean infinityMendingStacking = false;
 
+    // max xp drop
+    @Rule(
+        desc = "Maximum amount of xp players drop on death",
+        options = {"0", "100", "1000", "10000"},
+        validate = Validator.NONNEGATIVE_NUMBER.class,
+        strict = false,
+        category = {MiniTweaksRuleCategory.MODNAME, RuleCategory.SURVIVAL}
+    )
+    public static int maxPlayerXpDrop = 100;
+
     // minecart speed multiplier
     @Rule(
         desc = "Minecart speed multiplier",

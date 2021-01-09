@@ -109,6 +109,15 @@ Allows infinity and mending to stack on bows
 * Additional notes:
   * Like 1.9-1.11
 
+## maxPlayerXpDrop
+Maximum amount of xp players drop on death
+* Type: `int`
+* Default value: `100`
+* Suggested options: `0`, `100`, `1000`, `10000`
+* Categories: `minitweaks`, `survival`
+* Additional notes:
+  * Must be a positive number
+
 ## minecartSpeedMultiplier
 Allows maximum speed for minecarts to be increased/decreased  
 Default max speed is 0.4 blocks per tick (8 blocks/sec)  
