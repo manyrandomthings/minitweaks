@@ -26,6 +26,7 @@
     "HoeItem_HarvestMixin",
     "PistonBlockEntity_WaterMixin",
     "EnderDragonEntity_BreakBlocksMixin",
+    "VillagerEntity_ExplodeBedMixin",
     "MinecraftServer_NoopMixin"
   ],
   "client": [

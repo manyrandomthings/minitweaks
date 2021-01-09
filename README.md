@@ -212,3 +212,11 @@ Additional slimes can be up to as many levels of looting as you have (up to +3 w
 * Default value: `false`
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `mobs`, `survival`
+
+## villagersExplodeBeds
+Villagers cause explosions when trying to use beds in the nether or end, like players  
+"But why?" Idk, it's just a funny idea I had  
+* Type: `boolean`
+* Default value: `false`
+* Required options: `true`, `false`
+* Categories: `minitweaks`, `mobs`

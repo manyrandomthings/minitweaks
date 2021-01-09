@@ -279,4 +279,12 @@ public class MiniTweaksSettings {
         category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL}
     )
     public static boolean slimeLooting = false;
+
+    // villagers explode beds
+    @Rule(
+        desc = "Villagers cause explosions when trying to use beds in the nether or end, like players",
+        extra = "\"But why?\" Idk, it's just a funny idea I had",
+        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS}
+    )
+    public static boolean villagersExplodeBeds = false;
 }
