@@ -1,9 +1,9 @@
-# Mini Tweaks
-Some small additions to carpet mod
+# MiniTweaks
+Some small game mechanic changes, mainly for survival
 
 Requires [fabric-carpet](https://github.com/gnembon/fabric-carpet)
 
-# Mini Tweaks Settings
+# MiniTweaks Settings
 ## creeperBlockDamage
 Set creeper explosion block damage type, regardless of mobGriefing gamerule  
 default: uses default explosion  
