@@ -1,5 +1,7 @@
 package minitweaks.mixins;
 
+import java.util.Optional;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -15,6 +17,7 @@ import net.minecraft.entity.mob.ShulkerEntity;
 import net.minecraft.entity.passive.GolemEntity;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.Box;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
@@ -63,6 +66,19 @@ public abstract class ShulkerEntity_BulletCloneMixin extends GolemEntity {
                 shulkerEntity.refreshPositionAfterTeleport(pos);
                 this.world.spawnEntity(shulkerEntity);
             }
+        }
+    }
+
+    // bad hack but it works, I guess
+    @Override
+    public void copyFrom(Entity original) {
+        super.copyFrom(original);
+
+        if(MiniTweaksSettings.shulkerPortalFix) {
+            // reset attached face and attached block to default values
+            // fixes MC-139265, MC-168900 (probably)
+            this.dataTracker.set(ShulkerEntity_TrackerKeysAccessorMixin.getAttachedFaceTrackerKey(), Direction.DOWN);
+            this.dataTracker.set(ShulkerEntity_TrackerKeysAccessorMixin.getAttachedBlockTrackerKey(), Optional.empty());
         }
     }
 }

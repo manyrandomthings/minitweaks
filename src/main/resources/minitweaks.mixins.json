@@ -19,7 +19,7 @@
     "ShulkerEntity_BulletCloneMixin",
     "ZombieVillagerEntity_setConvertingInvokerMixin",
     "AbstractMinecartEntity_MaxSpeedMixin",
-    "ShulkerEntity_ColorTrackerKeyAccessorMixin",
+    "ShulkerEntity_TrackerKeysAccessorMixin",
     "DyeItem_DyeShulkersMixin",
     "DispenserBlock_GetBehaviorMixin",
     "ShovelItem_PathMixin",

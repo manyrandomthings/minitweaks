@@ -1,6 +1,6 @@
 package minitweaks;
 
-import minitweaks.mixins.ShulkerEntity_ColorTrackerKeyAccessorMixin;
+import minitweaks.mixins.ShulkerEntity_TrackerKeysAccessorMixin;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.mob.ShulkerEntity;
@@ -11,7 +11,7 @@ public class ShulkerEntityColorHelper {
 
     public static DyeColor getColor(ShulkerEntity shulkerEntity) {
         DataTracker dataTracker = shulkerEntity.getDataTracker();
-        TrackedData<Byte> COLOR = ShulkerEntity_ColorTrackerKeyAccessorMixin.getColorTrackerKey();
+        TrackedData<Byte> COLOR = ShulkerEntity_TrackerKeysAccessorMixin.getColorTrackerKey();
         Byte colorId = dataTracker.get(COLOR);
 
         if(colorId >= 0 && colorId <= 15) {
@@ -22,7 +22,7 @@ public class ShulkerEntityColorHelper {
 
     public static void setColor(ShulkerEntity shulkerEntity, DyeColor dyeColor) {
         DataTracker dataTracker = shulkerEntity.getDataTracker();
-        TrackedData<Byte> COLOR = ShulkerEntity_ColorTrackerKeyAccessorMixin.getColorTrackerKey();
+        TrackedData<Byte> COLOR = ShulkerEntity_TrackerKeysAccessorMixin.getColorTrackerKey();
         byte colorId = (byte) (dyeColor != null ? dyeColor.getId() : 16);
 
         dataTracker.set(COLOR, colorId);

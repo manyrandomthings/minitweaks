@@ -282,6 +282,17 @@ public class MiniTweaksSettings {
     )
     public static boolean shulkerCloning = false;
 
+    // Shulker portal fix
+    @Rule(
+        desc = "Shulker portal teleportation fix",
+        extra = {
+            "Fixes MC-139265 / MC-168900, which makes shulkers use portals",
+            "correctly now (well, probably at least)"
+        },
+        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL, RuleCategory.BUGFIX}
+    )
+    public static boolean shulkerPortalFix = false;
+
     // slime looting
     @Rule(
         desc = "Bigger slimes spawn more smaller slimes when killed with looting",
