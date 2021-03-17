@@ -15,6 +15,11 @@
   "license": "LGPL-3.0-or-later",
   "icon": "assets/minitweaks/icon.png",
   "environment": "*",
+  "entrypoints": {
+    "main": [
+      "minitweaks.MiniTweaks"
+    ]
+  },
   "mixins": [
     "minitweaks.mixins.json"
   ],

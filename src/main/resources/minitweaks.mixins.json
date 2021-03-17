@@ -27,11 +27,7 @@
     "PistonBlockEntity_WaterMixin",
     "EnderDragonEntity_BreakBlocksMixin",
     "VillagerEntity_ExplodeBedMixin",
-    "PlayerEntity_GetExperienceMixin",
-    "MinecraftServer_NoopMixin"
-  ],
-  "client": [
-    "MinecraftClient_NoopMixin"
+    "PlayerEntity_GetExperienceMixin"
   ],
   "injectors": {
     "defaultRequire": 1

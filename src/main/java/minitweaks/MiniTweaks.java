@@ -2,12 +2,11 @@ package minitweaks;
 
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
+import net.fabricmc.api.ModInitializer;
 
-public class MiniTweaks implements CarpetExtension {
-    public static void noop() {
-    }
-
-    static {
+public class MiniTweaks implements CarpetExtension, ModInitializer {
+    @Override
+    public void onInitialize() {
         CarpetServer.manageExtension(new MiniTweaks());
     }
 
