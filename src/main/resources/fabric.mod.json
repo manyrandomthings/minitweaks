@@ -29,6 +29,8 @@
     "carpet": ">=1.4.27"
   },
   "custom": {
-    "modmenu:parent": "carpet"
+    "modmenu": {
+      "parent": "carpet"
+    }
   }
 }
