@@ -9,6 +9,7 @@ import minitweaks.MiniTweaksSettings;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.world.World;
@@ -19,8 +20,8 @@ public abstract class LivingEntity_NameTagMixin extends Entity {
         super(type, world);
     }
 
-    @Inject(method = "onDeath", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;drop(Lnet/minecraft/entity/damage/DamageSource;)V"))
-    private void dropNameTag(CallbackInfo ci) {
+    @Inject(method = "drop", at = @At("TAIL"))
+    private void dropNameTag(DamageSource source, CallbackInfo ci) {
         // if rule is enabled and mob has custom name
         if(MiniTweaksSettings.mobsDropNametag && this.hasCustomName()) {
             // create name tag
