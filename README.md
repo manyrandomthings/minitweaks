@@ -118,26 +118,6 @@ Maximum amount of xp players drop on death
 * Additional notes:
   * Must be a positive number
 
-## minecartSpeedMultiplier
-Allows maximum speed for minecarts to be increased/decreased  
-Default max speed is 0.4 blocks per tick (8 blocks/sec)  
-New max speed is (0.4 * value) blocks per tick  
-This is experimental and may cause issues, such as  
-derailing at high speeds around corners, and stopping at upwards slopes  
-* Type: `double`
-* Default value: `1.0`
-* Suggested options: `1.0`, `2.0`, `5.0`, `10.0`, `20.0`
-* Categories: `minitweaks`, `experimental`
-* Additional notes:
-  * Must be between 0.1 and 20.0
-
-## minecartSpeedMultiplierPassengersOnly
-Should minecartSpeedMultiplier rule only apply to minecarts with a passenger
-* Type: `boolean`
-* Default value: `false`
-* Required options: `true`, `false`
-* Categories: `minitweaks`, `experimental`
-
 ## mobsDropNametag
 Named mobs drop their name tag on death
 * Type: `boolean`

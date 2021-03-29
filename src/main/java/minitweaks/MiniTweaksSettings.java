@@ -43,16 +43,6 @@ public class MiniTweaksSettings {
         }
     }
 
-    private static class MinecartSpeedMultiplierValidator extends Validator<Double> {
-        @Override
-        public Double validate(ServerCommandSource source, ParsedRule<Double> currentRule, Double newValue, String typedString) {
-            if(newValue >= 0.1 && newValue <= 20.0) {
-                return newValue;
-            }
-            return null;
-        }
-    }
-
     // creeper block breaking
     @Rule(
         desc = "Set creeper explosion block damage type, regardless of mobGriefing gamerule",
@@ -178,31 +168,6 @@ public class MiniTweaksSettings {
         category = {MiniTweaksRuleCategory.MODNAME, RuleCategory.SURVIVAL}
     )
     public static int maxPlayerXpDrop = 100;
-
-    // minecart speed multiplier
-    @Rule(
-        desc = "Minecart speed multiplier",
-        extra = {
-            "Allows maximum speed for minecarts to be increased/decreased",
-            "Default max speed is 0.4 blocks per tick (8 blocks/sec)",
-            "New max speed is (0.4 * value) blocks per tick",
-            "This is experimental and may cause issues, such as",
-            "derailing at high speeds around corners, and stopping at upwards slopes.",
-            "Must be between 0.1 and 20.0"
-        },
-        options = {"1.0", "2.0", "5.0", "10.0", "20.0"},
-        validate = MinecartSpeedMultiplierValidator.class,
-        strict = false,
-        category = {MiniTweaksRuleCategory.MODNAME, RuleCategory.EXPERIMENTAL}
-    )
-    public static double minecartSpeedMultiplier = 1.0;
-
-    // minecart speed multiplier passengers
-    @Rule(
-        desc = "Should minecartSpeedMultiplier rule only apply to minecarts with a passenger",
-        category = {MiniTweaksRuleCategory.MODNAME, RuleCategory.EXPERIMENTAL}
-    )
-    public static boolean minecartSpeedMultiplierPassengersOnly = false;
 
     // mobs drop name tag
     @Rule(

@@ -3,7 +3,6 @@
   "package": "minitweaks.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "AbstractMinecartEntity_MaxSpeedMixin",
     "CreeperEntity_ExplosionGriefMixin",
     "DispenserBlock_GetBehaviorMixin",
     "DyeItem_DyeShulkersMixin",
