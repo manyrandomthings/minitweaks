@@ -1,4 +1,4 @@
-package minitweaks.dispenser;
+package minitweaks.dispenser.behaviors;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CauldronBlock;
@@ -7,15 +7,11 @@ import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
 import net.minecraft.block.entity.DispenserBlockEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.potion.PotionUtil;
-import net.minecraft.potion.Potions;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPointer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class CauldronGlassBottleDispenserBehavior extends FallibleItemDispenserBehavior {
+public class CauldronUndyeShulkerBoxDispenserBehavior extends FallibleItemDispenserBehavior {
     public ItemStack dispenseSilently(BlockPointer pointer, ItemStack stack) {
         this.setSuccess(true);
 
@@ -25,37 +21,37 @@ public class CauldronGlassBottleDispenserBehavior extends FallibleItemDispenserB
         CauldronBlock cauldronBlock = (CauldronBlock) blockState.getBlock();
         int level = blockState.get(CauldronBlock.LEVEL);
 
-        // check if cauldron is not empty
-        if(level > 0) {
-            // decrease cauldron level by 1 and play sound
+        // check if cauldron is not empty and item is not an undyed shulker box
+        if(level > 0 && stack.getItem() != Items.SHULKER_BOX) {
+            // create undyed shulker box, copy contents, and decrease cauldron level by 1
+            ItemStack undyedShulkerBox = new ItemStack(Items.SHULKER_BOX);
+            if(stack.hasTag()) {
+                undyedShulkerBox.setTag(stack.getTag().copy());
+            }
             cauldronBlock.setLevel(world, blockPos, blockState, level - 1);
-            world.playSound(null, blockPos, SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
 
-
-            // create water bottle item stack
-            ItemStack waterBottle = PotionUtil.setPotion(new ItemStack(Items.POTION), Potions.WATER);;
             stack.decrement(1);
 
-            // if bottle stack is empty, return water bottle
+            // if dyed shulker stack is empty, return undyed shulker
             if(stack.isEmpty()) {
-                return waterBottle;
+                return undyedShulkerBox;
             }
 
-            // try to add water bottle to dispenser's inventory
+            // try to add undyed shulker to dispenser's inventory
             DispenserBlockEntity dispenserBlockEntity = pointer.getBlockEntity();
-            int addedToSlot = dispenserBlockEntity.addToFirstFreeSlot(waterBottle);
+            int addedToSlot = dispenserBlockEntity.addToFirstFreeSlot(undyedShulkerBox);
 
-            // check if water bottle was added to inventory, if not then dispense
+            // check if undyed shulker was added to inventory, if not then dispense
             if(addedToSlot < 0) {
-                super.dispenseSilently(pointer, waterBottle);
+                super.dispenseSilently(pointer, undyedShulkerBox);
             }
 
 
-            // return empty bottle stack
+            // return dyed shulker box stack
             return stack;
         }
 
-        // fail to dispense water bottle
+        // fail to dispense item
         this.setSuccess(false);
         return stack;
     }

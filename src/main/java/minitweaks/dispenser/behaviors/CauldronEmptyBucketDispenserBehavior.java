@@ -1,4 +1,4 @@
-package minitweaks.dispenser;
+package minitweaks.dispenser.behaviors;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CauldronBlock;

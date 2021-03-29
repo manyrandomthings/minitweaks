@@ -1,4 +1,4 @@
-package minitweaks.dispenser;
+package minitweaks.dispenser.behaviors;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CauldronBlock;
@@ -12,7 +12,7 @@ import net.minecraft.util.math.BlockPointer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class CauldronWaterBottleDispenserBehavior extends FallibleItemDispenserBehavior {
+public class CauldronWaterBucketDispenserBehavior extends FallibleItemDispenserBehavior {
     public ItemStack dispenseSilently(BlockPointer pointer, ItemStack stack) {
         this.setSuccess(true);
 
@@ -24,15 +24,15 @@ public class CauldronWaterBottleDispenserBehavior extends FallibleItemDispenserB
 
         // check if cauldron is not full
         if(level < 3) {
-            // increase cauldron level by 1 and play sound
-            cauldronBlock.setLevel(world, blockPos, blockState, level + 1);
-            world.playSound(null, blockPos, SoundEvents.ITEM_BOTTLE_EMPTY, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            // fill cauldron and play sound
+            cauldronBlock.setLevel(world, blockPos, blockState, 3);
+            world.playSound(null, blockPos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F, 1.0F);
 
-            // return empty glass bottle stack
-            return new ItemStack(Items.GLASS_BOTTLE);
+            // return empty bucket stack
+            return new ItemStack(Items.BUCKET);
         }
 
-        // fail to dispense water bottle
+        // fail to dispense water bucket
         this.setSuccess(false);
         return stack;
     }

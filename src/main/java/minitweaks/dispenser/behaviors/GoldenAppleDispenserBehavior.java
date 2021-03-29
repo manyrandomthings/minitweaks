@@ -1,4 +1,4 @@
-package minitweaks.dispenser;
+package minitweaks.dispenser.behaviors;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.ZombieVillagerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.util.math.BlockPointer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
@@ -19,9 +20,7 @@ public class GoldenAppleDispenserBehavior extends FallibleItemDispenserBehavior 
         // get block in front of dispenser
         BlockPos blockPos = pointer.getBlockPos().offset(pointer.getBlockState().get(DispenserBlock.FACING));
         // get all zombie villagers in front of dispenser
-        List<ZombieVillagerEntity> list = pointer.getWorld().getEntitiesByClass(ZombieVillagerEntity.class, new Box(blockPos), (zombieVillager) -> {
-            return zombieVillager.isAlive();
-        });
+        List<ZombieVillagerEntity> list = pointer.getWorld().getEntitiesByClass(ZombieVillagerEntity.class, new Box(blockPos), EntityPredicates.VALID_LIVING_ENTITY);
 
         // if mobs found
         for(ZombieVillagerEntity zombieVillager : list) {

@@ -1,4 +1,4 @@
-package minitweaks.dispenser;
+package minitweaks.dispenser.behaviors;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.util.math.BlockPointer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
@@ -19,9 +20,7 @@ public class NameTagDispenserBehavior extends FallibleItemDispenserBehavior {
         // get block in front of dispenser
         BlockPos blockPos = pointer.getBlockPos().offset(pointer.getBlockState().get(DispenserBlock.FACING));
         // get all non-player living entities in front of dispenser
-        List<LivingEntity> list = pointer.getWorld().getEntitiesByClass(LivingEntity.class, new Box(blockPos), (livingEntity) -> {
-            return !(livingEntity instanceof PlayerEntity) && livingEntity.isAlive();
-        });
+        List<LivingEntity> list = pointer.getWorld().getEntitiesByClass(LivingEntity.class, new Box(blockPos), EntityPredicates.VALID_LIVING_ENTITY.and((livingEntity) -> !(livingEntity instanceof PlayerEntity)));
 
         // if mobs found
         if(!list.isEmpty()) {

@@ -1,4 +1,4 @@
-package minitweaks.dispenser;
+package minitweaks.dispenser.behaviors;
 
 import java.util.List;
 
@@ -11,6 +11,7 @@ import net.minecraft.entity.mob.ShulkerEntity;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPointer;
 import net.minecraft.util.math.BlockPos;
@@ -23,10 +24,7 @@ public class DyeItemDispenserBehavior extends FallibleItemDispenserBehavior {
         // get block in front of dispenser
         BlockPos blockPos = pointer.getBlockPos().offset(pointer.getBlockState().get(DispenserBlock.FACING));
         // get all PathAwareEntity entities in front of dispenser (common root of sheep and shulkers)
-        List<PathAwareEntity> list = pointer.getWorld().getEntitiesByClass(PathAwareEntity.class, new Box(blockPos), (entity) -> {
-            // select only alive mobs
-            return entity.isAlive();
-        });
+        List<PathAwareEntity> list = pointer.getWorld().getEntitiesByClass(PathAwareEntity.class, new Box(blockPos), EntityPredicates.VALID_LIVING_ENTITY);
         // get color of item
         DyeColor itemColor = ((DyeItem) stack.getItem()).getColor();
 
