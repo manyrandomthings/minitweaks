@@ -15,7 +15,7 @@ public class EnderDragonFight_DragonEggMixin {
     @Shadow
     private boolean previouslyKilled;
 
-    @Inject(method = "dragonKilled", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/boss/dragon/EnderDragonFight;generateNewEndGateway()V", shift = At.Shift.AFTER))
+    @Inject(method = "dragonKilled", at = @At(value = "FIELD", target = "Lnet/minecraft/entity/boss/dragon/EnderDragonFight;previouslyKilled:Z", ordinal = 0, shift = At.Shift.BEFORE))
     private void setPreviouslyKilled(EnderDragonEntity dragon, CallbackInfo ci) {
         if(MiniTweaksSettings.renewableDragonEgg) {
             this.previouslyKilled = false;
