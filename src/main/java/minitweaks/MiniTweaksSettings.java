@@ -236,6 +236,14 @@ public class MiniTweaksSettings {
     )
     public static boolean renewableDragonEgg = false;
 
+    // shave snow layers
+    @Rule(
+        desc = "Snow layers can be shaved, removing one layer when right clicked with a shovel",
+        extra = "Works with silk touch as well",
+        category = {MiniTweaksRuleCategory.MODNAME, RuleCategory.SURVIVAL, RuleCategory.FEATURE}
+    )
+    public static boolean shaveSnowLayers = false;
+
     // 1.17 shulker cloning
     @Rule(
         desc = "1.17 Shulker cloning",

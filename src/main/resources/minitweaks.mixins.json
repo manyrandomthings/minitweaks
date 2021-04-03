@@ -21,6 +21,7 @@
     "PlayerInventory_ItemDespawnMixin",
     "ProtectionEnchantment_ProtectionStackingMixin",
     "ShovelItem_PathMixin",
+    "ShovelItem_ShaveSnowMixin",
     "ShulkerEntity_BulletCloneMixin",
     "ShulkerEntity_TrackerKeysAccessorMixin",
     "SlimeEntity_LootingMixin",
