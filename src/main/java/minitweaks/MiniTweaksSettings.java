@@ -232,7 +232,7 @@ public class MiniTweaksSettings {
     // dragon egg placing
     @Rule(
         desc = "Dragon eggs will always be placed on the portal after defeating the dragon",
-        category = {MiniTweaksRuleCategory.MODNAME, RuleCategory.SURVIVAL}
+        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL}
     )
     public static boolean renewableDragonEgg = false;
 
