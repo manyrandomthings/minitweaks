@@ -27,7 +27,7 @@ import net.minecraft.world.World;
 @Mixin(ShovelItem.class)
 public class ShovelItem_ShaveSnowMixin {
     @Inject(method = "useOnBlock", at = @At(value = "INVOKE", target = "Ljava/util/Map;get(Ljava/lang/Object;)Ljava/lang/Object;"), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
-    private void dirtToPaths(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir, World world, BlockPos blockPos, BlockState blockState, PlayerEntity playerEntity) {
+    private void shaveSnowLayer(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir, World world, BlockPos blockPos, BlockState blockState, PlayerEntity playerEntity) {
         Block block = blockState.getBlock();
         if(MiniTweaksSettings.shaveSnowLayers && !world.isClient && block == Blocks.SNOW) {
             int layers = blockState.get(SnowBlock.LAYERS);

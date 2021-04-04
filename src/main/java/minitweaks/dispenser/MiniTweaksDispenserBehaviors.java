@@ -70,7 +70,7 @@ public class MiniTweaksDispenserBehaviors {
         }
         // dye items behavior
         else if(MiniTweaksSettings.dispensersDyeMobs && item instanceof DyeItem) {
-            List<LivingEntity> list = serverWorld.getEntitiesByClass(PathAwareEntity.class, frontBox, EntityPredicates.VALID_LIVING_ENTITY.and(entity -> {
+            List<PathAwareEntity> list = serverWorld.getEntitiesByClass(PathAwareEntity.class, frontBox, EntityPredicates.VALID_LIVING_ENTITY.and(entity -> {
                 return entity instanceof SheepEntity || (MiniTweaksSettings.dyeableShulkers && entity instanceof ShulkerEntity);
             }));
 
