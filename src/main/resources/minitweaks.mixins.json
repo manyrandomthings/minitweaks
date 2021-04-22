@@ -26,6 +26,7 @@
     "ShulkerEntity_TrackerKeysAccessorMixin",
     "SlimeEntity_LootingMixin",
     "SmallFireballEntity_FireMixin",
+    "VexEntity_EvokerDeathMixin",
     "VillagerEntity_ExplodeBedMixin",
     "ZombieVillagerEntity_setConvertingInvokerMixin"
   ],

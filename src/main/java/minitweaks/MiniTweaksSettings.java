@@ -274,6 +274,13 @@ public class MiniTweaksSettings {
     )
     public static boolean slimeLooting = false;
 
+    // vex nerf
+    @Rule(
+        desc = "Vexes will start to die after the evoker that summoned them dies",
+        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL}
+    )
+    public static boolean vexesNerf = false;
+
     // villagers explode beds
     @Rule(
         desc = "Villagers cause explosions when trying to use beds in the nether or end, like players",
