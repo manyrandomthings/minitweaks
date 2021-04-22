@@ -19,7 +19,7 @@ import net.minecraft.util.Hand;
 @Mixin(DyeItem.class)
 public abstract class DyeItem_DyeShulkersMixin {
     @Inject(method = "useOnEntity", at = @At("HEAD"), cancellable = true)
-    public void dyeShulkers(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
+    private void dyeShulkers(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
         if(MiniTweaksSettings.dyeableShulkers && entity instanceof ShulkerEntity) {
             ShulkerEntity shulkerEntity = (ShulkerEntity) entity;
 

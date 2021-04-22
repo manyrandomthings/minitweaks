@@ -8,7 +8,7 @@ import minitweaks.MiniTweaksSettings;
 import net.minecraft.world.gen.PhantomSpawner;
 
 @Mixin(PhantomSpawner.class)
-public class PhantomSpawner_SpawnTimeMixin {
+public abstract class PhantomSpawner_SpawnTimeMixin {
     @ModifyConstant(method = "spawn", constant = @Constant(intValue = 72000))
     private int phantomSpawnTime(int original) {
         return MiniTweaksSettings.phantomSpawningTime;

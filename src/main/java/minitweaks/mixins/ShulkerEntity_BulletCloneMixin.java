@@ -28,10 +28,10 @@ public abstract class ShulkerEntity_BulletCloneMixin extends GolemEntity {
     }
 
     @Shadow
-    public abstract boolean isClosed();
+    protected abstract boolean isClosed();
 
     @Shadow
-    public abstract boolean tryTeleport();
+    protected abstract boolean tryTeleport();
 
     // shulker cloning from 20w45a
     @Inject(method = "damage", at = @At("RETURN"), cancellable = true)

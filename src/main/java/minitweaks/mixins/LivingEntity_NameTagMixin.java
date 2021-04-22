@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntity_NameTagMixin extends Entity {
-    public LivingEntity_NameTagMixin(EntityType<?> type, World world) {
+    protected LivingEntity_NameTagMixin(EntityType<?> type, World world) {
         super(type, world);
     }
 

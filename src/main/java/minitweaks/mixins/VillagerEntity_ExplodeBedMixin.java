@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
 
 @Mixin(VillagerEntity.class)
-public class VillagerEntity_ExplodeBedMixin {
+public abstract class VillagerEntity_ExplodeBedMixin {
     @Inject(method = "sleep", at = @At("HEAD"), cancellable = true)
     private void explodeBed(BlockPos pos, CallbackInfo ci) {
         World world = ((VillagerEntity) (Object) this).world;

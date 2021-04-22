@@ -1,7 +1,5 @@
 package minitweaks.dispenser;
 
-import java.util.List;
-
 import minitweaks.MiniTweaksSettings;
 import minitweaks.dispenser.behaviors.CauldronBannerLayerDispenserBehavior;
 import minitweaks.dispenser.behaviors.CauldronEmptyBucketDispenserBehavior;
@@ -23,11 +21,9 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.entity.mob.ShulkerEntity;
-import net.minecraft.entity.mob.ZombieVillagerEntity;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BannerItem;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.DyeableItem;
 import net.minecraft.item.Item;
@@ -62,27 +58,27 @@ public class MiniTweaksDispenserBehaviors {
 
         // name tag (with name) behavior
         if(MiniTweaksSettings.dispensersNameMobs && item == Items.NAME_TAG && stack.hasCustomName()) {
-            List<LivingEntity> list = serverWorld.getEntitiesByClass(LivingEntity.class, frontBox, EntityPredicates.VALID_LIVING_ENTITY.and(entity -> !(entity instanceof PlayerEntity)));
+            boolean hasNameableMobs = !serverWorld.getEntitiesByClass(LivingEntity.class, frontBox, EntityPredicates.VALID_LIVING_ENTITY.and(entity -> !(entity instanceof PlayerEntity))).isEmpty();
 
-            if(!list.isEmpty()) {
+            if(hasNameableMobs) {
                 return NAME_TAG;
             }
         }
         // dye items behavior
         else if(MiniTweaksSettings.dispensersDyeMobs && item instanceof DyeItem) {
-            List<PathAwareEntity> list = serverWorld.getEntitiesByClass(PathAwareEntity.class, frontBox, EntityPredicates.VALID_LIVING_ENTITY.and(entity -> {
+            boolean hasDyeableMobs = !serverWorld.getEntitiesByClass(PathAwareEntity.class, frontBox, EntityPredicates.VALID_LIVING_ENTITY.and(entity -> {
                 return entity instanceof SheepEntity || (MiniTweaksSettings.dyeableShulkers && entity instanceof ShulkerEntity);
-            }));
+            })).isEmpty();
 
-            if(!list.isEmpty()) {
+            if(hasDyeableMobs) {
                 return DYE_ITEM;
             }
         }
         // golden apple behavior
         else if(MiniTweaksSettings.dispensersCureVillagers && item == Items.GOLDEN_APPLE) {
-            List<ZombieVillagerEntity> list = serverWorld.getEntitiesByType(EntityType.ZOMBIE_VILLAGER, frontBox, EntityPredicates.VALID_LIVING_ENTITY);
+            boolean hasZombieVillagers = !serverWorld.getEntitiesByType(EntityType.ZOMBIE_VILLAGER, frontBox, EntityPredicates.VALID_LIVING_ENTITY).isEmpty();
 
-            if(!list.isEmpty()) {
+            if(hasZombieVillagers) {
                 return GOLDEN_APPLE;
             }
         }
@@ -106,7 +102,7 @@ public class MiniTweaksDispenserBehaviors {
             else if(item instanceof BannerItem) {
                 return CAULDRON_REMOVE_BANNER_LAYER;
             }
-            else if(item instanceof BlockItem && ((BlockItem) item).getBlock() instanceof ShulkerBoxBlock) {
+            else if(Block.getBlockFromItem(item) instanceof ShulkerBoxBlock) {
                 return CAULDRON_UNDYE_SHULKER_BOX;
             }
         }

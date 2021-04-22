@@ -11,5 +11,5 @@ import net.minecraft.entity.mob.ZombieVillagerEntity;
 public interface ZombieVillagerEntity_setConvertingInvokerMixin {
     // allows ZombieVillagerEntity.setConverting() to be used
     @Invoker("setConverting")
-    public void invokeSetConverting(UUID uuid, int delay);
+    void invokeSetConverting(UUID uuid, int delay);
 }

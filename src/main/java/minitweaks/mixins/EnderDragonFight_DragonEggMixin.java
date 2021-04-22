@@ -11,7 +11,7 @@ import net.minecraft.entity.boss.dragon.EnderDragonEntity;
 import net.minecraft.entity.boss.dragon.EnderDragonFight;
 
 @Mixin(EnderDragonFight.class)
-public class EnderDragonFight_DragonEggMixin {
+public abstract class EnderDragonFight_DragonEggMixin {
     @Shadow
     private boolean previouslyKilled;
 

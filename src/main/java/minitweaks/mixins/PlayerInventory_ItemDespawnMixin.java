@@ -11,7 +11,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 
 @Mixin(PlayerInventory.class)
-public class PlayerInventory_ItemDespawnMixin {
+public abstract class PlayerInventory_ItemDespawnMixin {
     @Redirect(method = "dropAll", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;dropItem(Lnet/minecraft/item/ItemStack;ZZ)Lnet/minecraft/entity/ItemEntity;"))
     private ItemEntity modifyAge(PlayerEntity player, ItemStack stack, boolean throwRandomly, boolean retainOwnership) {
         // drops item
@@ -25,7 +25,7 @@ public class PlayerInventory_ItemDespawnMixin {
         return droppedItem;
     }
 
-    private int minutesToTicks(int despawnMinutes) {
+    private static int minutesToTicks(int despawnMinutes) {
         // if minutes is -1, return -32768 (infinite age, see ItemEntity.tick())
         if (despawnMinutes == -1) {
             return -32768;

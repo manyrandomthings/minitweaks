@@ -15,9 +15,7 @@ import net.minecraft.block.CocoaBlock;
 import net.minecraft.block.CropBlock;
 import net.minecraft.block.NetherWartBlock;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.HoeItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.server.world.ServerWorld;
@@ -27,7 +25,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 @Mixin(HoeItem.class)
-public class HoeItem_HarvestMixin {
+public abstract class HoeItem_HarvestMixin {
     @Inject(method = "useOnBlock", at = @At("HEAD"), cancellable = true)
     private void harvestCrop(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
         World world = context.getWorld();
@@ -48,9 +46,8 @@ public class HoeItem_HarvestMixin {
                 for(ItemStack itemStack : droppedItems) {
                     // if a seed hasn't been removed, try to remove seed
                     if(!removedSeed) {
-                        Item item = itemStack.getItem();
                         // check if item being dropped is the same as the crop being harvested
-                        if(item instanceof BlockItem && ((BlockItem) item).getBlock() == block) {
+                        if(Block.getBlockFromItem(itemStack.getItem()) == block) {
                             // remove seed and set removed to true
                             itemStack.decrement(1);
                             removedSeed = true;

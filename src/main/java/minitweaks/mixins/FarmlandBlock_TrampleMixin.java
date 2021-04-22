@@ -16,14 +16,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 @Mixin(FarmlandBlock.class)
-public class FarmlandBlock_TrampleMixin extends Block {
-    public FarmlandBlock_TrampleMixin(Settings settings) {
+public abstract class FarmlandBlock_TrampleMixin extends Block {
+    protected FarmlandBlock_TrampleMixin(Settings settings) {
         super(settings);
     }
 
     @Inject(method = "onLandedUpon", at = @At("HEAD"), cancellable = true)
     private void featherFallingCheck(World world, BlockPos pos, Entity entity, float distance, CallbackInfo ci) {
-        if(entity instanceof LivingEntity && MiniTweaksSettings.noFeatherFallingTrample) {
+        if(MiniTweaksSettings.noFeatherFallingTrample && entity instanceof LivingEntity) {
             // check for feather falling level of 1 or more
             if(EnchantmentHelper.getEquipmentLevel(Enchantments.FEATHER_FALLING, (LivingEntity) entity) > 0) {
                 // required for fall damage

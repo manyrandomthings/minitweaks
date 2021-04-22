@@ -9,7 +9,7 @@ import net.minecraft.entity.mob.CreeperEntity;
 import net.minecraft.world.explosion.Explosion.DestructionType;
 
 @Mixin(value = CreeperEntity.class, priority = 1001)
-public class CreeperEntity_ExplosionGriefMixin {
+public abstract class CreeperEntity_ExplosionGriefMixin {
     @ModifyArg(method = "explode", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;createExplosion(Lnet/minecraft/entity/Entity;DDDFLnet/minecraft/world/explosion/Explosion$DestructionType;)Lnet/minecraft/world/explosion/Explosion;"))
     private DestructionType modifiedExplode(DestructionType original) {
         return MiniTweaksSettings.creeperBlockDamage.getExplosionType(original);

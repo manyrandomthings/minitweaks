@@ -27,7 +27,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 @Mixin(ShovelItem.class)
-public class ShovelItem_PathMixin {
+public abstract class ShovelItem_PathMixin {
     // remove this class when 1.17 comes out
 
     private static final Map<Block, BlockState> EXTRA_PATH_STATES = Maps.newHashMap(ImmutableMap.of(

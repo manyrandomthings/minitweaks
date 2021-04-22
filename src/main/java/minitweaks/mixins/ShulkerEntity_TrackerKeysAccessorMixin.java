@@ -15,18 +15,18 @@ public interface ShulkerEntity_TrackerKeysAccessorMixin {
     // ShulkerEntity.COLOR datatracker key
     @Accessor("COLOR")
     static TrackedData<Byte> getColorTrackerKey() {
-        throw null;
+        throw new AssertionError("Untransformed accessor mixin");
     }
 
     // ShulkerEntity.ATTACHED_FACE datatracker key
     @Accessor("ATTACHED_FACE")
     static TrackedData<Direction> getAttachedFaceTrackerKey() {
-        throw null;
+        throw new AssertionError("Untransformed accessor mixin");
     }
 
     // ShulkerEntity.ATTACHED_BLOCK datatracker key
     @Accessor("ATTACHED_BLOCK")
     static TrackedData<Optional<BlockPos>> getAttachedBlockTrackerKey() {
-        throw null;
+        throw new AssertionError("Untransformed accessor mixin");
     }
 }

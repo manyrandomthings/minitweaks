@@ -10,7 +10,7 @@ import minitweaks.MiniTweaksSettings;
 import net.minecraft.item.ItemStack;
 
 @Mixin(ItemStack.class)
-public class ItemStack_RepairCostMixin {
+public abstract class ItemStack_RepairCostMixin {
     @Inject(method = "getRepairCost", at = @At("HEAD"), cancellable = true)
     private void getRepairCostFix(CallbackInfoReturnable<Integer> cir) {
         if(MiniTweaksSettings.noRepairCost) {

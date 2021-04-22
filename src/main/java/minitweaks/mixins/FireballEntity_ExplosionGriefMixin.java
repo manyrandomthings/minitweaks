@@ -9,7 +9,7 @@ import net.minecraft.entity.projectile.FireballEntity;
 import net.minecraft.world.explosion.Explosion.DestructionType;
 
 @Mixin(FireballEntity.class)
-public class FireballEntity_ExplosionGriefMixin {
+public abstract class FireballEntity_ExplosionGriefMixin {
     @ModifyArg(method = "onCollision", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;createExplosion(Lnet/minecraft/entity/Entity;DDDFZLnet/minecraft/world/explosion/Explosion$DestructionType;)Lnet/minecraft/world/explosion/Explosion;"))
     private DestructionType modifyDestructionType(DestructionType destructionType) {
         return MiniTweaksSettings.ghastBlockDamage.getExplosionType(destructionType);

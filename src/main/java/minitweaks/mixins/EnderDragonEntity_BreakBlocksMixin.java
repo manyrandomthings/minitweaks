@@ -12,7 +12,7 @@ import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 
 @Mixin(EnderDragonEntity.class)
-public class EnderDragonEntity_BreakBlocksMixin {
+public abstract class EnderDragonEntity_BreakBlocksMixin {
     @Redirect(method = "destroyBlocks", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/GameRules;getBoolean(Lnet/minecraft/world/GameRules$Key;)Z"))
     private boolean gameruleCheck(GameRules gamerules, GameRules.Key<GameRules.BooleanRule> gameruleKey) {
         // if block breaking type is not none, otherwise return gamerule value
