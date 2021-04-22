@@ -10,6 +10,7 @@ import minitweaks.dispenser.behaviors.CauldronWaterBottleDispenserBehavior;
 import minitweaks.dispenser.behaviors.CauldronWaterBucketDispenserBehavior;
 import minitweaks.dispenser.behaviors.DyeItemDispenserBehavior;
 import minitweaks.dispenser.behaviors.GoldenAppleDispenserBehavior;
+import minitweaks.dispenser.behaviors.IronIngotDispenserBehavior;
 import minitweaks.dispenser.behaviors.NameTagDispenserBehavior;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -41,6 +42,7 @@ public class MiniTweaksDispenserBehaviors {
     public static final DispenserBehavior NAME_TAG = new NameTagDispenserBehavior();
     public static final DispenserBehavior DYE_ITEM = new DyeItemDispenserBehavior();
     public static final DispenserBehavior GOLDEN_APPLE = new GoldenAppleDispenserBehavior();
+    public static final DispenserBehavior IRON_INGOT = new IronIngotDispenserBehavior();
     public static final DispenserBehavior CAULDRON_WATER_BUCKET = new CauldronWaterBucketDispenserBehavior();
     public static final DispenserBehavior CAULDRON_EMPTY_BUCKET = new CauldronEmptyBucketDispenserBehavior();
     public static final DispenserBehavior CAULDRON_WATER_BOTTLE = new CauldronWaterBottleDispenserBehavior();
@@ -80,6 +82,14 @@ public class MiniTweaksDispenserBehaviors {
 
             if(hasZombieVillagers) {
                 return GOLDEN_APPLE;
+            }
+        }
+        // iron ingot behavior
+        else if(MiniTweaksSettings.dispensersRepairGolems && item == Items.IRON_INGOT) {
+            boolean hasIronGolems = !serverWorld.getEntitiesByType(EntityType.IRON_GOLEM, frontBox, EntityPredicates.VALID_LIVING_ENTITY).isEmpty();
+
+            if(hasIronGolems) {
+                return IRON_INGOT;
             }
         }
         // cauldron behaviors

@@ -61,6 +61,13 @@ Dispensers use name tags on mobs
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `mobs`, `dispenser`
 
+## dispensersRepairGolems
+Dispensers can repair Iron Golems with iron ingots  
+* Type: `boolean`
+* Default value: `false`
+* Required options: `true`, `false`
+* Categories: `minitweaks`, `mobs`, `dispenser`
+
 ## dispensersUseCauldrons
 Dispensers use cauldrons  
 When facing into a cauldron, dispensers can fill/empty buckets and bottles,  

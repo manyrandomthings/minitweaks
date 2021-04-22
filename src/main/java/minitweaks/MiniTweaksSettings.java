@@ -106,6 +106,13 @@ public class MiniTweaksSettings {
     )
     public static boolean dispensersNameMobs = false;
 
+    // dispensers repair iron golems
+    @Rule(
+        desc = "Dispensers can repair Iron Golems with iron ingots",
+        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.DISPENSER}
+    )
+    public static boolean dispensersRepairGolems = false;
+
     // dispensers use cauldrons
     @Rule(
         desc = "Dispensers use cauldrons",
