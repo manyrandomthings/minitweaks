@@ -266,8 +266,9 @@ public class MiniTweaksSettings {
     @Rule(
         desc = "Shulker portal teleportation fix",
         extra = {
-            "Fixes MC-139265 / MC-168900, which makes shulkers use portals",
-            "correctly now (well, probably at least)"
+            "Fixes MC-139265 / MC-168900, which makes shulkers use portals correctly now,",
+            "and fixes MC-183884 which makes shulkers able to be next to each other without teleporting",
+            "(well, probably at least)"
         },
         category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL, RuleCategory.BUGFIX}
     )

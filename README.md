@@ -211,8 +211,8 @@ Feature from 20w45a, subject to change
 * Categories: `minitweaks`, `mobs`, `survival`, `backport`
 
 ## shulkerPortalFix
-Shulker portal teleportation fix  
-Fixes [MC-139265](https://bugs.mojang.com/browse/MC-139265) / [MC-168900](https://bugs.mojang.com/browse/MC-168900), which makes shulkers use portals correctly  
+Fixes [MC-139265](https://bugs.mojang.com/browse/MC-139265) / [MC-168900](https://bugs.mojang.com/browse/MC-168900), which makes shulkers use portals correctly now,  
+and fixes [MC-183884](https://bugs.mojang.com/browse/MC-183884) which makes shulkers able to be next to each other without teleporting
 * Type: `boolean`
 * Default value: `false`
 * Required options: `true`, `false`

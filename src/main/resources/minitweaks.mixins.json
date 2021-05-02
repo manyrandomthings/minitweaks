@@ -24,6 +24,7 @@
     "ShovelItem_ShaveSnowMixin",
     "ShulkerEntity_BulletCloneMixin",
     "ShulkerEntity_TrackerKeysAccessorMixin",
+    "ShulkerLidCollisions_TeleportFixMixin",
     "SlimeEntity_LootingMixin",
     "SmallFireballEntity_FireMixin",
     "VexEntity_EvokerDeathMixin",
