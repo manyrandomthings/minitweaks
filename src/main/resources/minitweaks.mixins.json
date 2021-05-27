@@ -22,6 +22,7 @@
     "PlayerInventory_ItemDespawnMixin",
     "ProtectionEnchantment_ProtectionStackingMixin",
     "RepairItemRecipe_RemoveCursesMixin",
+    "SeedCommand_PermissionLevelMixin",
     "ShovelItem_PathMixin",
     "ShovelItem_ShaveSnowMixin",
     "ShulkerEntity_BulletCloneMixin",

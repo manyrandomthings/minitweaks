@@ -43,6 +43,13 @@ public class MiniTweaksSettings {
         }
     }
 
+    // seed command
+    @Rule(
+        desc = "Permission level required to use /seed",
+        category = {MiniTweaksRuleCategory.MODNAME, RuleCategory.COMMAND}
+    )
+    public static String commandSeed = "ops";
+
     // creeper block breaking
     @Rule(
         desc = "Set creeper explosion block damage type, regardless of mobGriefing gamerule",
