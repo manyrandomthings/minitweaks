@@ -236,6 +236,13 @@ public class MiniTweaksSettings {
     )
     public static boolean quickHarvesting = false;
 
+    // removable curses
+    @Rule(
+        desc = "Curses are also removed when using grindstones or repair crafting",
+        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.ENCHANTMENT, RuleCategory.SURVIVAL}
+    )
+    public static boolean removableCurses = false;
+
     // dragon egg placing
     @Rule(
         desc = "Dragon eggs will always be placed on the portal after defeating the dragon",
