@@ -36,7 +36,7 @@ public abstract class ShulkerEntity_BulletCloneMixin extends GolemEntity {
     // shulker cloning from 20w45a
     @Inject(method = "damage", at = @At("RETURN"), cancellable = true)
     private void cloneShulker(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-        // check if return value is true and rule is
+        // check if return value is true and rule is enabled
         if(cir.getReturnValue() && MiniTweaksSettings.shulkerCloning && source.isProjectile()) {
             Entity sourceEntity = source.getSource();
             if(sourceEntity != null && sourceEntity.getType() == EntityType.SHULKER_BULLET) {

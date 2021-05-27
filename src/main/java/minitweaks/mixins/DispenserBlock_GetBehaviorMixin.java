@@ -17,7 +17,7 @@ import net.minecraft.util.math.BlockPos;
 
 @Mixin(DispenserBlock.class)
 public abstract class DispenserBlock_GetBehaviorMixin {
-    @Inject(method = "dispense", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/DispenserBlock;getBehaviorForItem(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/block/dispenser/DispenserBehavior;", shift = At.Shift.BEFORE), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
+    @Inject(method = "dispense", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/DispenserBlock;getBehaviorForItem(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/block/dispenser/DispenserBehavior;"), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
     private void getBlockInFront(ServerWorld serverWorld, BlockPos pos, CallbackInfo ci, BlockPointerImpl blockPointerImpl, DispenserBlockEntity dispenserBlockEntity, int i, ItemStack itemStack) {
         DispenserBehavior customBehavior = MiniTweaksDispenserBehaviors.getCustomDispenserBehavior(serverWorld, pos, blockPointerImpl, dispenserBlockEntity, itemStack);
         if(customBehavior != null) {
