@@ -120,18 +120,6 @@ public class MiniTweaksSettings {
     )
     public static boolean dispensersRepairGolems = false;
 
-    // dispensers use cauldrons
-    @Rule(
-        desc = "Dispensers use cauldrons",
-        extra = {
-            "When facing into a cauldron, dispensers can",
-            "fill/empty buckets and bottles, remove layers",
-            "from banners, and undye leather armor or shulker boxes"
-        },
-        category = {MiniTweaksRuleCategory.MODNAME, RuleCategory.SURVIVAL, RuleCategory.DISPENSER}
-    )
-    public static boolean dispensersUseCauldrons = false;
-
     // dragon block breaking
     @Rule(
         desc = "Set dragon block damage breaking type, regardless of mobGriefing gamerule",
@@ -189,13 +177,6 @@ public class MiniTweaksSettings {
         category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL}
     )
     public static boolean mobsDropNametag = false;
-
-    // more paveable blocks
-    @Rule(
-        desc = "More dirt-like blocks can be made into path blocks (from 1.17)",
-        category = {MiniTweaksRuleCategory.MODNAME, RuleCategory.SURVIVAL, MiniTweaksRuleCategory.BACKPORT}
-    )
-    public static boolean morePaveableBlocks = false;
 
     // moveable waterlogged blocks
     @Rule(
@@ -264,29 +245,6 @@ public class MiniTweaksSettings {
         category = {MiniTweaksRuleCategory.MODNAME, RuleCategory.SURVIVAL, RuleCategory.FEATURE}
     )
     public static boolean shaveSnowLayers = false;
-
-    // 1.17 shulker cloning
-    @Rule(
-        desc = "1.17 Shulker cloning",
-        extra = {
-            "A shulker hitting a shulker with a shulker bullet can make a new shulker",
-            "Feature from 20w45a, subject to change"
-        },
-        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL, MiniTweaksRuleCategory.BACKPORT}
-    )
-    public static boolean shulkerCloning = false;
-
-    // Shulker portal fix
-    @Rule(
-        desc = "Shulker portal teleportation fix",
-        extra = {
-            "Fixes MC-139265 / MC-168900, which makes shulkers use portals correctly now,",
-            "and fixes MC-183884 which makes shulkers able to be next to each other without teleporting",
-            "(well, probably at least)"
-        },
-        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL, RuleCategory.BUGFIX}
-    )
-    public static boolean shulkerPortalFix = false;
 
     // slime looting
     @Rule(

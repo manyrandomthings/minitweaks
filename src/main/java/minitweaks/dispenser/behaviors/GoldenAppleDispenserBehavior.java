@@ -2,7 +2,7 @@ package minitweaks.dispenser.behaviors;
 
 import java.util.List;
 
-import minitweaks.mixins.ZombieVillagerEntity_setConvertingInvokerMixin;
+import minitweaks.mixins.ZombieVillagerEntity_SetConvertingInvokerMixin;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
 import net.minecraft.entity.effect.StatusEffects;
@@ -25,7 +25,7 @@ public class GoldenAppleDispenserBehavior extends FallibleItemDispenserBehavior 
         // if mobs found
         for(ZombieVillagerEntity zombieVillager : list) {
             if(!zombieVillager.isConverting() && zombieVillager.hasStatusEffect(StatusEffects.WEAKNESS)) {
-                ((ZombieVillagerEntity_setConvertingInvokerMixin) zombieVillager).invokeSetConverting(null, zombieVillager.getRandom().nextInt(2401) + 3600);
+                ((ZombieVillagerEntity_SetConvertingInvokerMixin) zombieVillager).invokeSetConverting(null, zombieVillager.getRandom().nextInt(2401) + 3600);
                 stack.decrement(1);
                 return stack;
             }

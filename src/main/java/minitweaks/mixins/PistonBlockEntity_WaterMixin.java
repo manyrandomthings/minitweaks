@@ -12,7 +12,7 @@ import net.minecraft.state.property.Property;
 @Mixin(PistonBlockEntity.class)
 public abstract class PistonBlockEntity_WaterMixin {
     @Redirect(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;contains(Lnet/minecraft/state/property/Property;)Z"))
-    private boolean checkWaterloggedState(BlockState blockState, Property<Boolean> property) {
+    private static boolean checkWaterloggedState(BlockState blockState, Property<Boolean> property) {
         return !MiniTweaksSettings.moveableWaterloggedBlocks && blockState.contains(property);
     }
 }

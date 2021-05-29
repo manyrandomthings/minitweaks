@@ -68,15 +68,6 @@ Dispensers can repair Iron Golems with iron ingots
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `mobs`, `dispenser`
 
-## dispensersUseCauldrons
-Dispensers use cauldrons  
-When facing into a cauldron, dispensers can fill/empty buckets and bottles,  
-remove layers from banners, and undye leather armor or shulker boxes  
-* Type: `boolean`
-* Default value: `false`
-* Required options: `true`, `false`
-* Categories: `minitweaks`, `survival`, `dispenser`
-
 ## dragonBlockDamage
 Set dragon block damage breaking type, regardless of mobGriefing gamerule  
 default: default block breaking  
@@ -130,13 +121,6 @@ Named mobs drop their name tag on death
 * Default value: `false`
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `mobs`, `survival`
-
-## morePaveableBlocks
-More dirt-like blocks can be made into path blocks (from 1.17)  
-* Type: `boolean`
-* Default value: `false`
-* Required options: `true`, `false`
-* Categories: `minitweaks`, `survival`, `backport`
 
 ## moveableWaterloggedBlocks
 Waterlogged blocks stay waterlogged when moved with a piston  
@@ -200,23 +184,6 @@ Works with silk touch as well
 * Default value: `false`
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `survival`, `feature`
-
-## shulkerCloning
-1.17 Shulker cloning  
-"A shulker hitting a shulker with a shulker bullet can make a new shulker"  
-Feature from 20w45a, subject to change  
-* Type: `boolean`
-* Default value: `false`
-* Required options: `true`, `false`
-* Categories: `minitweaks`, `mobs`, `survival`, `backport`
-
-## shulkerPortalFix
-Fixes [MC-139265](https://bugs.mojang.com/browse/MC-139265) / [MC-168900](https://bugs.mojang.com/browse/MC-168900), which makes shulkers use portals correctly now,  
-and fixes [MC-183884](https://bugs.mojang.com/browse/MC-183884) which makes shulkers able to be next to each other without teleporting
-* Type: `boolean`
-* Default value: `false`
-* Required options: `true`, `false`
-* Categories: `minitweaks`, `mobs`, `survival`, `bugfix`
 
 ## slimeLooting
 Bigger slimes spawn more smaller slimes when killed with looting  

@@ -6,7 +6,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import minitweaks.MiniTweaksSettings;
-import minitweaks.ShulkerEntityColorHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.ShulkerEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -24,14 +23,12 @@ public abstract class DyeItem_DyeShulkersMixin {
             ShulkerEntity shulkerEntity = (ShulkerEntity) entity;
 
             DyeColor dyeItemColor = ((DyeItem) (Object) this).getColor();
-            // replace with shulkerEntity.getColor() in 1.17
-            DyeColor currentShulkerColor = ShulkerEntityColorHelper.getColor(shulkerEntity);
+            DyeColor currentShulkerColor = shulkerEntity.getColor();
 
             // checks if shulker is alive and current color is different than the dye's color
             if(shulkerEntity.isAlive() && currentShulkerColor != dyeItemColor) {
                 if(!user.world.isClient) {
-                    // replace with shulkerEntity.setColor(dyeItemColor) in 1.17
-                    ShulkerEntityColorHelper.setColor(shulkerEntity, dyeItemColor);
+                    ((ShulkerEntity_GetColorInvokerMixin) shulkerEntity).invokeSetColor(dyeItemColor);
                     stack.decrement(1);
                 }
 

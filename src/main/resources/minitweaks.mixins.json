@@ -1,7 +1,7 @@
 {
   "required": true,
   "package": "minitweaks.mixins",
-  "compatibilityLevel": "JAVA_8",
+  "compatibilityLevel": "JAVA_16",
   "mixins": [
     "CreeperEntity_ExplosionGriefMixin",
     "DispenserBlock_GetBehaviorMixin",
@@ -23,16 +23,13 @@
     "ProtectionEnchantment_ProtectionStackingMixin",
     "RepairItemRecipe_RemoveCursesMixin",
     "SeedCommand_PermissionLevelMixin",
-    "ShovelItem_PathMixin",
     "ShovelItem_ShaveSnowMixin",
-    "ShulkerEntity_BulletCloneMixin",
-    "ShulkerEntity_TrackerKeysAccessorMixin",
-    "ShulkerLidCollisions_TeleportFixMixin",
+    "ShulkerEntity_GetColorInvokerMixin",
     "SlimeEntity_LootingMixin",
     "SmallFireballEntity_FireMixin",
     "VexEntity_EvokerDeathMixin",
     "VillagerEntity_ExplodeBedMixin",
-    "ZombieVillagerEntity_setConvertingInvokerMixin"
+    "ZombieVillagerEntity_SetConvertingInvokerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

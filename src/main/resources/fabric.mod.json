@@ -24,9 +24,10 @@
     "minitweaks.mixins.json"
   ],
   "depends": {
-    "minecraft": "~1.16.2",
-    "fabricloader": ">=0.11.0",
-    "carpet": ">=1.4.27"
+    "java": ">=16",
+    "minecraft": "1.17.x",
+    "fabricloader": ">=0.11.3",
+    "carpet": ">=1.4.38"
   },
   "custom": {
     "modmenu": {

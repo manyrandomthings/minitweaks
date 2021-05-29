@@ -9,7 +9,7 @@ import net.minecraft.entity.player.PlayerEntity;
 
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntity_GetExperienceMixin {
-    @ModifyConstant(method = "getCurrentExperience", constant = @Constant(intValue = 100), expect = 2)
+    @ModifyConstant(method = "getXpToDrop", constant = @Constant(intValue = 100), expect = 2)
     private int modifyDropCount(int original) {
         return MiniTweaksSettings.maxPlayerXpDrop;
     }

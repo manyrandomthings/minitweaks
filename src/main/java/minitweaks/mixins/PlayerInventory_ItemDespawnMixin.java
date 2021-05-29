@@ -20,7 +20,7 @@ public abstract class PlayerInventory_ItemDespawnMixin {
         // check for null since player.dropItem() is nullable
         if(droppedItem != null) {
             // modifies age
-            ((ItemEntity_AgeAccessorMixin) droppedItem).setAge(minutesToTicks(MiniTweaksSettings.deathItemsDespawnMinutes));
+            ((ItemEntity_AgeAccessorMixin) droppedItem).setItemAge(minutesToTicks(MiniTweaksSettings.deathItemsDespawnMinutes));
         }
         return droppedItem;
     }
