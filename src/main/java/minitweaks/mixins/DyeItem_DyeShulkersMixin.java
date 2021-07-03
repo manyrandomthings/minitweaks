@@ -28,7 +28,7 @@ public abstract class DyeItem_DyeShulkersMixin {
             // checks if shulker is alive and current color is different than the dye's color
             if(shulkerEntity.isAlive() && currentShulkerColor != dyeItemColor) {
                 if(!user.world.isClient) {
-                    ((ShulkerEntity_GetColorInvokerMixin) shulkerEntity).invokeSetColor(dyeItemColor);
+                    ((ShulkerEntity_SetColorInvokerMixin) shulkerEntity).invokeSetColor(dyeItemColor);
                     stack.decrement(1);
                 }
 

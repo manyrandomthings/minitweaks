@@ -24,7 +24,7 @@
     "RepairItemRecipe_RemoveCursesMixin",
     "SeedCommand_PermissionLevelMixin",
     "ShovelItem_ShaveSnowMixin",
-    "ShulkerEntity_GetColorInvokerMixin",
+    "ShulkerEntity_SetColorInvokerMixin",
     "SlimeEntity_LootingMixin",
     "SmallFireballEntity_FireMixin",
     "VexEntity_EvokerDeathMixin",
