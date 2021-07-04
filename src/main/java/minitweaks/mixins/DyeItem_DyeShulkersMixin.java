@@ -11,6 +11,8 @@ import net.minecraft.entity.mob.ShulkerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Hand;
@@ -27,6 +29,7 @@ public abstract class DyeItem_DyeShulkersMixin {
 
             // checks if shulker is alive and current color is different than the dye's color
             if(shulkerEntity.isAlive() && currentShulkerColor != dyeItemColor) {
+                shulkerEntity.world.playSoundFromEntity(user, shulkerEntity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
                 if(!user.world.isClient) {
                     ((ShulkerEntity_SetColorInvokerMixin) shulkerEntity).invokeSetColor(dyeItemColor);
                     stack.decrement(1);

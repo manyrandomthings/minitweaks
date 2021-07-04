@@ -12,6 +12,8 @@ import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.predicate.entity.EntityPredicates;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPointer;
 import net.minecraft.util.math.BlockPos;
@@ -34,6 +36,8 @@ public class DyeItemDispenserBehavior extends FallibleItemDispenserBehavior {
                 SheepEntity sheepEntity = (SheepEntity) entity;
                 // if sheep is not sheared and not the same color as item
                 if(!sheepEntity.isSheared() && sheepEntity.getColor() != itemColor) {
+                    // play dye sound
+                    sheepEntity.world.playSoundFromEntity(null, sheepEntity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
                     // set sheep color to item color
                     sheepEntity.setColor(itemColor);
                     stack.decrement(1);
@@ -43,7 +47,11 @@ public class DyeItemDispenserBehavior extends FallibleItemDispenserBehavior {
             else if(MiniTweaksSettings.dyeableShulkers && entity instanceof ShulkerEntity) {
                 ShulkerEntity shulkerEntity = (ShulkerEntity) entity;
 
+                // if shulker color is not the same color as item
                 if(shulkerEntity.getColor() != itemColor) {
+                    // play dye sound
+                    shulkerEntity.world.playSoundFromEntity(null, shulkerEntity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                    // set shulker color to item color
                     ((ShulkerEntity_SetColorInvokerMixin) shulkerEntity).invokeSetColor(itemColor);
                     stack.decrement(1);
                     return stack;
