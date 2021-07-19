@@ -266,6 +266,12 @@ public class MiniTweaksSettings {
     )
     public static boolean vexesNerf = false;
 
+    @Rule(
+        desc = "Villagers will always convert to Zombie Villagers when killed by a zombie, even on easy and normal",
+        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL}
+    )
+    public static boolean villagersAlwaysConvert = false;
+
     // villagers explode beds
     @Rule(
         desc = "Villagers cause explosions when trying to use beds in the nether or end, like players",

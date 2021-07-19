@@ -30,6 +30,7 @@
     "SmallFireballEntity_FireMixin",
     "VexEntity_EvokerDeathMixin",
     "VillagerEntity_ExplodeBedMixin",
+    "ZombieEntity_AlwaysConvertMixin",
     "ZombieVillagerEntity_SetConvertingInvokerMixin"
   ],
   "injectors": {
