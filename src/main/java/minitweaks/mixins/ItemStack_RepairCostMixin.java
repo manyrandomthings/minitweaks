@@ -3,7 +3,6 @@ package minitweaks.mixins;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import minitweaks.MiniTweaksSettings;
@@ -16,14 +15,6 @@ public abstract class ItemStack_RepairCostMixin {
         if(MiniTweaksSettings.noRepairCost) {
             // if enabled, always return repair cost of 0
             cir.setReturnValue(0);
-        }
-    }
-
-    @Inject(method = "setRepairCost", at = @At("HEAD"), cancellable = true)
-    private void setRepairCostFix(int repairCost, CallbackInfo ci) {
-        if(MiniTweaksSettings.noRepairCost) {
-            // if enabled, don't set repair cost
-            ci.cancel();
         }
     }
 }
