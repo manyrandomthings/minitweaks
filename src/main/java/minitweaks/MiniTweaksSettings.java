@@ -76,14 +76,14 @@ public class MiniTweaksSettings {
 
     // blaze fireball fire
     @Rule(
-        desc = "Disable fires made from blaze fireballs",
+        desc = "Disables fire made from blaze fireballs",
         category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL}
     )
     public static boolean disableBlazeFire = false;
 
     // ghast fireball fire
     @Rule(
-        desc = "Disable random fire from ghast fireballs",
+        desc = "Disables fire made from ghast fireballs",
         category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL}
     )
     public static boolean disableGhastFire = false;
@@ -155,8 +155,7 @@ public class MiniTweaksSettings {
 
     // infinity+mending stacking
     @Rule(
-        desc = "Allows infinity and mending to stack on bows",
-        extra = "Like 1.9-1.11",
+        desc = "Allows infinity and mending to stack on bows, like in 1.9 to 1.11",
         category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.ENCHANTMENT, RuleCategory.SURVIVAL}
     )
     public static boolean infinityMendingStacking = false;
@@ -174,6 +173,7 @@ public class MiniTweaksSettings {
     // mobs drop name tag
     @Rule(
         desc = "Named mobs drop their name tag on death",
+        extra = "Note: mobs will drop a name tag even if they weren't named with one",
         category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL}
     )
     public static boolean mobsDropNametag = false;
@@ -187,14 +187,14 @@ public class MiniTweaksSettings {
 
     // farmland feather falling
     @Rule(
-        desc = "Prevents farmland from being trampled if you have feather falling on",
+        desc = "Prevents farmland from being trampled if you have feather falling",
         category = {MiniTweaksRuleCategory.MODNAME, RuleCategory.SURVIVAL}
     )
     public static boolean noFeatherFallingTrample = false;
 
     // no repair cost
     @Rule(
-        desc = "No additional cost for using an item in an anvil multiple times",
+        desc = "Removes additional cost for using an item in an anvil multiple times",
         category = {MiniTweaksRuleCategory.MODNAME, RuleCategory.SURVIVAL}
     )
     public static boolean noRepairCost = false;
@@ -211,8 +211,7 @@ public class MiniTweaksSettings {
 
     // protection stacking
     @Rule(
-        desc = "Allows all the different protection types to stack on the same piece of armor",
-        extra = "Like enchanting from 1.14-1.14.2",
+        desc = "Allows all the different protection types to stack on the same piece of armor, like in 1.14 to 1.14.2",
         category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.ENCHANTMENT, RuleCategory.SURVIVAL}
     )
     public static boolean protectionStacking = false;
@@ -240,8 +239,7 @@ public class MiniTweaksSettings {
 
     // shave snow layers
     @Rule(
-        desc = "Snow layers can be shaved, removing one layer when right clicked with a shovel",
-        extra = "Works with silk touch as well",
+        desc = "Snow layers can be shaved, removing one layer, when right clicked with a shovel",
         category = {MiniTweaksRuleCategory.MODNAME, RuleCategory.SURVIVAL, RuleCategory.FEATURE}
     )
     public static boolean shaveSnowLayers = false;
@@ -250,7 +248,7 @@ public class MiniTweaksSettings {
     @Rule(
         desc = "Bigger slimes spawn more smaller slimes when killed with looting",
         extra = "Additional slimes can be up to as many levels of looting as you have (up to +3 with looting 3, etc)",
-        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL}
+        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, MiniTweaksRuleCategory.ENCHANTMENT, RuleCategory.SURVIVAL}
     )
     public static boolean slimeLooting = false;
 

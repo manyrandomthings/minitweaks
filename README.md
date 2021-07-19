@@ -4,6 +4,13 @@ Some small game mechanic changes, mainly for survival
 Requires [fabric-carpet](https://github.com/gnembon/fabric-carpet)
 
 # MiniTweaks Settings
+## commandSeed
+Permission level required to use /seed  
+* Type: `String`
+* Default value: `ops`
+* Suggested options: `true`, `false`, `ops`
+* Categories: `minitweaks`, `command`
+
 ## creeperBlockDamage
 Set creeper explosion block damage type, regardless of mobGriefing gamerule  
 default: uses default explosion  
@@ -26,14 +33,14 @@ How many minutes it takes for a player's items to despawn after death
   * You must choose a value from -1 (infinite) to 32
 
 ## disableBlazeFire
-Disable fires made from blaze fireballs  
+Disables fire made from blaze fireballs  
 * Type: `boolean`
 * Default value: `false`
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `mobs`, `survival`
 
 ## disableGhastFire
-Disable random fire from ghast fireballs  
+Disables fire made from ghast fireballs  
 * Type: `boolean`
 * Default value: `false`
 * Required options: `true`, `false`
@@ -47,6 +54,7 @@ Dispensers feed golden apples to zombie villagers with weakness
 * Categories: `minitweaks`, `mobs`, `dispenser`, `survival`
 * Additional notes:
   * Dispensers curing a villager does not lower the villager's prices due to gossips being player-specific
+
 ## dispensersDyeMobs
 Dispensers can dye sheep (and shulkers if dyeableShulkers is enabled)  
 * Type: `boolean`
@@ -98,13 +106,11 @@ destroy: broken blocks are sometimes dropped (like default creepers)
 * Categories: `minitweaks`, `mobs`, `survival`
 
 ## infinityMendingStacking
-Allows infinity and mending to stack on bows  
+Allows infinity and mending to stack on bows, like in 1.9 to 1.11  
 * Type: `boolean`
 * Default value: `false`
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `enchantment`, `survival`
-* Additional notes:
-  * Like enchanting from 1.9-1.11
 
 ## maxPlayerXpDrop
 Maximum amount of xp players drop on death  
@@ -121,6 +127,8 @@ Named mobs drop their name tag on death
 * Default value: `false`
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `mobs`, `survival`
+* Additional notes:
+  * Mobs will drop a name tag even if they weren't named with one
 
 ## moveableWaterloggedBlocks
 Waterlogged blocks stay waterlogged when moved with a piston  
@@ -132,14 +140,14 @@ Waterlogged blocks stay waterlogged when moved with a piston
   * Water in moving waterlogged blocks doesn't render correctly
 
 ## noFeatherFallingTrample
-Prevents farmland from being trampled if you have feather falling on  
+Prevents farmland from being trampled if you have feather falling  
 * Type: `boolean`
 * Default value: `false`
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `survival`
 
 ## noRepairCost
-No additional cost for using an item in an anvil multiple times  
+Removes additional cost for using an item in an anvil multiple times  
 * Type: `boolean`
 * Default value: `false`
 * Required options: `true`, `false`
@@ -155,13 +163,11 @@ Amount of ticks before Phantoms start having a chance to spawn
   * Must be a positive number
 
 ## protectionStacking
-Allows all the different protection types to stack on the same piece of armor  
+Allows all the different protection types to stack on the same piece of armor, like 1.14 to 1.14.2  
 * Type: `boolean`
 * Default value: `false`
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `enchantment`, `survival`
-* Additional notes:
-  * Like enchanting from 1.14-1.14.2
 
 ## quickHarvesting
 Right click crops with a hoe to harvest and replant  
@@ -169,6 +175,13 @@ Right click crops with a hoe to harvest and replant
 * Default value: `false`
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `survival`, `feature`
+
+## removableCurses
+Curses are also removed when using grindstones or repair crafting  
+* Type: `boolean`
+* Default value: `false`
+* Required options: `true`, `false`
+* Categories: `minitweaks`, `enchantment`, `survival`
 
 ## renewableDragonEgg
 Dragon eggs will always be placed on the portal after defeating the dragon  
@@ -178,8 +191,7 @@ Dragon eggs will always be placed on the portal after defeating the dragon
 * Categories: `minitweaks`, `mobs`, `survival`
 
 ## shaveSnowLayers
-Snow layers can be shaved, removing one layer when right clicked with a shovel  
-Works with silk touch as well  
+Snow layers can be shaved, removing one layer, when right clicked with a shovel  
 * Type: `boolean`
 * Default value: `false`
 * Required options: `true`, `false`
@@ -191,7 +203,7 @@ Additional slimes can be up to as many levels of looting as you have (up to +3 w
 * Type: `boolean`
 * Default value: `false`
 * Required options: `true`, `false`
-* Categories: `minitweaks`, `mobs`, `survival`
+* Categories: `minitweaks`, `mobs`, `enchantment`, `survival`
 
 ## vexesNerf
 Vexes will start to die after the evoker that summoned them dies  
