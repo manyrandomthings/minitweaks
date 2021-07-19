@@ -12,6 +12,7 @@
     "FireballEntity_ExplosionGriefMixin",
     "GrindstoneScreenHandler_RemoveCursesMixin",
     "HoeItem_HarvestMixin",
+    "HostileEntity_SpawnLightLevelMixin",
     "InfinityEnchantment_InfinityMendingStackingMixin",
     "ItemEntity_AgeAccessorMixin",
     "ItemStack_RepairCostMixin",
