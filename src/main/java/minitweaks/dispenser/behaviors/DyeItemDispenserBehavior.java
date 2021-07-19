@@ -24,7 +24,7 @@ public class DyeItemDispenserBehavior extends FallibleItemDispenserBehavior {
         this.setSuccess(true);
 
         // get block in front of dispenser
-        BlockPos blockPos = pointer.getBlockPos().offset(pointer.getBlockState().get(DispenserBlock.FACING));
+        BlockPos blockPos = pointer.getPos().offset(pointer.getBlockState().get(DispenserBlock.FACING));
         // get all PathAwareEntity entities in front of dispenser (common root of sheep and shulkers)
         List<PathAwareEntity> list = pointer.getWorld().getEntitiesByClass(PathAwareEntity.class, new Box(blockPos), EntityPredicates.VALID_LIVING_ENTITY);
         // get color of item

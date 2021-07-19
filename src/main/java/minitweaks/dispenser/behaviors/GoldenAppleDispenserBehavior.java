@@ -18,7 +18,7 @@ public class GoldenAppleDispenserBehavior extends FallibleItemDispenserBehavior 
         this.setSuccess(true);
 
         // get block in front of dispenser
-        BlockPos blockPos = pointer.getBlockPos().offset(pointer.getBlockState().get(DispenserBlock.FACING));
+        BlockPos blockPos = pointer.getPos().offset(pointer.getBlockState().get(DispenserBlock.FACING));
         // get all zombie villagers in front of dispenser
         List<ZombieVillagerEntity> list = pointer.getWorld().getEntitiesByClass(ZombieVillagerEntity.class, new Box(blockPos), EntityPredicates.VALID_LIVING_ENTITY);
 

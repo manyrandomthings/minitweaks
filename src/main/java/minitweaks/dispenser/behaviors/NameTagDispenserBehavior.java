@@ -18,7 +18,7 @@ public class NameTagDispenserBehavior extends FallibleItemDispenserBehavior {
         this.setSuccess(true);
 
         // get block in front of dispenser
-        BlockPos blockPos = pointer.getBlockPos().offset(pointer.getBlockState().get(DispenserBlock.FACING));
+        BlockPos blockPos = pointer.getPos().offset(pointer.getBlockState().get(DispenserBlock.FACING));
         // get all non-player living entities in front of dispenser
         List<LivingEntity> list = pointer.getWorld().getEntitiesByClass(LivingEntity.class, new Box(blockPos), EntityPredicates.VALID_LIVING_ENTITY.and((livingEntity) -> !(livingEntity instanceof PlayerEntity)));
 

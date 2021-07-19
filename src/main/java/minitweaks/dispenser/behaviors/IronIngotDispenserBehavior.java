@@ -19,7 +19,7 @@ public class IronIngotDispenserBehavior extends FallibleItemDispenserBehavior {
         this.setSuccess(true);
 
         // get block in front of dispenser
-        BlockPos blockPos = pointer.getBlockPos().offset(pointer.getBlockState().get(DispenserBlock.FACING));
+        BlockPos blockPos = pointer.getPos().offset(pointer.getBlockState().get(DispenserBlock.FACING));
         // get all iron golems in front of dispenser
         List<IronGolemEntity> list = pointer.getWorld().getEntitiesByType(EntityType.IRON_GOLEM, new Box(blockPos), EntityPredicates.VALID_LIVING_ENTITY);
 
