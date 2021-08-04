@@ -11,7 +11,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 
-@Mixin(EnderDragonEntity.class)
+@Mixin(value = EnderDragonEntity.class, priority = 999)
 public abstract class EnderDragonEntity_BreakBlocksMixin {
     @Redirect(method = "destroyBlocks", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/GameRules;getBoolean(Lnet/minecraft/world/GameRules$Key;)Z"))
     private boolean gameruleCheck(GameRules gamerules, GameRules.Key<GameRules.BooleanRule> gameruleKey) {
@@ -23,7 +23,7 @@ public abstract class EnderDragonEntity_BreakBlocksMixin {
         return gamerules.getBoolean(gameruleKey);
     }
 
-    @Redirect(method = "destroyBlocks", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;removeBlock(Lnet/minecraft/util/math/BlockPos;Z)Z"))
+    @Redirect(method = "destroyBlocks", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;removeBlock(Lnet/minecraft/util/math/BlockPos;Z)Z"), require = 0)
     private boolean destroyType(World world, BlockPos pos, boolean move) {
         // this mixin shouldn't run if block breaking type is none
         // if block breaking type is not break, remove block
