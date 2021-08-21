@@ -14,7 +14,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 
 public class GoldenAppleDispenserBehavior extends FallibleItemDispenserBehavior {
-    public ItemStack dispenseSilently(BlockPointer pointer, ItemStack stack) {
+    protected ItemStack dispenseSilently(BlockPointer pointer, ItemStack stack) {
         this.setSuccess(true);
 
         // get block in front of dispenser
