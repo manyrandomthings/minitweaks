@@ -129,6 +129,17 @@ Maximum amount of xp players drop on death
 * Additional notes:
   * Must be a positive number
 
+## mobItemPickup
+Overwrites random default pickup chance when mob spawns  
+Only zombie and skeleton type mobs are affected  
+default: uses default pickup  
+always: mobs pick up items  
+never: mobs don't pick up items  
+* Type: `String`
+* Default value: `default`
+* Required options: `default`, `always`, `never`
+* Categories: `minitweaks`, `mobs`
+
 ## mobsDropNametag
 Named mobs drop their name tag on death  
 * Type: `boolean`

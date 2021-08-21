@@ -33,6 +33,11 @@ public class MiniTweaksSettings {
         }
     }
 
+    public enum ItemPickupType {
+        DEFAULT, ALWAYS, NEVER;
+    }
+
+
     private static class ItemDespawnTimeValidator extends Validator<Integer> {
         @Override
         public Integer validate(ServerCommandSource source, ParsedRule<Integer> currentRule, Integer newValue, String typedString) {
@@ -176,6 +181,18 @@ public class MiniTweaksSettings {
         category = {MiniTweaksRuleCategory.MODNAME, RuleCategory.SURVIVAL}
     )
     public static int maxPlayerXpDrop = 100;
+
+    @Rule(
+        desc = "Overwrites random default pickup chance when mob spawns",
+        extra = {
+            "Only zombie and skeleton type mobs are affected",
+            "default: uses default pickup",
+            "always: mobs pick up items",
+            "never: mobs don't pick up items"
+        },
+        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS}
+    )
+    public static ItemPickupType mobItemPickup = ItemPickupType.DEFAULT;
 
     // mobs drop name tag
     @Rule(

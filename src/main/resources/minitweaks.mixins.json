@@ -26,6 +26,7 @@
     "SeedCommand_PermissionLevelMixin",
     "ShovelItem_ShaveSnowMixin",
     "ShulkerEntity_SetColorInvokerMixin",
+    "SkeletonZombie_SetPickupMixin",
     "SlimeEntity_LootingMixin",
     "SmallFireballEntity_FireMixin",
     "VexEntity_EvokerDeathMixin",
