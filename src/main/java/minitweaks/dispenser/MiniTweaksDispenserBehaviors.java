@@ -1,6 +1,7 @@
 package minitweaks.dispenser;
 
 import minitweaks.MiniTweaksSettings;
+import minitweaks.dispenser.behaviors.WaterBucketDispenserBehavior;
 import minitweaks.dispenser.behaviors.DyeItemDispenserBehavior;
 import minitweaks.dispenser.behaviors.GoldenAppleDispenserBehavior;
 import minitweaks.dispenser.behaviors.IronIngotDispenserBehavior;
@@ -8,6 +9,7 @@ import minitweaks.dispenser.behaviors.NameTagDispenserBehavior;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.DispenserBehavior;
 import net.minecraft.block.entity.DispenserBlockEntity;
+import net.minecraft.entity.Bucketable;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.PathAwareEntity;
@@ -29,6 +31,7 @@ public class MiniTweaksDispenserBehaviors {
     public static final DispenserBehavior DYE_ITEM = new DyeItemDispenserBehavior();
     public static final DispenserBehavior GOLDEN_APPLE = new GoldenAppleDispenserBehavior();
     public static final DispenserBehavior IRON_INGOT = new IronIngotDispenserBehavior();
+    public static final DispenserBehavior WATER_BUCKET = new WaterBucketDispenserBehavior();
 
     // get dispenser behavior
     public static DispenserBehavior getCustomDispenserBehavior(ServerWorld serverWorld, BlockPos pos, BlockPointer blockPointer, DispenserBlockEntity dispenserBlockEntity, ItemStack stack) {
@@ -69,6 +72,16 @@ public class MiniTweaksDispenserBehaviors {
 
             if(hasIronGolems) {
                 return IRON_INGOT;
+            }
+        }
+        // pick up bucketable mob
+        else if(MiniTweaksSettings.dispensersBucketMobs && item == Items.WATER_BUCKET) {
+            boolean hasBucketableMobs = !serverWorld.getEntitiesByClass(LivingEntity.class, frontBox, EntityPredicates.VALID_LIVING_ENTITY.and(entity -> {
+                return entity instanceof Bucketable;
+            })).isEmpty();
+
+            if(hasBucketableMobs) {
+                return WATER_BUCKET;
             }
         }
 

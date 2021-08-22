@@ -54,6 +54,13 @@ Disables fire made from ghast fireballs
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `mobs`, `survival`
 
+## dispensersBucketMobs
+Dispensers can pick up bucketable mobs  
+* Type: `boolean`
+* Default value: `false`
+* Required options: `true`, `false`
+* Categories: `minitweaks`, `mobs`, `dispenser`
+
 ## dispensersCureVillagers
 Dispensers feed golden apples to zombie villagers with weakness  
 * Type: `boolean`

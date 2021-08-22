@@ -100,6 +100,13 @@ public class MiniTweaksSettings {
     )
     public static boolean disableGhastFire = false;
 
+    // dispensers bucket mobs
+    @Rule(
+        desc = "Dispensers can pick up bucketable mobs",
+        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.DISPENSER}
+    )
+    public static boolean dispensersBucketMobs = false;
+
     // dispensers cure villagers
     @Rule(
         desc = "Dispensers feed golden apples to zombie villagers with weakness",
