@@ -37,7 +37,6 @@ public class MiniTweaksSettings {
         DEFAULT, ALWAYS, NEVER;
     }
 
-
     private static class ItemDespawnTimeValidator extends Validator<Integer> {
         @Override
         public Integer validate(ServerCommandSource source, ParsedRule<Integer> currentRule, Integer newValue, String typedString) {
@@ -48,6 +47,7 @@ public class MiniTweaksSettings {
         }
     }
 
+
     // seed command
     @Rule(
         desc = "Permission level required to use /seed",
@@ -55,6 +55,7 @@ public class MiniTweaksSettings {
     )
     public static String commandSeed = "ops";
 
+    // complete darkness spawning
     @Rule(
         desc = "Mobs require complete darkness (light level 0) to spawn",
         extra = "From 1.18. May change.",
@@ -189,6 +190,7 @@ public class MiniTweaksSettings {
     )
     public static int maxPlayerXpDrop = 100;
 
+    // mob item pickup
     @Rule(
         desc = "Overwrites random default pickup chance when mob spawns",
         extra = {
@@ -290,6 +292,7 @@ public class MiniTweaksSettings {
     )
     public static boolean vexesNerf = false;
 
+    // villagers always convert
     @Rule(
         desc = "Villagers will always convert to Zombie Villagers when killed by a zombie, even on easy and normal",
         category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL}
