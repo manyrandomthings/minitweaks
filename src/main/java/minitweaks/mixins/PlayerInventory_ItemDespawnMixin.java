@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 
 @Mixin(value = PlayerInventory.class, priority = 999)
 public abstract class PlayerInventory_ItemDespawnMixin {
-    @Redirect(method = "dropAll", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;dropItem(Lnet/minecraft/item/ItemStack;ZZ)Lnet/minecraft/entity/ItemEntity;"))
+    @Redirect(method = "dropAll", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;dropItem(Lnet/minecraft/item/ItemStack;ZZ)Lnet/minecraft/entity/ItemEntity;"), require = 0)
     private ItemEntity modifyAge(PlayerEntity player, ItemStack stack, boolean throwRandomly, boolean retainOwnership) {
         // drops item
         ItemEntity droppedItem = player.dropItem(stack, throwRandomly, retainOwnership);
