@@ -70,8 +70,8 @@ public abstract class HoeItem_HarvestMixin {
     // check if crop is mature. Also returns false for invalid blocks being clicked
     private static boolean isMature(BlockState state) {
         Block block = state.getBlock();
-        if(block instanceof CropBlock) {
-            return ((CropBlock) block).isMature(state);
+        if(block instanceof CropBlock cropBlock) {
+            return cropBlock.isMature(state);
         }
         else if(block instanceof NetherWartBlock) {
             return state.get(NetherWartBlock.AGE) == 3;
@@ -84,8 +84,8 @@ public abstract class HoeItem_HarvestMixin {
 
     // get age crop age property
     private static IntProperty getAgeProperty(Block block) {
-        if(block instanceof CropBlock) {
-            return ((CropBlock) block).getAgeProperty();
+        if(block instanceof CropBlock cropBlock) {
+            return cropBlock.getAgeProperty();
         }
         else if(block instanceof NetherWartBlock) {
             return NetherWartBlock.AGE;

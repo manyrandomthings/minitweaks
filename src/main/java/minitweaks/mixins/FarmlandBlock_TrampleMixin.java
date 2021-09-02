@@ -24,9 +24,9 @@ public abstract class FarmlandBlock_TrampleMixin extends Block {
 
     @Inject(method = "onLandedUpon", at = @At("HEAD"), cancellable = true)
     private void featherFallingCheck(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance, CallbackInfo ci) {
-        if(MiniTweaksSettings.noFeatherFallingTrample && entity instanceof LivingEntity) {
+        if(MiniTweaksSettings.noFeatherFallingTrample && entity instanceof LivingEntity livingEntity) {
             // check for feather falling level of 1 or more
-            if(EnchantmentHelper.getEquipmentLevel(Enchantments.FEATHER_FALLING, (LivingEntity) entity) > 0) {
+            if(EnchantmentHelper.getEquipmentLevel(Enchantments.FEATHER_FALLING, livingEntity) > 0) {
                 // required for fall damage
                 super.onLandedUpon(world, state, pos, entity, fallDistance);
                 ci.cancel();

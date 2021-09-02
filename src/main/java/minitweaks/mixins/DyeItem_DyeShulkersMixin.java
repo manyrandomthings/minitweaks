@@ -21,9 +21,7 @@ import net.minecraft.util.Hand;
 public abstract class DyeItem_DyeShulkersMixin {
     @Inject(method = "useOnEntity", at = @At("HEAD"), cancellable = true)
     private void dyeShulkers(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
-        if(MiniTweaksSettings.dyeableShulkers && entity instanceof ShulkerEntity) {
-            ShulkerEntity shulkerEntity = (ShulkerEntity) entity;
-
+        if(MiniTweaksSettings.dyeableShulkers && entity instanceof ShulkerEntity shulkerEntity) {
             DyeColor dyeItemColor = ((DyeItem) (Object) this).getColor();
             DyeColor currentShulkerColor = shulkerEntity.getColor();
 

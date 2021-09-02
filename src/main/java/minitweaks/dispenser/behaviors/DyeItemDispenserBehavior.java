@@ -32,8 +32,7 @@ public class DyeItemDispenserBehavior extends FallibleItemDispenserBehavior {
 
         // go through list of entities
         for(PathAwareEntity entity : list) {
-            if(entity instanceof SheepEntity) {
-                SheepEntity sheepEntity = (SheepEntity) entity;
+            if(entity instanceof SheepEntity sheepEntity) {
                 // if sheep is not sheared and not the same color as item
                 if(!sheepEntity.isSheared() && sheepEntity.getColor() != itemColor) {
                     // play dye sound
@@ -44,9 +43,7 @@ public class DyeItemDispenserBehavior extends FallibleItemDispenserBehavior {
                     return stack;
                 }
             }
-            else if(MiniTweaksSettings.dyeableShulkers && entity instanceof ShulkerEntity) {
-                ShulkerEntity shulkerEntity = (ShulkerEntity) entity;
-
+            else if(MiniTweaksSettings.dyeableShulkers && entity instanceof ShulkerEntity shulkerEntity) {
                 // if shulker color is not the same color as item
                 if(shulkerEntity.getColor() != itemColor) {
                     // play dye sound

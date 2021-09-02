@@ -29,8 +29,8 @@ public class NameTagDispenserBehavior extends FallibleItemDispenserBehavior {
             // set name to nametag's name
             entity.setCustomName(stack.getName());
             // if entity is MobEntity, prevent it from despawning
-            if(entity instanceof MobEntity) {
-                ((MobEntity) entity).setPersistent();
+            if(entity instanceof MobEntity mobEntity) {
+                mobEntity.setPersistent();
             }
             stack.decrement(1);
             return stack;
