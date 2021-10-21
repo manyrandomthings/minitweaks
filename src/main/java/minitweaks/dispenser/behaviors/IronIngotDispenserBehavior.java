@@ -10,6 +10,7 @@ import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPointer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
@@ -21,23 +22,26 @@ public class IronIngotDispenserBehavior extends FallibleItemDispenserBehavior {
         // get block in front of dispenser
         BlockPos blockPos = pointer.getPos().offset(pointer.getBlockState().get(DispenserBlock.FACING));
         // get all iron golems in front of dispenser
-        List<IronGolemEntity> list = pointer.getWorld().getEntitiesByType(EntityType.IRON_GOLEM, new Box(blockPos), EntityPredicates.VALID_LIVING_ENTITY);
+        List<IronGolemEntity> list = pointer.getWorld().getEntitiesByType(EntityType.IRON_GOLEM, new Box(blockPos), EntityPredicates.VALID_LIVING_ENTITY.and((entity) -> {
+            IronGolemEntity ironGolemEntity = (IronGolemEntity) entity;
+            return ironGolemEntity.getHealth() < ironGolemEntity.getMaxHealth();
+        }));
 
-        // if mobs found
-        for(IronGolemEntity ironGolem : list) {
-            if(ironGolem.getHealth() < ironGolem.getMaxHealth()) {
-                // heal golem
-                ironGolem.heal(25.0F);
+        // if valid iron golems found
+        if(!list.isEmpty()) {
+            // get random golem
+            IronGolemEntity ironGolem = Util.getRandom(list, pointer.getWorld().getRandom());
+            // heal golem
+            ironGolem.heal(25.0F);
 
-                // play repair sound
-                Random rand = ironGolem.getRandom();
-                float pitch = 1.0F + (rand.nextFloat() - rand.nextFloat()) * 0.2F;
-                ironGolem.playSound(SoundEvents.ENTITY_IRON_GOLEM_REPAIR, 1.0F, pitch);
+            // play repair sound
+            Random rand = ironGolem.getRandom();
+            float pitch = 1.0F + (rand.nextFloat() - rand.nextFloat()) * 0.2F;
+            ironGolem.playSound(SoundEvents.ENTITY_IRON_GOLEM_REPAIR, 1.0F, pitch);
 
-                // remove one ingot and return
-                stack.decrement(1);
-                return stack;
-            }
+            // remove one ingot and return
+            stack.decrement(1);
+            return stack;
         }
 
         this.setSuccess(false);

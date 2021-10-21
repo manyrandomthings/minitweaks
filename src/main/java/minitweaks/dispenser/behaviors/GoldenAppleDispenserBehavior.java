@@ -9,6 +9,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.ZombieVillagerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.predicate.entity.EntityPredicates;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPointer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
@@ -19,16 +20,20 @@ public class GoldenAppleDispenserBehavior extends FallibleItemDispenserBehavior 
 
         // get block in front of dispenser
         BlockPos blockPos = pointer.getPos().offset(pointer.getBlockState().get(DispenserBlock.FACING));
-        // get all zombie villagers in front of dispenser
-        List<ZombieVillagerEntity> list = pointer.getWorld().getEntitiesByClass(ZombieVillagerEntity.class, new Box(blockPos), EntityPredicates.VALID_LIVING_ENTITY);
+        // get valid zombie villagers in front of dispenser
+        List<ZombieVillagerEntity> list = pointer.getWorld().getEntitiesByClass(ZombieVillagerEntity.class, new Box(blockPos), EntityPredicates.VALID_LIVING_ENTITY.and((entity) -> {
+            ZombieVillagerEntity zombieVillagerEntity = (ZombieVillagerEntity) entity;
+            return !zombieVillagerEntity.isConverting() && zombieVillagerEntity.hasStatusEffect(StatusEffects.WEAKNESS);
+        }));
 
-        // if mobs found
-        for(ZombieVillagerEntity zombieVillager : list) {
-            if(!zombieVillager.isConverting() && zombieVillager.hasStatusEffect(StatusEffects.WEAKNESS)) {
-                ((ZombieVillagerEntity_SetConvertingInvokerMixin) zombieVillager).invokeSetConverting(null, zombieVillager.getRandom().nextInt(2401) + 3600);
-                stack.decrement(1);
-                return stack;
-            }
+        if(!list.isEmpty()) {
+            // choose random zombie villager
+            ZombieVillagerEntity zombieVillager = Util.getRandom(list, pointer.getWorld().getRandom());
+            // set converting
+            ((ZombieVillagerEntity_SetConvertingInvokerMixin) zombieVillager).invokeSetConverting(null, zombieVillager.getRandom().nextInt(2401) + 3600);
+
+            stack.decrement(1);
+            return stack;
         }
 
         this.setSuccess(false);

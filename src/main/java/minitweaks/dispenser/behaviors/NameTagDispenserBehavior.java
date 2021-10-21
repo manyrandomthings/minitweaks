@@ -9,6 +9,7 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.predicate.entity.EntityPredicates;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPointer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
@@ -24,8 +25,8 @@ public class NameTagDispenserBehavior extends FallibleItemDispenserBehavior {
 
         // if mobs found
         if(!list.isEmpty()) {
-            // get first entity found
-            LivingEntity entity = list.get(0);
+            // get random entity
+            LivingEntity entity = Util.getRandom(list, pointer.getWorld().getRandom());
             // set name to nametag's name
             entity.setCustomName(stack.getName());
             // if entity is MobEntity, prevent it from despawning

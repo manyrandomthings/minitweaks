@@ -9,6 +9,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPointer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
@@ -28,7 +29,7 @@ public class WaterBucketDispenserBehavior extends FallibleItemDispenserBehavior 
 
         if(!list.isEmpty()) {
             // get random bucketable mob in list
-            LivingEntity livingEntity = list.get(serverWorld.random.nextInt(list.size()));
+            LivingEntity livingEntity = Util.getRandom(list, serverWorld.getRandom());
             Bucketable bucketable = (Bucketable) livingEntity;
 
             // play bucket sound, get bucket item
