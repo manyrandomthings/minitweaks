@@ -270,6 +270,13 @@ public class MiniTweaksSettings {
     )
     public static boolean renewableDragonEgg = false;
 
+    // renewable raw ores
+    @Rule(
+        desc = "An anvil landing on Iron/Gold/Copper blocks turns them into the raw ore block version",
+        category = {MiniTweaksRuleCategory.MODNAME, RuleCategory.SURVIVAL, RuleCategory.FEATURE}
+    )
+    public static boolean renewableRawOres = false;
+
     // shave snow layers
     @Rule(
         desc = "Snow layers can be shaved, removing one layer, when right clicked with a shovel",

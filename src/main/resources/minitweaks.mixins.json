@@ -3,6 +3,7 @@
   "package": "minitweaks.mixins",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
+    "AnvilBlock_RawOresMixin",
     "CreeperEntity_ExplosionGriefMixin",
     "DispenserBlock_GetBehaviorMixin",
     "DyeItem_DyeShulkersMixin",

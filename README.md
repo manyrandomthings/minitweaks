@@ -216,6 +216,13 @@ Dragon eggs will always be placed on the portal after defeating the dragon
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `mobs`, `survival`
 
+## renewableRawOres
+An anvil landing on Iron/Gold/Copper blocks turns them into the raw ore block version  
+* Type: `boolean`
+* Default value: `false`
+* Required options: `true`, `false`
+* Categories: `minitweaks`, `survival`, `feature`
+
 ## shaveSnowLayers
 Snow layers can be shaved, removing one layer, when right clicked with a shovel  
 * Type: `boolean`
