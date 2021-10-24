@@ -11,14 +11,6 @@ Permission level required to use /seed
 * Suggested options: `true`, `false`, `ops`
 * Categories: `minitweaks`, `command`
 
-## completeDarknessSpawning
-Mobs require complete darkness (light level 0) to spawn  
-From 1.18. May change.  
-* Type: `boolean`
-* Default value: `false`
-* Required options: `true`, `false`
-* Categories: `minitweaks`, `mobs`, `backport`
-
 ## creeperBlockDamage
 Set creeper explosion block damage type, regardless of mobGriefing gamerule  
 default: uses default explosion  

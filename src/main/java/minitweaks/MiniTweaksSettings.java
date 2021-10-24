@@ -55,14 +55,6 @@ public class MiniTweaksSettings {
     )
     public static String commandSeed = "ops";
 
-    // complete darkness spawning
-    @Rule(
-        desc = "Mobs require complete darkness (light level 0) to spawn",
-        extra = "From 1.18. May change.",
-        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, MiniTweaksRuleCategory.BACKPORT}
-    )
-    public static boolean completeDarknessSpawning = false;
-
     // creeper block breaking
     @Rule(
         desc = "Set creeper explosion block damage type, regardless of mobGriefing gamerule",
