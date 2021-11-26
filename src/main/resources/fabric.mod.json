@@ -24,7 +24,7 @@
     "minitweaks.mixins.json"
   ],
   "depends": {
-    "java": ">=16",
+    "java": ">=17",
     "minecraft": "1.18.x",
     "fabricloader": ">=0.12.5",
     "carpet": ">=1.4.53"
