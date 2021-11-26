@@ -186,6 +186,13 @@ public class MiniTweaksSettings {
     )
     public static boolean infinityMendingStacking = false;
 
+    // lightning glowifies squids
+    @Rule(
+        desc = "Squids struck by lightning convert to glow squids",
+        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.ENCHANTMENT, RuleCategory.SURVIVAL}
+    )
+    public static boolean lightningGlowifiesSquids = false;
+
     // max xp drop
     @Rule(
         desc = "Maximum amount of xp players drop on death",

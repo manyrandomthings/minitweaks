@@ -134,6 +134,13 @@ Allows infinity and mending to stack on bows, like in 1.9 to 1.11
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `enchantment`, `survival`
 
+## lightningGlowifiesSquids
+Squids struck by lightning convert to glow squids  
+* Type: `boolean`
+* Default value: `false`
+* Required options: `true`, `false`
+* Categories: `minitweaks`, `mobs`
+
 ## maxPlayerXpDrop
 Maximum amount of xp players drop on death  
 * Type: `int`

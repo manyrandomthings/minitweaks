@@ -31,6 +31,7 @@
     "SkeletonZombie_SetPickupMixin",
     "SlimeEntity_LootingMixin",
     "SmallFireballEntity_FireMixin",
+    "SquidEntity_LightningConvertMixin",
     "VexEntity_EvokerDeathMixin",
     "VillagerEntity_ExplodeBedMixin",
     "ZombieEntity_AlwaysConvertMixin",
