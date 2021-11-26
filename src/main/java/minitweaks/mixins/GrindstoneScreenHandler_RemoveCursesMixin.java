@@ -12,7 +12,7 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.screen.GrindstoneScreenHandler;
 
 @Mixin(GrindstoneScreenHandler.class)
-public class GrindstoneScreenHandler_RemoveCursesMixin {
+public abstract class GrindstoneScreenHandler_RemoveCursesMixin {
     // .filter() lambda in grind
     @Inject(method = "method_16694", at = @At("HEAD"), cancellable = true)
     private static void grindCursedFilter(Entry<Enchantment, Integer> entry, CallbackInfoReturnable<Boolean> cir) {

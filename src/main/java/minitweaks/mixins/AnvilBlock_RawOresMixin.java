@@ -15,7 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 @Mixin(AnvilBlock.class)
-public class AnvilBlock_RawOresMixin {
+public abstract class AnvilBlock_RawOresMixin {
     @Inject(method = "onLanding", at = @At("HEAD"))
     private void convertBlocks(World world, BlockPos pos, BlockState fallingBlockState, BlockState currentStateInPos, FallingBlockEntity fallingBlockEntity, CallbackInfo ci) {
         // check if rule enabled

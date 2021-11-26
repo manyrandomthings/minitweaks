@@ -4,6 +4,13 @@ Some small game mechanic changes, mainly for survival
 Requires [fabric-carpet](https://github.com/gnembon/fabric-carpet)
 
 # MiniTweaks Settings
+## allChargedCreeperHeadsDrop
+All mobs killed by a charged creeper drop their head instead of only one  
+* Type: `boolean`
+* Default value: `false`
+* Required options: `true`, `false`
+* Categories: `minitweaks`, `mobs`
+
 ## commandSeed
 Permission level required to use /seed  
 * Type: `String`
@@ -119,6 +126,13 @@ Allows infinity and mending to stack on bows, like in 1.9 to 1.11
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `enchantment`, `survival`
 
+## lightningGlowifiesSquids
+Squids struck by lightning convert to glow squids  
+* Type: `boolean`
+* Default value: `false`
+* Required options: `true`, `false`
+* Categories: `minitweaks`, `mobs`
+
 ## maxPlayerXpDrop
 Maximum amount of xp players drop on death  
 * Type: `int`
@@ -170,6 +184,13 @@ Removes additional cost for using an item in an anvil multiple times
 * Default value: `false`
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `survival`
+
+## noVillagerWitchConversion
+Villagers don't convert to witches when struck by lightning  
+* Type: `boolean`
+* Default value: `false`
+* Required options: `true`, `false`
+* Categories: `minitweaks`, `mobs`
 
 ## phantomSpawningTime
 Amount of ticks before Phantoms start having a chance to spawn  

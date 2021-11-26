@@ -5,6 +5,7 @@
   "mixins": [
     "AnvilBlock_RawOresMixin",
     "CreeperEntity_ExplosionGriefMixin",
+    "CreeperEntity_HeadDropsMixin",
     "DispenserBlock_GetBehaviorMixin",
     "DyeItem_DyeShulkersMixin",
     "EnderDragonEntity_BreakBlocksMixin",
@@ -29,8 +30,10 @@
     "SkeletonZombie_SetPickupMixin",
     "SlimeEntity_LootingMixin",
     "SmallFireballEntity_FireMixin",
+    "SquidEntity_LightningConvertMixin",
     "VexEntity_EvokerDeathMixin",
     "VillagerEntity_ExplodeBedMixin",
+    "VillagerEntity_LightningConvertMixin",
     "ZombieEntity_AlwaysConvertMixin",
     "ZombieVillagerEntity_SetConvertingInvokerMixin"
   ],

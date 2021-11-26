@@ -22,7 +22,7 @@ import net.minecraft.world.World;
     AbstractSkeletonEntity.class,
     ZombieEntity.class
 })
-public class SkeletonZombie_SetPickupMixin extends HostileEntity {
+public abstract class SkeletonZombie_SetPickupMixin extends HostileEntity {
     protected SkeletonZombie_SetPickupMixin(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
     }

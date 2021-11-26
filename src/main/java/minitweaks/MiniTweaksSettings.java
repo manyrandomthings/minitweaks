@@ -12,24 +12,19 @@ public class MiniTweaksSettings {
         DEFAULT, NONE, BREAK, DESTROY;
 
         public DestructionType getExplosionType(DestructionType original) {
-            switch(this) {
+            return switch(this) {
                 // No blocks broken
-                case NONE:
-                    return DestructionType.NONE;
+                case NONE -> DestructionType.NONE;
 
                 // Blocks are broken but all are dropped (like tnt)
-                case BREAK:
-                    return DestructionType.BREAK;
+                case BREAK -> DestructionType.BREAK;
 
                 // Blocks are broken and some are destroyed (like default creepers)
-                case DESTROY:
-                    return DestructionType.DESTROY;
+                case DESTROY -> DestructionType.DESTROY;
 
                 // Default explosion (no modification)
-                case DEFAULT:
-                default:
-                    return original;
-            }
+                default -> original;
+            };
         }
     }
 
@@ -47,6 +42,12 @@ public class MiniTweaksSettings {
         }
     }
 
+    // all charged creeper heads drop
+    @Rule(
+        desc = "All mobs killed by a charged creeper drop their head instead of only one",
+        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS}
+    )
+    public static boolean allChargedCreeperHeadsDrop;
 
     // seed command
     @Rule(
@@ -172,6 +173,13 @@ public class MiniTweaksSettings {
     )
     public static boolean infinityMendingStacking = false;
 
+    // lightning glowifies squids
+    @Rule(
+        desc = "Squids struck by lightning convert to glow squids",
+        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.ENCHANTMENT, RuleCategory.SURVIVAL}
+    )
+    public static boolean lightningGlowifiesSquids = false;
+
     // max xp drop
     @Rule(
         desc = "Maximum amount of xp players drop on death",
@@ -223,6 +231,12 @@ public class MiniTweaksSettings {
         category = {MiniTweaksRuleCategory.MODNAME, RuleCategory.SURVIVAL}
     )
     public static boolean noRepairCost = false;
+
+    @Rule(
+        desc = "Villagers don't convert to witches when struck by lightning",
+        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS}
+    )
+    public static boolean noVillagerWitchConversion = false;
 
     // phantom spawning
     @Rule(
