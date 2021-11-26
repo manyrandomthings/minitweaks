@@ -12,24 +12,19 @@ public class MiniTweaksSettings {
         DEFAULT, NONE, BREAK, DESTROY;
 
         public DestructionType getExplosionType(DestructionType original) {
-            switch(this) {
+            return switch(this) {
                 // No blocks broken
-                case NONE:
-                    return DestructionType.NONE;
+                case NONE -> DestructionType.NONE;
 
                 // Blocks are broken but all are dropped (like tnt)
-                case BREAK:
-                    return DestructionType.BREAK;
+                case BREAK -> DestructionType.BREAK;
 
                 // Blocks are broken and some are destroyed (like default creepers)
-                case DESTROY:
-                    return DestructionType.DESTROY;
+                case DESTROY -> DestructionType.DESTROY;
 
                 // Default explosion (no modification)
-                case DEFAULT:
-                default:
-                    return original;
-            }
+                default -> original;
+            };
         }
     }
 
