@@ -10,7 +10,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.Difficulty;
 
 @Mixin(value = ZombieEntity.class, priority = 999) //todo: change to 1001
-public class ZombieEntity_AlwaysConvertMixin {
+public abstract class ZombieEntity_AlwaysConvertMixin {
     @Redirect(method = "onKilledOther", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ServerWorld;getDifficulty()Lnet/minecraft/world/Difficulty;"), expect = 3, require = 0)
     private Difficulty forceZombieVillager(ServerWorld world) {
         if(MiniTweaksSettings.villagersAlwaysConvert) {

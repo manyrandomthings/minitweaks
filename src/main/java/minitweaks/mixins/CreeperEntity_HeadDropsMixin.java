@@ -9,7 +9,7 @@ import minitweaks.MiniTweaksSettings;
 import net.minecraft.entity.mob.CreeperEntity;
 
 @Mixin(CreeperEntity.class)
-public class CreeperEntity_HeadDropsMixin {
+public abstract class CreeperEntity_HeadDropsMixin {
     @Inject(method = "shouldDropHead", at = @At("HEAD"), cancellable = true)
     private void allHeadsDrop(CallbackInfoReturnable<Boolean> cir) {
         if(((CreeperEntity) (Object) this).shouldRenderOverlay() && MiniTweaksSettings.allChargedCreeperHeadsDrop) {

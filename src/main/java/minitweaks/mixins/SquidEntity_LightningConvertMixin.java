@@ -16,7 +16,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 
 @Mixin(SquidEntity.class)
-public class SquidEntity_LightningConvertMixin extends WaterCreatureEntity {
+public abstract class SquidEntity_LightningConvertMixin extends WaterCreatureEntity {
     protected SquidEntity_LightningConvertMixin(EntityType<? extends WaterCreatureEntity> entityType, World world) {
         super(entityType, world);
     }
