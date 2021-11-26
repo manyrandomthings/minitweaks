@@ -4,6 +4,13 @@ Some small game mechanic changes, mainly for survival
 Requires [fabric-carpet](https://github.com/gnembon/fabric-carpet)
 
 # MiniTweaks Settings
+## allChargedCreeperHeadsDrop
+All mobs killed by a charged creeper drop their head instead of only one  
+* Type: `boolean`
+* Default value: `false`
+* Required options: `true`, `false`
+* Categories: `minitweaks`, `mobs`
+
 ## commandSeed
 Permission level required to use /seed  
 * Type: `String`

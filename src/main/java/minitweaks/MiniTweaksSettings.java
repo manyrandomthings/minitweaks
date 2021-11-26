@@ -47,6 +47,12 @@ public class MiniTweaksSettings {
         }
     }
 
+    // all charged creeper heads drop
+    @Rule(
+        desc = "All mobs killed by a charged creeper drop their head instead of only one",
+        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS}
+    )
+    public static boolean allChargedCreeperHeadsDrop;
 
     // seed command
     @Rule(

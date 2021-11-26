@@ -5,6 +5,7 @@
   "mixins": [
     "AnvilBlock_RawOresMixin",
     "CreeperEntity_ExplosionGriefMixin",
+    "CreeperEntity_HeadDropsMixin",
     "DispenserBlock_GetBehaviorMixin",
     "DyeItem_DyeShulkersMixin",
     "EnderDragonEntity_BreakBlocksMixin",
