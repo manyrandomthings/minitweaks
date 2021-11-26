@@ -240,6 +240,12 @@ public class MiniTweaksSettings {
     )
     public static boolean noRepairCost = false;
 
+    @Rule(
+        desc = "Villagers don't convert to witches when struck by lightning",
+        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS}
+    )
+    public static boolean noVillagerWitchConversion = false;
+
     // phantom spawning
     @Rule(
         desc = "Amount of ticks before Phantoms start having a chance to spawn",

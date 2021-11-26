@@ -34,6 +34,7 @@
     "SquidEntity_LightningConvertMixin",
     "VexEntity_EvokerDeathMixin",
     "VillagerEntity_ExplodeBedMixin",
+    "VillagerEntity_LightningConvertMixin",
     "ZombieEntity_AlwaysConvertMixin",
     "ZombieVillagerEntity_SetConvertingInvokerMixin"
   ],

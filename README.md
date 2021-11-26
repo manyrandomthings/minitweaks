@@ -193,6 +193,13 @@ Removes additional cost for using an item in an anvil multiple times
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `survival`
 
+## noVillagerWitchConversion
+Villagers don't convert to witches when struck by lightning  
+* Type: `boolean`
+* Default value: `false`
+* Required options: `true`, `false`
+* Categories: `minitweaks`, `mobs`
+
 ## phantomSpawningTime
 Amount of ticks before Phantoms start having a chance to spawn  
 * Type: `int`
