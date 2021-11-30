@@ -26,7 +26,7 @@ public abstract class SquidEntity_LightningConvertMixin extends WaterCreatureEnt
         super.onStruckByLightning(world, lightning);
     }
 
-    @Inject(method = "onStruckByLightning", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "onStruckByLightning(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/LightningEntity;)V", at = @At("HEAD"), cancellable = true)
     private void lightningGlowify(ServerWorld world, LightningEntity lightning, CallbackInfo ci) {
         if(MiniTweaksSettings.lightningGlowifiesSquids) {
             GlowSquidEntity glowSquidEntity = EntityType.GLOW_SQUID.create(world);
