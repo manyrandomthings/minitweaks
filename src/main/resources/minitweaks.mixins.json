@@ -10,6 +10,7 @@
     "DyeItem_DyeShulkersMixin",
     "EnderDragonEntity_BreakBlocksMixin",
     "EnderDragonFight_DragonEggMixin",
+    "Entity_LightningStrikeMixin",
     "FarmlandBlock_TrampleMixin",
     "FireballEntity_ExplosionGriefMixin",
     "GrindstoneScreenHandler_RemoveCursesMixin",

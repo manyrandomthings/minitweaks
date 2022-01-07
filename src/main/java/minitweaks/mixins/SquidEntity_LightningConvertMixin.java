@@ -1,43 +1,31 @@
 package minitweaks.mixins;
 
-import org.spongepowered.asm.mixin.Intrinsic;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import minitweaks.MiniTweaksSettings;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
-import net.minecraft.entity.mob.WaterCreatureEntity;
 import net.minecraft.entity.passive.GlowSquidEntity;
 import net.minecraft.entity.passive.SquidEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.world.World;
 
 @Mixin(SquidEntity.class)
-public abstract class SquidEntity_LightningConvertMixin extends WaterCreatureEntity {
-    protected SquidEntity_LightningConvertMixin(EntityType<? extends WaterCreatureEntity> entityType, World world) {
-        super(entityType, world);
-    }
+public abstract class SquidEntity_LightningConvertMixin extends Entity_LightningStrikeMixin {
 
-    @Intrinsic
-    public void onStruckByLightning(ServerWorld world, LightningEntity lightning) {
-        super.onStruckByLightning(world, lightning);
-    }
-
-    @Inject(method = "onStruckByLightning", at = @At("HEAD"), cancellable = true)
-    private void lightningGlowify(ServerWorld world, LightningEntity lightning, CallbackInfo ci) {
+    @Override
+    protected void lightningStrikeInject(ServerWorld world, LightningEntity lightning, CallbackInfo ci) {
         if(MiniTweaksSettings.lightningGlowifiesSquids) {
+            SquidEntity squid = (SquidEntity) (Object) this;
             GlowSquidEntity glowSquidEntity = EntityType.GLOW_SQUID.create(world);
-            glowSquidEntity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), this.getPitch());
-            glowSquidEntity.setAiDisabled(this.isAiDisabled());
-            if (this.hasCustomName()) {
-                glowSquidEntity.setCustomName(this.getCustomName());
-                glowSquidEntity.setCustomNameVisible(this.isCustomNameVisible());
+            glowSquidEntity.refreshPositionAndAngles(squid.getX(), squid.getY(), squid.getZ(), squid.getYaw(), squid.getPitch());
+            glowSquidEntity.setAiDisabled(squid.isAiDisabled());
+            if (squid.hasCustomName()) {
+                glowSquidEntity.setCustomName(squid.getCustomName());
+                glowSquidEntity.setCustomNameVisible(squid.isCustomNameVisible());
             }
             world.spawnEntity(glowSquidEntity);
-            this.discard();
+            squid.discard();
 
             ci.cancel();
         }
