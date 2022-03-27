@@ -5,7 +5,7 @@ import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
 import minitweaks.MiniTweaksSettings;
-import net.minecraft.world.gen.PhantomSpawner;
+import net.minecraft.world.spawner.PhantomSpawner;
 
 @Mixin(PhantomSpawner.class)
 public abstract class PhantomSpawner_SpawnTimeMixin {
