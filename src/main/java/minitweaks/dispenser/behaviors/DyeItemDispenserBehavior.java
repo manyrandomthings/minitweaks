@@ -3,7 +3,7 @@ package minitweaks.dispenser.behaviors;
 import java.util.List;
 
 import minitweaks.MiniTweaksSettings;
-import minitweaks.mixins.ShulkerEntity_SetColorInvokerMixin;
+import minitweaks.mixins.mob.shulker.dye.ShulkerEntityInvoker;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
 import net.minecraft.entity.mob.PathAwareEntity;
@@ -53,7 +53,7 @@ public class DyeItemDispenserBehavior extends FallibleItemDispenserBehavior {
                 sheepEntity.setColor(itemColor);
             }
             else if(randomMob instanceof ShulkerEntity shulkerEntity) {
-                ((ShulkerEntity_SetColorInvokerMixin) shulkerEntity).invokeSetColor(itemColor);
+                ((ShulkerEntityInvoker) shulkerEntity).invokeSetColor(itemColor);
             }
 
             stack.decrement(1);

@@ -2,7 +2,7 @@ package minitweaks.dispenser.behaviors;
 
 import java.util.List;
 
-import minitweaks.mixins.ZombieVillagerEntity_SetConvertingInvokerMixin;
+import minitweaks.mixins.mob.zombie.convert.ZombieVillagerEntityInvoker;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
 import net.minecraft.entity.effect.StatusEffects;
@@ -30,7 +30,7 @@ public class GoldenAppleDispenserBehavior extends FallibleItemDispenserBehavior 
             // choose random zombie villager
             ZombieVillagerEntity zombieVillager = Util.getRandom(list, pointer.getWorld().getRandom());
             // set converting
-            ((ZombieVillagerEntity_SetConvertingInvokerMixin) zombieVillager).invokeSetConverting(null, zombieVillager.getRandom().nextInt(2401) + 3600);
+            ((ZombieVillagerEntityInvoker) zombieVillager).invokeSetConverting(null, zombieVillager.getRandom().nextInt(2401) + 3600);
 
             stack.decrement(1);
             return stack;
