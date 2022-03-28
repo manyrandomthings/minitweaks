@@ -7,6 +7,7 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.VexEntity;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -17,17 +18,26 @@ public abstract class VexEntityMixin extends HostileEntity {
         super(entityType, world);
     }
 
+    @Shadow
+    abstract MobEntity getOwner();
+
+    @Shadow
+    abstract void setOwner(MobEntity owner);
+
+    @Shadow
+    abstract void setLifeTicks(int lifeTicks);
+
+
     @Inject(method = "tick", at = @At("HEAD"))
     private void checkOwnerDeath(CallbackInfo ci) {
         if(MiniTweaksSettings.vexesNerf) {
-            VexEntity self = (VexEntity) (Object) this;
-            MobEntity owner = self.getOwner();
+            MobEntity owner = this.getOwner();
             // check if owner is dead
             if(owner != null && !owner.isAlive()) {
                 // set owner to null so this code doesn't keep running
-                self.setOwner(null);
+                this.setOwner(null);
                 // set remaining life time to 1 to 5 seconds
-                self.setLifeTicks(20 + this.random.nextInt(80));
+                this.setLifeTicks(20 + this.random.nextInt(80));
             }
         }
     }
