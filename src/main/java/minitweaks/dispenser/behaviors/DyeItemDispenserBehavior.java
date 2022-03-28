@@ -1,7 +1,5 @@
 package minitweaks.dispenser.behaviors;
 
-import java.util.List;
-
 import minitweaks.MiniTweaksSettings;
 import minitweaks.mixins.mob.shulker.dye.ShulkerEntityInvoker;
 import net.minecraft.block.DispenserBlock;
@@ -19,6 +17,8 @@ import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPointer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
+
+import java.util.List;
 
 public class DyeItemDispenserBehavior extends FallibleItemDispenserBehavior {
     protected ItemStack dispenseSilently(BlockPointer pointer, ItemStack stack) {

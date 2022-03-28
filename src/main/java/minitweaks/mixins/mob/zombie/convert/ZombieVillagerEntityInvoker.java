@@ -1,11 +1,10 @@
 package minitweaks.mixins.mob.zombie.convert;
 
-import java.util.UUID;
-
+import net.minecraft.entity.mob.ZombieVillagerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
-import net.minecraft.entity.mob.ZombieVillagerEntity;
+import java.util.UUID;
 
 @Mixin(ZombieVillagerEntity.class)
 public interface ZombieVillagerEntityInvoker {

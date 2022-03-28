@@ -1,15 +1,14 @@
 package minitweaks.mixins.mob.squid.lightning;
 
-import minitweaks.mixins.mob.all.lightning.EntityMixin;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
 import minitweaks.MiniTweaksSettings;
+import minitweaks.mixins.mob.all.lightning.EntityMixin;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.passive.GlowSquidEntity;
 import net.minecraft.entity.passive.SquidEntity;
 import net.minecraft.server.world.ServerWorld;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(SquidEntity.class)
 public abstract class SquidEntityMixin extends EntityMixin {

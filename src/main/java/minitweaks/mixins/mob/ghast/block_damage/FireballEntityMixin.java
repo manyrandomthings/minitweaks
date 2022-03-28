@@ -1,12 +1,11 @@
 package minitweaks.mixins.mob.ghast.block_damage;
 
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
-
 import minitweaks.MiniTweaksSettings;
 import net.minecraft.entity.projectile.FireballEntity;
 import net.minecraft.world.explosion.Explosion.DestructionType;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @Mixin(FireballEntity.class)
 public abstract class FireballEntityMixin {

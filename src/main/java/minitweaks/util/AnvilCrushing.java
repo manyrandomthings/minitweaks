@@ -1,13 +1,12 @@
 package minitweaks.util;
 
-import java.util.Map;
-
 import com.google.common.collect.ImmutableMap;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import java.util.Map;
 
 public class AnvilCrushing {
     private static final Map<Block, Block> ANVIL_BLOCK_TO_RAW_ORES = new ImmutableMap.Builder<Block, Block>()

@@ -1,8 +1,5 @@
 package minitweaks.dispenser.behaviors;
 
-import java.util.List;
-import java.util.Random;
-
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
 import net.minecraft.entity.EntityType;
@@ -14,6 +11,9 @@ import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPointer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
+
+import java.util.List;
+import java.util.Random;
 
 public class IronIngotDispenserBehavior extends FallibleItemDispenserBehavior {
     protected ItemStack dispenseSilently(BlockPointer pointer, ItemStack stack) {

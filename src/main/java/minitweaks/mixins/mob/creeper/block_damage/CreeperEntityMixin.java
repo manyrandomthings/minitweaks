@@ -1,12 +1,11 @@
 package minitweaks.mixins.mob.creeper.block_damage;
 
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
-
 import minitweaks.MiniTweaksSettings;
 import net.minecraft.entity.mob.CreeperEntity;
 import net.minecraft.world.explosion.Explosion.DestructionType;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @Mixin(value = CreeperEntity.class, priority = 1001)
 public abstract class CreeperEntityMixin {

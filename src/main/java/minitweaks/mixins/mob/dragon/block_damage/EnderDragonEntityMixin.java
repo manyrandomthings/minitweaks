@@ -1,15 +1,14 @@
 package minitweaks.mixins.mob.dragon.block_damage;
 
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
-
 import minitweaks.MiniTweaksSettings;
 import minitweaks.MiniTweaksSettings.BlockBreakingType;
 import net.minecraft.entity.boss.dragon.EnderDragonEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(value = EnderDragonEntity.class, priority = 999)
 public abstract class EnderDragonEntityMixin {

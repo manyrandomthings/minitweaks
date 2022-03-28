@@ -1,11 +1,11 @@
 package minitweaks.dispenser;
 
 import minitweaks.MiniTweaksSettings;
-import minitweaks.dispenser.behaviors.WaterBucketDispenserBehavior;
 import minitweaks.dispenser.behaviors.DyeItemDispenserBehavior;
 import minitweaks.dispenser.behaviors.GoldenAppleDispenserBehavior;
 import minitweaks.dispenser.behaviors.IronIngotDispenserBehavior;
 import minitweaks.dispenser.behaviors.NameTagDispenserBehavior;
+import minitweaks.dispenser.behaviors.WaterBucketDispenserBehavior;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.DispenserBehavior;
 import net.minecraft.block.entity.DispenserBlockEntity;

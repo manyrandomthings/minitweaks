@@ -1,15 +1,14 @@
 package minitweaks.mixins.block.grindstone.curses;
 
-import java.util.Map.Entry;
-
+import minitweaks.MiniTweaksSettings;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.screen.GrindstoneScreenHandler;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import minitweaks.MiniTweaksSettings;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.screen.GrindstoneScreenHandler;
+import java.util.Map.Entry;
 
 @Mixin(GrindstoneScreenHandler.class)
 public abstract class GrindstoneScreenHandlerMixin {

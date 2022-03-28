@@ -1,13 +1,12 @@
 package minitweaks.mixins.mob.zombie.convert;
 
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
-
 import minitweaks.MiniTweaksSettings;
 import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.Difficulty;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(value = ZombieEntity.class, priority = 999) //todo: change to 1001
 public abstract class ZombieEntityMixin {
