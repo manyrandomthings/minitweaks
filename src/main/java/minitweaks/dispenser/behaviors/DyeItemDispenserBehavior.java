@@ -30,9 +30,9 @@ public class DyeItemDispenserBehavior extends FallibleItemDispenserBehavior {
         BlockPos blockPos = pointer.getPos().offset(pointer.getBlockState().get(DispenserBlock.FACING));
         // get list of valid entities in front of dispenser
         List<PathAwareEntity> list = pointer.getWorld().getEntitiesByClass(PathAwareEntity.class, new Box(blockPos), EntityPredicates.VALID_LIVING_ENTITY.and((entity) -> {
-            // sheep must not be sheared or match item color
+            // sheep must not be sheared (if dyeableShearedSheep is not enabled) or match item color
             if(entity instanceof SheepEntity sheepEntity) {
-                return !sheepEntity.isSheared() && sheepEntity.getColor() != itemColor;
+                return (MiniTweaksSettings.dyeableShearedSheep || !sheepEntity.isSheared()) && sheepEntity.getColor() != itemColor;
             }
             // dyeableShulkers rule must be enabled and shulker must not match item color
             else if(MiniTweaksSettings.dyeableShulkers && entity instanceof ShulkerEntity shulkerEntity) {

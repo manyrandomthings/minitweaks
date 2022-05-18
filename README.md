@@ -101,6 +101,13 @@ destroy: broken blocks are destroyed and not dropped
 * Required options: `default`, `none`, `break`, `destroy`
 * Categories: `minitweaks`, `mobs`, `survival`
 
+## dyeableShearedSheep
+Sheared sheep can be dyed
+* Type: `boolean`
+* Default value: `false`
+* Required options: `true`, `false`
+* Categories: `minitweaks`, `mobs`
+
 ## dyeableShulkers
 Shulkers can be dyed  
 * Type: `boolean`

@@ -28,6 +28,7 @@
     "mob.player.drops.ItemEntityAccessor",
     "mob.player.drops.PlayerInventoryMixin",
     "mob.player.xp.PlayerEntityMixin",
+    "mob.sheep.dye.DyeItemMixin",
     "mob.shulker.dye.DyeItemMixin",
     "mob.shulker.dye.ShulkerEntityInvoker",
     "mob.slime.looting.SlimeEntityMixin",

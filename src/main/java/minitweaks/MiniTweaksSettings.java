@@ -146,6 +146,13 @@ public class MiniTweaksSettings {
     )
     public static BlockBreakingType dragonBlockDamage = BlockBreakingType.DEFAULT;
 
+    // dye sheared sheep
+    @Rule(
+        desc = "Sheared sheep can be dyed",
+        category = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS}
+    )
+    public static boolean dyeableShearedSheep = false;
+
     // dye shulkers
     @Rule(
         desc = "Shulkers can be dyed",
