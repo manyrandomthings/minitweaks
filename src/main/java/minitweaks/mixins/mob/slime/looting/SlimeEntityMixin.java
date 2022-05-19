@@ -16,7 +16,7 @@ public abstract class SlimeEntityMixin extends MobEntity {
         super(type, world);
     }
 
-    @ModifyArg(method = "remove", at = @At(value = "INVOKE", target = "Ljava/util/Random;nextInt(I)I"))
+    @ModifyArg(method = "remove", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/random/Random;nextInt(I)I"))
     private int addLootingLevel(int original) {
         if(this.attackingPlayer == null || !MiniTweaksSettings.slimeLooting) {
             return original;

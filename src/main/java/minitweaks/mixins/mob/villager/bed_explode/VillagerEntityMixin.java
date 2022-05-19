@@ -26,7 +26,7 @@ public abstract class VillagerEntityMixin extends MerchantEntity {
     private void explodeBed(BlockPos pos, CallbackInfo ci) {
         World world = this.getWorld();
         // if rule enabled and beds explode in dimension
-        if(MiniTweaksSettings.villagersExplodeBeds && !world.getDimension().isBedWorking()) {
+        if(MiniTweaksSettings.villagersExplodeBeds && !world.getDimension().bedWorks()) {
             // remove bed
             BlockState state = world.getBlockState(pos);
             world.removeBlock(pos, false);

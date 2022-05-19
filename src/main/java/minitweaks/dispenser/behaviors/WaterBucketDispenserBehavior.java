@@ -33,7 +33,7 @@ public class WaterBucketDispenserBehavior extends FallibleItemDispenserBehavior 
             Bucketable bucketable = (Bucketable) livingEntity;
 
             // play bucket sound, get bucket item
-            livingEntity.playSound(bucketable.getBucketedSound(), 1.0F, 1.0F);
+            livingEntity.playSound(bucketable.getBucketFillSound(), 1.0F, 1.0F);
             ItemStack mobBucketItem = bucketable.getBucketItem();
             bucketable.copyDataToStack(mobBucketItem);
 
