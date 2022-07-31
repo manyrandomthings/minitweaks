@@ -130,6 +130,12 @@ public class MiniTweaksSettings {
     )
     public static boolean dyeableShulkers = false;
 
+    // echo shards enable sculk shriekers
+    @Rule(
+        categories = {MiniTweaksRuleCategory.MODNAME, RuleCategory.FEATURE}
+    )
+    public static boolean echoShardsEnableShriekers = false;
+
     // ghast fireball block breaking
     @Rule(
         categories = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL}
@@ -144,7 +150,7 @@ public class MiniTweaksSettings {
 
     // lightning glowifies squids
     @Rule(
-        categories = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.ENCHANTMENT, RuleCategory.SURVIVAL}
+        categories = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS}
     )
     public static boolean lightningGlowifiesSquids = false;
 
