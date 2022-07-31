@@ -1,0 +1,94 @@
+{
+  "minitweaks.rule.allChargedCreeperHeadsDrop.desc": "All mobs killed by a charged creeper drop their head instead of only one",
+
+  "minitweaks.rule.commandSeed.desc": "Permission level required to use /seed",
+  "minitweaks.rule.commandSeed.extra.0": "ops/2 for only ops, true/0 for anyone",
+
+  "minitweaks.rule.creeperBlockDamage.desc": "Set creeper explosion block damage type, regardless of mobGriefing gamerule",
+  "minitweaks.rule.creeperBlockDamage.extra.0": "default: uses default explosion",
+  "minitweaks.rule.creeperBlockDamage.extra.1": "none: no blocks broken",
+  "minitweaks.rule.creeperBlockDamage.extra.2": "break: all broken blocks are dropped (like tnt)",
+  "minitweaks.rule.creeperBlockDamage.extra.3": "destroy: broken blocks are sometimes dropped (like default creepers)",
+
+  "minitweaks.rule.deathItemsDespawnMinutes.desc": "How many minutes it takes for a player's items to despawn after death",
+  "minitweaks.rule.deathItemsDespawnMinutes.extra.0": "-1 for infinte, 0 for instant despawn, max value 32",
+
+  "minitweaks.rule.disableBlazeFire.desc": "Disables fire made from blaze fireballs",
+
+  "minitweaks.rule.disableGhastFire.desc": "Disables fire made from ghast fireballs",
+
+  "minitweaks.rule.dispensersBucketMobs.desc": "Dispensers can pick up bucketable mobs",
+
+  "minitweaks.rule.dispensersCureVillagers.desc": "Dispensers feed golden apples to zombie villagers with weakness",
+  "minitweaks.rule.dispensersCureVillagers.extra.0": "Note: dispensers curing a villager does not lower the villager's prices due to gossips being player-specific",
+
+  "minitweaks.rule.dispensersDyeMobs.desc": "Dispensers can dye sheep (and shulkers if dyeableShulkers is enabled)",
+
+  "minitweaks.rule.dispensersNameMobs.desc": "Dispensers use name tags on mobs",
+
+  "minitweaks.rule.dispensersRepairGolems.desc": "Dispensers can repair Iron Golems with iron ingots",
+
+  "minitweaks.rule.dragonBlockDamage.desc": "Set dragon block damage breaking type, regardless of mobGriefing gamerule",
+  "minitweaks.rule.dragonBlockDamage.extra.0": "default: default block breaking",
+  "minitweaks.rule.dragonBlockDamage.extra.1": "none: no blocks are broken",
+  "minitweaks.rule.dragonBlockDamage.extra.2": "break: broken blocks are dropped",
+  "minitweaks.rule.dragonBlockDamage.extra.3": "destroy: broken blocks are destroyed and not dropped",
+
+  "minitweaks.rule.dyeableShearedSheep.desc": "Sheared sheep can be dyed",
+
+  "minitweaks.rule.dyeableShulkers.desc": "Shulkers can be dyed",
+
+  "minitweaks.rule.ghastBlockDamage.desc": "Set ghast explosion block damage type, regardless of mobGriefing gamerule",
+  "minitweaks.rule.ghastBlockDamage.extra.0": "default: uses default explosion",
+  "minitweaks.rule.ghastBlockDamage.extra.1": "none: no blocks broken",
+  "minitweaks.rule.ghastBlockDamage.extra.2": "break: all broken blocks are dropped (like tnt)",
+  "minitweaks.rule.ghastBlockDamage.extra.3": "destroy: broken blocks are sometimes dropped (like default creepers)",
+
+  "minitweaks.rule.infinityMendingStacking.desc": "Allows infinity and mending to stack on bows, like in 1.9 to 1.11",
+
+  "minitweaks.rule.lightningGlowifiesSquids.desc": "Squids struck by lightning convert to glow squids",
+
+  "minitweaks.rule.maxPlayerXpDrop.desc": "Maximum amount of xp players drop on death",
+
+  "minitweaks.rule.mobItemPickup.desc": "Overwrites random default pickup chance when mob spawns",
+  "minitweaks.rule.mobItemPickup.extra.0": "Only zombie and skeleton type mobs are affected",
+  "minitweaks.rule.mobItemPickup.extra.1": "default: uses default pickup",
+  "minitweaks.rule.mobItemPickup.extra.2": "always: mobs pick up items",
+  "minitweaks.rule.mobItemPickup.extra.3": "never: mobs don't pick up items",
+
+  "minitweaks.rule.mobsDropNametag.desc": "Named mobs drop their name tag on death",
+  "minitweaks.rule.mobsDropNametag.extra.0": "Note: mobs will drop a name tag even if they weren't named with one",
+  "minitweaks.rule.mobsDropNametag.extra.1": "This may also cause name tags to be able to be duped",
+
+  "minitweaks.rule.moveableWaterloggedBlocks.desc": "Waterlogged blocks stay waterlogged when moved with a piston",
+
+  "minitweaks.rule.noFeatherFallingTrample.desc": "Prevents farmland from being trampled if you have feather falling",
+
+  "minitweaks.rule.noRepairCost.desc": "Removes additional cost for using an item in an anvil multiple times",
+
+  "minitweaks.rule.noVillagerWitchConversion.desc": "Villagers don't convert to witches when struck by lightning",
+
+  "minitweaks.rule.phantomSpawningTime.desc": "Amount of ticks before Phantoms start having a chance to spawn",
+
+  "minitweaks.rule.protectionStacking.desc": "Allows all the different protection types to stack on the same piece of armor, like in 1.14 to 1.14.2",
+
+  "minitweaks.rule.quickHarvesting.desc": "Right click crops with a hoe to harvest and replant",
+
+  "minitweaks.rule.removableCurses.desc": "Curses are also removed when using grindstones or repair crafting",
+
+  "minitweaks.rule.renewableDragonEgg.desc": "Dragon eggs will always be placed on the portal after defeating the dragon",
+
+  "minitweaks.rule.renewableRawOres.desc": "An anvil landing on Iron/Gold/Copper blocks turns them into the raw ore block version",
+
+  "minitweaks.rule.shaveSnowLayers.desc": "Snow layers can be shaved, removing one layer, when right clicked with a shovel",
+
+  "minitweaks.rule.slimeLooting.desc": "Bigger slimes spawn more smaller slimes when killed with looting",
+  "minitweaks.rule.slimeLooting.extra.0": "Additional slimes can be up to as many levels of looting as you have (up to +3 with looting 3, etc)",
+
+  "minitweaks.rule.vexesNerf.desc": "Vexes will start to die after the evoker that summoned them dies",
+
+  "minitweaks.rule.villagersAlwaysConvert.desc": "Villagers will always convert to Zombie Villagers when killed by a zombie, even on easy and normal",
+
+  "minitweaks.rule.villagersExplodeBeds.desc": "Villagers cause explosions when trying to use beds in the nether or end, like players",
+  "minitweaks.rule.villagersExplodeBeds.extra.0": "\"But why?\" Idk, it's just a funny idea I had"
+}
