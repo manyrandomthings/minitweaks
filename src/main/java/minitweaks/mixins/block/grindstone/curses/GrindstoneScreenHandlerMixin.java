@@ -13,7 +13,8 @@ import java.util.Map.Entry;
 @Mixin(GrindstoneScreenHandler.class)
 public abstract class GrindstoneScreenHandlerMixin {
     // .filter() lambda in grind
-    @Inject(method = "method_16694", at = @At("HEAD"), cancellable = true)
+    @SuppressWarnings("target")
+    @Inject(method = "method_16694(Ljava/util/Map$Entry;)Z", at = @At("HEAD"), cancellable = true)
     private static void grindCursedFilter(Entry<Enchantment, Integer> entry, CallbackInfoReturnable<Boolean> cir) {
         // filter out curses too
         if(MiniTweaksSettings.removableCurses) {

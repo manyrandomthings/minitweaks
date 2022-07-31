@@ -11,7 +11,8 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(SeedCommand.class)
 public abstract class SeedCommandMixin {
     // .requres() lambda in register method
-    @Redirect(method = "method_13618", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/command/ServerCommandSource;hasPermissionLevel(I)Z"))
+    @SuppressWarnings("target")
+    @Redirect(method = "method_13618(ZLnet/minecraft/server/command/ServerCommandSource;)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/command/ServerCommandSource;hasPermissionLevel(I)Z"))
     private static boolean permissionLevelCheck(ServerCommandSource serverCommandSource, int original) {
         return CommandHelper.canUseCommand(serverCommandSource, MiniTweaksSettings.commandSeed);
     }
