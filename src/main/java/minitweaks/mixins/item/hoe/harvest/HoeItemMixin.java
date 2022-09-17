@@ -30,7 +30,6 @@ public abstract class HoeItemMixin {
         World world = context.getWorld();
         BlockPos pos = context.getBlockPos();
         BlockState state = world.getBlockState(pos);
-        Block block = state.getBlock();
         PlayerEntity player = context.getPlayer();
 
         // check if rule is enabled and action is server side
@@ -43,21 +42,18 @@ public abstract class HoeItemMixin {
                 List<ItemStack> droppedItems = Block.getDroppedStacks(state, (ServerWorld) world, pos, null, player, tool);
                 boolean removedSeed = false;
                 for(ItemStack itemStack : droppedItems) {
-                    // if a seed hasn't been removed, try to remove seed
-                    if(!removedSeed) {
-                        // check if item being dropped is the same as the crop being harvested
-                        if(Block.getBlockFromItem(itemStack.getItem()) == block) {
-                            // remove seed and set removed to true
-                            itemStack.decrement(1);
-                            removedSeed = true;
-                        }
+                    // if a seed hasn't been removed and item being dropped is the same as the crop being harvested, remove seed
+                    if(!removedSeed && state.isOf(Block.getBlockFromItem(itemStack.getItem()))) {
+                        // remove seed and set removed to true
+                        itemStack.decrement(1);
+                        removedSeed = true;
                     }
                     // drop item
                     Block.dropStack(world, pos, itemStack);
                 }
 
                 // if seed was removed from drops, update seed age to 0, otherwise place air
-                BlockState postHarvestState = removedSeed ? state.with(getAgeProperty(block), 0) : Blocks.AIR.getDefaultState();
+                BlockState postHarvestState = removedSeed ? state.with(getAgeProperty(state), 0) : Blocks.AIR.getDefaultState();
                 world.setBlockState(pos, postHarvestState);
 
                 // return success (swing arm)
@@ -82,7 +78,9 @@ public abstract class HoeItemMixin {
     }
 
     // get age crop age property
-    private static IntProperty getAgeProperty(Block block) {
+    private static IntProperty getAgeProperty(BlockState blockState) {
+        Block block = blockState.getBlock();
+
         if(block instanceof CropBlock cropBlock) {
             return cropBlock.getAgeProperty();
         }

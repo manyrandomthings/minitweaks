@@ -38,10 +38,9 @@ public class MiniTweaksDispenserBehaviors {
         Item item = stack.getItem();
         BlockPos frontPos = pos.offset(blockPointer.getBlockState().get(DispenserBlock.FACING));
         Box frontBox = new Box(frontPos);
-        // Block frontBlock = serverWorld.getBlockState(frontPos).getBlock();
 
         // name tag (with name) behavior
-        if(MiniTweaksSettings.dispensersNameMobs && item == Items.NAME_TAG && stack.hasCustomName()) {
+        if(MiniTweaksSettings.dispensersNameMobs && stack.isOf(Items.NAME_TAG) && stack.hasCustomName()) {
             boolean hasNameableMobs = !serverWorld.getEntitiesByClass(LivingEntity.class, frontBox, EntityPredicates.VALID_LIVING_ENTITY.and(entity -> !(entity instanceof PlayerEntity))).isEmpty();
 
             if(hasNameableMobs) {
@@ -59,7 +58,7 @@ public class MiniTweaksDispenserBehaviors {
             }
         }
         // golden apple behavior
-        else if(MiniTweaksSettings.dispensersCureVillagers && item == Items.GOLDEN_APPLE) {
+        else if(MiniTweaksSettings.dispensersCureVillagers && stack.isOf(Items.GOLDEN_APPLE)) {
             boolean hasZombieVillagers = !serverWorld.getEntitiesByType(EntityType.ZOMBIE_VILLAGER, frontBox, EntityPredicates.VALID_LIVING_ENTITY).isEmpty();
 
             if(hasZombieVillagers) {
@@ -67,7 +66,7 @@ public class MiniTweaksDispenserBehaviors {
             }
         }
         // iron ingot behavior
-        else if(MiniTweaksSettings.dispensersRepairGolems && item == Items.IRON_INGOT) {
+        else if(MiniTweaksSettings.dispensersRepairGolems && stack.isOf(Items.IRON_INGOT)) {
             boolean hasIronGolems = !serverWorld.getEntitiesByType(EntityType.IRON_GOLEM, frontBox, EntityPredicates.VALID_LIVING_ENTITY).isEmpty();
 
             if(hasIronGolems) {
@@ -75,7 +74,7 @@ public class MiniTweaksDispenserBehaviors {
             }
         }
         // pick up bucketable mob
-        else if(MiniTweaksSettings.dispensersBucketMobs && item == Items.WATER_BUCKET) {
+        else if(MiniTweaksSettings.dispensersBucketMobs && stack.isOf(Items.WATER_BUCKET)) {
             boolean hasBucketableMobs = !serverWorld.getEntitiesByClass(LivingEntity.class, frontBox, EntityPredicates.VALID_LIVING_ENTITY.and(entity -> {
                 return entity instanceof Bucketable;
             })).isEmpty();
