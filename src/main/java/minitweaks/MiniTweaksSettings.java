@@ -94,6 +94,12 @@ public class MiniTweaksSettings {
     )
     public static boolean dispensersCureVillagers = false;
 
+    // dispensers duplicate allays
+    @Rule(
+        categories = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.DISPENSER}
+    )
+    public static boolean dispensersDuplicateAllays = false;
+
     // dispensers dye mobs
     @Rule(
         categories = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.DISPENSER}

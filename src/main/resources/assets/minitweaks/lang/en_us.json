@@ -22,6 +22,8 @@
   "minitweaks.rule.dispensersCureVillagers.desc": "Dispensers feed golden apples to zombie villagers with weakness",
   "minitweaks.rule.dispensersCureVillagers.extra.0": "Note: dispensers curing a villager does not lower the villager's prices due to gossips being player-specific",
 
+  "minitweaks.rule.dispensersDuplicateAllays.desc": "Dispensers duplicate dancing allays with amethyst shards",
+
   "minitweaks.rule.dispensersDyeMobs.desc": "Dispensers can dye sheep (and shulkers if dyeableShulkers is enabled)",
 
   "minitweaks.rule.dispensersNameMobs.desc": "Dispensers use name tags on mobs",

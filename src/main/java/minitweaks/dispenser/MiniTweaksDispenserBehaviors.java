@@ -1,6 +1,7 @@
 package minitweaks.dispenser;
 
 import minitweaks.MiniTweaksSettings;
+import minitweaks.dispenser.behaviors.AmethystShardDispenserBehavior;
 import minitweaks.dispenser.behaviors.DyeItemDispenserBehavior;
 import minitweaks.dispenser.behaviors.GoldenAppleDispenserBehavior;
 import minitweaks.dispenser.behaviors.IronIngotDispenserBehavior;
@@ -32,6 +33,7 @@ public class MiniTweaksDispenserBehaviors {
     public static final DispenserBehavior GOLDEN_APPLE = new GoldenAppleDispenserBehavior();
     public static final DispenserBehavior IRON_INGOT = new IronIngotDispenserBehavior();
     public static final DispenserBehavior WATER_BUCKET = new WaterBucketDispenserBehavior();
+    public static final DispenserBehavior AMETHYST_SHARD = new AmethystShardDispenserBehavior();
 
     // get dispenser behavior
     public static DispenserBehavior getCustomDispenserBehavior(ServerWorld serverWorld, BlockPos pos, BlockPointer blockPointer, DispenserBlockEntity dispenserBlockEntity, ItemStack stack) {
@@ -81,6 +83,13 @@ public class MiniTweaksDispenserBehaviors {
 
             if(hasBucketableMobs) {
                 return WATER_BUCKET;
+            }
+        }
+        else if(MiniTweaksSettings.dispensersDuplicateAllays && stack.isOf(Items.AMETHYST_SHARD)) {
+            boolean hasAllays = !serverWorld.getEntitiesByType(EntityType.ALLAY, frontBox, EntityPredicates.VALID_LIVING_ENTITY).isEmpty();
+
+            if(hasAllays) {
+                return AMETHYST_SHARD;
             }
         }
 

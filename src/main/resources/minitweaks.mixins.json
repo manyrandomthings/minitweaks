@@ -19,6 +19,7 @@
     "item.hoe.harvest.HoeItemMixin",
     "mob.all.lightning.EntityMixin",
     "mob.all.nametag.LivingEntityMixin",
+    "mob.allay.duplicate.AllayEntityInvoker",
     "mob.blaze.fire.SmallFireballEntityMixin",
     "mob.creeper.block_damage.CreeperEntityMixin",
     "mob.creeper.head_drops.CreeperEntityMixin",

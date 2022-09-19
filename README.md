@@ -78,6 +78,13 @@ Note: dispensers curing a villager does not lower the villager's prices due to g
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `mobs`, `dispenser`, `survival`
 
+## dispensersDuplicateAllays
+Dispensers duplicate dancing allays with amethyst shards  
+* Type: `boolean`
+* Default value: `false`
+* Required options: `true`, `false`
+* Categories: `minitweaks`, `mobs`, `dispenser`
+
 ## dispensersDyeMobs
 Dispensers can dye sheep (and shulkers if dyeableShulkers is enabled)  
 * Type: `boolean`
