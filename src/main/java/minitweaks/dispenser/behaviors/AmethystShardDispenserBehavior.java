@@ -27,14 +27,14 @@ public class AmethystShardDispenserBehavior extends FallibleItemDispenserBehavio
         // get valid allays in front of dispenser
         List<AllayEntity> list = pointer.getWorld().getEntitiesByType(EntityType.ALLAY, new Box(blockPos), EntityPredicates.VALID_LIVING_ENTITY.and((entity) -> {
             AllayEntity allayEntity = (AllayEntity) entity;
-            AllayEntityInvoker allayEntityInvoker = (AllayEntityInvoker) (Object) allayEntity;
+            AllayEntityInvoker allayEntityInvoker = (AllayEntityInvoker) allayEntity;
             return allayEntity.isDancing() && allayEntityInvoker.invokeMatchesDuplicationIngredient(stack) && allayEntityInvoker.invokeCanDuplicate();
         }));
 
         if(!list.isEmpty()) {
             ServerWorld serverWorld = pointer.getWorld();
             AllayEntity randomAllay = Util.getRandom(list, serverWorld.getRandom());
-            AllayEntityInvoker allayInvoker = (AllayEntityInvoker) (Object) randomAllay;
+            AllayEntityInvoker allayInvoker = (AllayEntityInvoker) randomAllay;
 
             allayInvoker.invokeDuplicate();
             serverWorld.sendEntityStatus(randomAllay, (byte) 18);
