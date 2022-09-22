@@ -6,6 +6,7 @@ import minitweaks.dispenser.behaviors.DyeItemDispenserBehavior;
 import minitweaks.dispenser.behaviors.GoldenAppleDispenserBehavior;
 import minitweaks.dispenser.behaviors.IronIngotDispenserBehavior;
 import minitweaks.dispenser.behaviors.NameTagDispenserBehavior;
+import minitweaks.dispenser.behaviors.WaterBottleDispenserBehavior;
 import minitweaks.dispenser.behaviors.WaterBucketDispenserBehavior;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.DispenserBehavior;
@@ -21,6 +22,8 @@ import net.minecraft.item.DyeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.potion.PotionUtil;
+import net.minecraft.potion.Potions;
 import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPointer;
@@ -34,6 +37,7 @@ public class MiniTweaksDispenserBehaviors {
     public static final DispenserBehavior IRON_INGOT = new IronIngotDispenserBehavior();
     public static final DispenserBehavior WATER_BUCKET = new WaterBucketDispenserBehavior();
     public static final DispenserBehavior AMETHYST_SHARD = new AmethystShardDispenserBehavior();
+    public static final DispenserBehavior WATER_BOTTLE = new WaterBottleDispenserBehavior();
 
     // get dispenser behavior
     public static DispenserBehavior getCustomDispenserBehavior(ServerWorld serverWorld, BlockPos pos, BlockPointer blockPointer, DispenserBlockEntity dispenserBlockEntity, ItemStack stack) {
@@ -57,6 +61,14 @@ public class MiniTweaksDispenserBehaviors {
 
             if(hasDyeableMobs) {
                 return DYE_ITEM;
+            }
+        }
+        // undye shulker behavior
+        else if(MiniTweaksSettings.dyeableShulkers && MiniTweaksSettings.dispensersDyeMobs && stack.isOf(Items.POTION) && PotionUtil.getPotion(stack) == Potions.WATER) {
+            boolean hasShulkers = !serverWorld.getEntitiesByType(EntityType.SHULKER, frontBox, EntityPredicates.VALID_LIVING_ENTITY).isEmpty();
+
+            if(hasShulkers) {
+                return WATER_BOTTLE;
             }
         }
         // golden apple behavior

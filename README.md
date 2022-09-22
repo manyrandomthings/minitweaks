@@ -126,6 +126,7 @@ Sheared sheep can be dyed
 
 ## dyeableShulkers
 Shulkers can be dyed  
+Color can be reset to default using a water bottle  
 * Type: `boolean`
 * Default value: `false`
 * Required options: `true`, `false`
