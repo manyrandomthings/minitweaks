@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(SmallFireballEntity.class)
 public abstract class SmallFireballEntityMixin {
-    @Inject(method = "onBlockHit", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/projectile/AbstractFireballEntity;onBlockHit(Lnet/minecraft/util/hit/BlockHitResult;)V", shift = At.Shift.AFTER), cancellable = true)
+    @Inject(method = "onBlockHit", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/GameRules;getBoolean(Lnet/minecraft/world/GameRules$Key;)Z"), cancellable = true)
     private void preventFire(BlockHitResult blockHitResult, CallbackInfo ci) {
         if(MiniTweaksSettings.disableBlazeFire) {
             // cancel if blaze fire is disabled
