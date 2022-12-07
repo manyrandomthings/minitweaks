@@ -30,17 +30,6 @@ ops/2 for only ops, true/0 for anyone
 * Suggested options: `true`, `false`, `ops`
 * Categories: `minitweaks`, `command`
 
-## creeperBlockDamage
-Set creeper explosion block damage type, regardless of mobGriefing gamerule  
-default: uses default explosion  
-none: no blocks broken  
-break: all broken blocks are dropped (like tnt)  
-destroy: broken blocks are sometimes dropped (like default creepers)  
-* Type: `String`
-* Default value: `default`
-* Required options: `default`, `none`, `break`, `destroy`
-* Categories: `minitweaks`, `mobs`, `survival`
-
 ## deathItemsDespawnMinutes
 How many minutes it takes for a player's items to despawn after death  
 -1 for infinte, 0 for instant despawn, max value 32  
@@ -139,17 +128,6 @@ Using an echo shard on a sculk shrieker allows it to summon wardens
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `feature`
 
-## ghastBlockDamage
-Set ghast explosion block damage type, regardless of mobGriefing gamerule  
-default: uses default explosion  
-none: no blocks broken  
-break: all broken blocks are dropped (like tnt)  
-destroy: broken blocks are sometimes dropped (like default creepers)  
-* Type: `String`
-* Default value: `default`
-* Required options: `default`, `none`, `break`, `destroy`
-* Categories: `minitweaks`, `mobs`, `survival`
-
 ## infinityMendingStacking
 Allows infinity and mending to stack on bows, like in 1.9 to 1.11  
 * Type: `boolean`
@@ -200,12 +178,26 @@ Waterlogged blocks stay waterlogged when moved with a piston
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `feature`
 
+## noCreeperBlockBreaking
+Disables creeper explosion block breaking  
+* Type: `boolean`
+* Default value: `false`
+* Required options: `true`, `false`
+* Categories: `minitweaks`, `mobs`, `survival`
+
 ## noFeatherFallingTrample
 Prevents farmland from being trampled if you have feather falling  
 * Type: `boolean`
 * Default value: `false`
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `survival`
+
+## noGhastBlockBreaking
+Disables ghast fireball explosion block breaking  
+* Type: `boolean`
+* Default value: `false`
+* Required options: `true`, `false`
+* Categories: `minitweaks`, `mobs`, `survival`
 
 ## noRepairCost
 Removes additional cost for using an item in an anvil multiple times  

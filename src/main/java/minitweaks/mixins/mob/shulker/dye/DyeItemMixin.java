@@ -17,6 +17,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.Optional;
+
 @Mixin(DyeItem.class)
 public abstract class DyeItemMixin {
     @Shadow
@@ -32,7 +34,7 @@ public abstract class DyeItemMixin {
             if(shulkerEntity.isAlive() && currentShulkerColor != dyeItemColor) {
                 shulkerEntity.world.playSoundFromEntity(user, shulkerEntity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
                 if(!user.world.isClient) {
-                    ((ShulkerEntityInvoker) shulkerEntity).invokeSetColor(dyeItemColor);
+                    shulkerEntity.setVariant(Optional.of(dyeItemColor));
                     stack.decrement(1);
                 }
 

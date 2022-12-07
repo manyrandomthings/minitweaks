@@ -1,6 +1,5 @@
 package minitweaks.dispenser.behaviors;
 
-import minitweaks.mixins.mob.shulker.dye.ShulkerEntityInvoker;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
 import net.minecraft.block.entity.DispenserBlockEntity;
@@ -16,6 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 
 import java.util.List;
+import java.util.Optional;
 
 public class WaterBottleDispenserBehavior extends FallibleItemDispenserBehavior {
     @Override
@@ -34,7 +34,7 @@ public class WaterBottleDispenserBehavior extends FallibleItemDispenserBehavior 
         if(!list.isEmpty()) {
             // get random shulker, set its color to undyed
             ShulkerEntity randomShulker = Util.getRandom(list, serverWorld.getRandom());
-            randomShulker.getDataTracker().set(ShulkerEntityInvoker.getColorTrackerKey(), (byte) 16);
+            randomShulker.setVariant(Optional.empty());
 
             // decrement water bottle, create glass bottle
             stack.decrement(1);

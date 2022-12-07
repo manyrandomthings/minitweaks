@@ -4,12 +4,6 @@
   "minitweaks.rule.commandSeed.desc": "Permission level required to use /seed",
   "minitweaks.rule.commandSeed.extra.0": "ops/2 for only ops, true/0 for anyone",
 
-  "minitweaks.rule.creeperBlockDamage.desc": "Set creeper explosion block damage type, regardless of mobGriefing gamerule",
-  "minitweaks.rule.creeperBlockDamage.extra.0": "default: uses default explosion",
-  "minitweaks.rule.creeperBlockDamage.extra.1": "none: no blocks broken",
-  "minitweaks.rule.creeperBlockDamage.extra.2": "break: all broken blocks are dropped (like tnt)",
-  "minitweaks.rule.creeperBlockDamage.extra.3": "destroy: broken blocks are sometimes dropped (like default creepers)",
-
   "minitweaks.rule.deathItemsDespawnMinutes.desc": "How many minutes it takes for a player's items to despawn after death",
   "minitweaks.rule.deathItemsDespawnMinutes.extra.0": "-1 for infinte, 0 for instant despawn, max value 32",
 
@@ -43,12 +37,6 @@
 
   "minitweaks.rule.echoShardsEnableShriekers.desc": "Using an echo shard on a sculk shrieker allows it to summon wardens",
 
-  "minitweaks.rule.ghastBlockDamage.desc": "Set ghast explosion block damage type, regardless of mobGriefing gamerule",
-  "minitweaks.rule.ghastBlockDamage.extra.0": "default: uses default explosion",
-  "minitweaks.rule.ghastBlockDamage.extra.1": "none: no blocks broken",
-  "minitweaks.rule.ghastBlockDamage.extra.2": "break: all broken blocks are dropped (like tnt)",
-  "minitweaks.rule.ghastBlockDamage.extra.3": "destroy: broken blocks are sometimes dropped (like default creepers)",
-
   "minitweaks.rule.infinityMendingStacking.desc": "Allows infinity and mending to stack on bows, like in 1.9 to 1.11",
 
   "minitweaks.rule.lightningGlowifiesSquids.desc": "Squids struck by lightning convert to glow squids",
@@ -67,7 +55,11 @@
 
   "minitweaks.rule.moveableWaterloggedBlocks.desc": "Waterlogged blocks stay waterlogged when moved with a piston",
 
+  "minitweaks.rule.noCreeperBlockBreaking.desc": "Disables creeper explosion block breaking",
+
   "minitweaks.rule.noFeatherFallingTrample.desc": "Prevents farmland from being trampled if you have feather falling",
+
+  "minitweaks.rule.noGhastBlockBreaking.desc": "Disables ghast fireball explosion block breaking",
 
   "minitweaks.rule.noRepairCost.desc": "Removes additional cost for using an item in an anvil multiple times",
 

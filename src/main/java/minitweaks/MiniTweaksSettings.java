@@ -6,27 +6,10 @@ import carpet.api.settings.RuleCategory;
 import carpet.api.settings.Validator;
 import carpet.api.settings.Validators;
 import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.world.explosion.Explosion.DestructionType;
 
 public class MiniTweaksSettings {
     public enum BlockBreakingType {
         DEFAULT, NONE, BREAK, DESTROY;
-
-        public DestructionType getExplosionType(DestructionType original) {
-            return switch(this) {
-                // No blocks broken
-                case NONE -> DestructionType.NONE;
-
-                // Blocks are broken but all are dropped (like tnt)
-                case BREAK -> DestructionType.BREAK;
-
-                // Blocks are broken and some are destroyed (like default creepers)
-                case DESTROY -> DestructionType.DESTROY;
-
-                // Default explosion (no modification)
-                default -> original;
-            };
-        }
     }
 
     public enum ItemPickupType {
@@ -54,12 +37,6 @@ public class MiniTweaksSettings {
         categories = {MiniTweaksRuleCategory.MODNAME, RuleCategory.COMMAND}
     )
     public static String commandSeed = "ops";
-
-    // creeper block breaking
-    @Rule(
-        categories = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL}
-    )
-    public static BlockBreakingType creeperBlockDamage = BlockBreakingType.DEFAULT;
 
     // death items despawn time
     @Rule(
@@ -142,12 +119,6 @@ public class MiniTweaksSettings {
     )
     public static boolean echoShardsEnableShriekers = false;
 
-    // ghast fireball block breaking
-    @Rule(
-        categories = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL}
-    )
-    public static BlockBreakingType ghastBlockDamage = BlockBreakingType.DEFAULT;
-
     // infinity+mending stacking
     @Rule(
         categories = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.ENCHANTMENT, RuleCategory.SURVIVAL}
@@ -187,11 +158,23 @@ public class MiniTweaksSettings {
     )
     public static boolean moveableWaterloggedBlocks = false;
 
+    // no creeper block breaking
+    @Rule(
+        categories = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL}
+    )
+    public static boolean noCreeperBlockBreaking = false;
+
     // farmland feather falling
     @Rule(
         categories = {MiniTweaksRuleCategory.MODNAME, RuleCategory.SURVIVAL}
     )
     public static boolean noFeatherFallingTrample = false;
+
+    // no ghast fireball block breaking
+    @Rule(
+        categories = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS, RuleCategory.SURVIVAL}
+    )
+    public static boolean noGhastBlockBreaking = false;
 
     // no repair cost
     @Rule(

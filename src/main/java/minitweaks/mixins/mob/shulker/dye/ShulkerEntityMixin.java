@@ -4,7 +4,6 @@ import minitweaks.MiniTweaksSettings;
 import minitweaks.mixins.mob.all.interact.MobEntityMixin;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.mob.ShulkerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -18,10 +17,11 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.util.Optional;
 
 @Mixin(ShulkerEntity.class)
 public abstract class ShulkerEntityMixin extends MobEntityMixin {
@@ -29,9 +29,8 @@ public abstract class ShulkerEntityMixin extends MobEntityMixin {
         super(entityType, world);
     }
 
-    @Final
     @Shadow
-    private static TrackedData<Byte> COLOR;
+    abstract void setVariant(Optional<DyeColor> optional);
     @Shadow
     abstract DyeColor getColor();
 
@@ -45,7 +44,7 @@ public abstract class ShulkerEntityMixin extends MobEntityMixin {
             // check item item used is a water bottle
             if(stack.isOf(Items.POTION) && PotionUtil.getPotion(stack) == Potions.WATER) {
                 // set color to none
-                this.getDataTracker().set(COLOR, (byte) 16);
+                this.setVariant(Optional.empty());
 
                 // play sound, give empty bottle
                 world.playSound(null, this.getBlockPos(), SoundEvents.ITEM_BOTTLE_EMPTY, SoundCategory.BLOCKS, 1.0f, 1.0f);
