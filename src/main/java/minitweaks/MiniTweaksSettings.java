@@ -5,6 +5,8 @@ import carpet.api.settings.Rule;
 import carpet.api.settings.RuleCategory;
 import carpet.api.settings.Validator;
 import carpet.api.settings.Validators;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.server.command.ServerCommandSource;
 
 public class MiniTweaksSettings {
@@ -14,6 +16,13 @@ public class MiniTweaksSettings {
 
     public enum ItemPickupType {
         DEFAULT, ALWAYS, NEVER;
+    }
+
+    private static class ServerSideOnlyRuleCondition implements Rule.Condition {
+        @Override
+        public boolean shouldRegister() {
+            return FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER;
+        }
     }
 
     private static class ItemDespawnTimeValidator extends Validator<Integer> {
@@ -34,7 +43,8 @@ public class MiniTweaksSettings {
 
     // seed command
     @Rule(
-        categories = {MiniTweaksRuleCategory.MODNAME, RuleCategory.COMMAND}
+        categories = {MiniTweaksRuleCategory.MODNAME, RuleCategory.COMMAND},
+        conditions = ServerSideOnlyRuleCondition.class
     )
     public static String commandSeed = "ops";
 

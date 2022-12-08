@@ -2,7 +2,8 @@
   "minitweaks.rule.allChargedCreeperHeadsDrop.desc": "All mobs killed by a charged creeper drop their head instead of only one",
 
   "minitweaks.rule.commandSeed.desc": "Permission level required to use /seed",
-  "minitweaks.rule.commandSeed.extra.0": "ops/2 for only ops, true/0 for anyone",
+  "minitweaks.rule.commandSeed.extra.0": "Only available server-side",
+  "minitweaks.rule.commandSeed.extra.1": "ops/2 for only ops, true/0 for anyone",
 
   "minitweaks.rule.deathItemsDespawnMinutes.desc": "How many minutes it takes for a player's items to despawn after death",
   "minitweaks.rule.deathItemsDespawnMinutes.extra.0": "-1 for infinte, 0 for instant despawn, max value 32",

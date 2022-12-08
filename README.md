@@ -24,6 +24,7 @@ All mobs killed by a charged creeper drop their head instead of only one
 
 ## commandSeed
 Permission level required to use /seed  
+Only available server-side  
 ops/2 for only ops, true/0 for anyone  
 * Type: `String`
 * Default value: `ops`
