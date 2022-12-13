@@ -8,7 +8,7 @@
     "manyrandomthings"
   ],
   "contact": {
-    "homepage": "https://github.com/manyrandomthings/minitweaks",
+    "homepage": "https://modrinth.com/mod/minitweaks",
     "issues": "https://github.com/manyrandomthings/minitweaks/issues",
     "sources": "https://github.com/manyrandomthings/minitweaks"
   },
@@ -26,7 +26,7 @@
   "depends": {
     "java": ">=17",
     "minecraft": "~1.18.2",
-    "fabricloader": ">=0.14.0",
+    "fabricloader": ">=0.14.11",
     "carpet": ">=1.4.69"
   },
   "custom": {

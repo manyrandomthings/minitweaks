@@ -1,13 +1,13 @@
 plugins {
-	id 'fabric-loom' version '0.11-SNAPSHOT'
+	id 'fabric-loom' version '1.0-SNAPSHOT'
 	id 'maven-publish'
 }
 
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
-archivesBaseName = project.archives_base_name
-version = "${project.minecraft_version}-${project.mod_version}"
+archivesBaseName = archivesBaseName = "${project.archives_base_name}-${project.minecraft_version}"
+version = project.mod_version
 group = project.maven_group
 
 repositories {
@@ -20,7 +20,11 @@ repositories {
 		url 'https://masa.dy.fi/maven'
 	}
 	maven {
-		url 'https://jitpack.io'
+		name = "Modrinth"
+		url = "https://api.modrinth.com/maven"
+		content {
+			includeGroup "maven.modrinth"
+		}
 	}
 }
 
@@ -32,10 +36,7 @@ dependencies {
 	modImplementation "carpet:fabric-carpet:${project.carpet_core_version}"
 
 	// dev environment mods
-	modImplementation "com.github.astei:lazydfu:0.1.2"
-
-	// Fabric API. This is technically optional, but you probably want it anyway.
-	// modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	modImplementation "maven.modrinth:lazydfu:${project.lazydfu_version}"
 }
 
 processResources {
@@ -60,7 +61,7 @@ java {
 
 jar {
 	from("LICENSE") {
-		rename { "${it}_${project.archivesBaseName}"}
+		rename { "${it}_${project.archives_base_name}"}
 	}
 }
 
