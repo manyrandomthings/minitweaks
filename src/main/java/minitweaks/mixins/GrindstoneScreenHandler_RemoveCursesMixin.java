@@ -14,6 +14,7 @@ import net.minecraft.screen.GrindstoneScreenHandler;
 @Mixin(GrindstoneScreenHandler.class)
 public abstract class GrindstoneScreenHandler_RemoveCursesMixin {
     // .filter() lambda in grind
+    @SuppressWarnings("target")
     @Inject(method = "method_16694", at = @At("HEAD"), cancellable = true)
     private static void grindCursedFilter(Entry<Enchantment, Integer> entry, CallbackInfoReturnable<Boolean> cir) {
         // filter out curses too
