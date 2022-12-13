@@ -8,6 +8,6 @@ import net.minecraft.entity.ItemEntity;
 @Mixin(ItemEntity.class)
 public interface ItemEntity_AgeAccessorMixin {
     // allows ItemEntity.age to be changed
-    @Accessor("age")
+    @Accessor("itemAge")
     void setAge(int age);
 }
