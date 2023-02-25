@@ -9,6 +9,7 @@
     "block.dispenser.behavior.DispenserBlockMixin",
     "block.farmland.trample.FarmlandBlockMixin",
     "block.grindstone.curses.GrindstoneScreenHandlerMixin",
+    "block.oxidizable.OxidizableBlockMixin",
     "block.piston.waterlog.PistonBlockEntityMixin",
     "block.shrieker.activate.SculkShriekerBlockMixin",
     "block.snow.shave.ShovelItemMixin",

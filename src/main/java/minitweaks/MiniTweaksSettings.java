@@ -129,6 +129,12 @@ public class MiniTweaksSettings {
     )
     public static boolean echoShardsEnableShriekers = false;
 
+    // faster oxidation
+    @Rule(
+        categories = {MiniTweaksRuleCategory.MODNAME, RuleCategory.SURVIVAL, RuleCategory.FEATURE}
+    )
+    public static boolean fasterOxidation = false;
+
     // infinity+mending stacking
     @Rule(
         categories = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.ENCHANTMENT, RuleCategory.SURVIVAL}
