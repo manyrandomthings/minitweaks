@@ -66,6 +66,8 @@
 
   "minitweaks.rule.noRepairCost.desc": "Removes additional cost for using an item in an anvil multiple times",
 
+  "minitweaks.rule.noSnowGolemMelting.desc": "Prevents Snow Golems from melting in hot biomes",
+
   "minitweaks.rule.noVillagerWitchConversion.desc": "Villagers don't convert to witches when struck by lightning",
 
   "minitweaks.rule.phantomSpawningTime.desc": "Amount of ticks before Phantoms start having a chance to spawn",

@@ -211,6 +211,13 @@ Removes additional cost for using an item in an anvil multiple times
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `survival`
 
+## noSnowGolemMelting
+Prevents Snow Golems from melting in hot biomes  
+* Type: `boolean`
+* Default value: `false`
+* Required options: `true`, `false`
+* Categories: `minitweaks`, `mobs`
+
 ## noVillagerWitchConversion
 Villagers don't convert to witches when struck by lightning  
 * Type: `boolean`

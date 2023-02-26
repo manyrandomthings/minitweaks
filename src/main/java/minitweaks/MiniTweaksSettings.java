@@ -198,6 +198,12 @@ public class MiniTweaksSettings {
     )
     public static boolean noRepairCost = false;
 
+    // no snow golem melting
+    @Rule(
+        categories = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS}
+    )
+    public static boolean noSnowGolemMelting = false;
+
     @Rule(
         categories = {MiniTweaksRuleCategory.MODNAME, MiniTweaksRuleCategory.MOBS}
     )

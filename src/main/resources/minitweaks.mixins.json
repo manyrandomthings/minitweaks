@@ -37,6 +37,7 @@
     "mob.shulker.dye.DyeItemMixin",
     "mob.shulker.dye.ShulkerEntityMixin",
     "mob.slime.looting.SlimeEntityMixin",
+    "mob.snowgolem.melt.SnowGolemEntityMixin",
     "mob.squid.lightning.SquidEntityMixin",
     "mob.vex.nerf.VexEntityMixin",
     "mob.villager.bed_explode.VillagerEntityMixin",
