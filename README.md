@@ -126,6 +126,13 @@ Using an echo shard on a sculk shrieker allows it to summon wardens
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `feature`
 
+## fasterOxidation
+Blocks oxidize much faster when touching water  
+* Type: `boolean`
+* Default value: `false`
+* Required options: `true`, `false`
+* Categories: `minitweaks`, `survival`, `feature`
+
 ## infinityMendingStacking
 Allows infinity and mending to stack on bows, like in 1.9 to 1.11  
 * Type: `boolean`
