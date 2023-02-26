@@ -52,6 +52,9 @@ public abstract class HoeItemMixin {
                     Block.dropStack(world, pos, itemStack);
                 }
 
+                // create block breaking sound and particles
+                world.breakBlock(pos, false, player);
+
                 // if seed was removed from drops, update seed age to 0, otherwise place air
                 BlockState postHarvestState = removedSeed ? state.with(getAgeProperty(state), 0) : Blocks.AIR.getDefaultState();
                 world.setBlockState(pos, postHarvestState);
