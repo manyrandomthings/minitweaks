@@ -4,7 +4,6 @@ import minitweaks.MiniTweaksSettings;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.passive.MerchantEntity;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.util.math.BlockPos;
@@ -36,7 +35,7 @@ public abstract class VillagerEntityMixin extends MerchantEntity {
 
             // create explosion
             Vec3d vec3d = pos.toCenterPos();
-            world.createExplosion(null, DamageSource.badRespawnPoint(vec3d), null, vec3d, 5.0F, true, World.ExplosionSourceType.MOB);
+            world.createExplosion(null, world.getDamageSources().badRespawnPoint(vec3d), null, vec3d, 5.0F, true, World.ExplosionSourceType.BLOCK);
 
             // cancel sleeping
             ci.cancel();
