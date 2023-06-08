@@ -38,16 +38,16 @@ public abstract class ShulkerEntityMixin extends MobEntityMixin {
     @Override
     protected void interactMobInject(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
         // check if rule is enabled, server side, and shulker has a color
-        if(MiniTweaksSettings.dyeableShulkers && !this.world.isClient && this.getColor() != null) {
+        if(MiniTweaksSettings.dyeableShulkers && !this.getWorld().isClient && this.getColor() != null) {
             ItemStack stack = player.getStackInHand(hand);
 
-            // check item item used is a water bottle
+            // check if item used is a water bottle
             if(stack.isOf(Items.POTION) && PotionUtil.getPotion(stack) == Potions.WATER) {
                 // set color to none
                 this.setVariant(Optional.empty());
 
                 // play sound, give empty bottle
-                world.playSound(null, this.getBlockPos(), SoundEvents.ITEM_BOTTLE_EMPTY, SoundCategory.BLOCKS, 1.0f, 1.0f);
+                this.getWorld().playSound(null, this.getBlockPos(), SoundEvents.ITEM_BOTTLE_EMPTY, SoundCategory.BLOCKS, 1.0f, 1.0f);
                 player.setStackInHand(hand, ItemUsage.exchangeStack(stack, player, new ItemStack(Items.GLASS_BOTTLE)));
 
                 // swing hand

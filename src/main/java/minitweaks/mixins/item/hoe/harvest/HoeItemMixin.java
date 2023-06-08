@@ -12,7 +12,6 @@ import net.minecraft.item.HoeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -56,7 +55,8 @@ public abstract class HoeItemMixin {
                 world.breakBlock(pos, false, player);
 
                 // if seed was removed from drops, update seed age to 0, otherwise place air
-                BlockState postHarvestState = removedSeed ? state.with(getAgeProperty(state), 0) : Blocks.AIR.getDefaultState();
+                BlockState newCropState = getNewCrop(state);
+                BlockState postHarvestState = removedSeed && newCropState != null ? newCropState : Blocks.AIR.getDefaultState();
                 world.setBlockState(pos, postHarvestState);
 
                 // return success (swing arm)
@@ -80,18 +80,18 @@ public abstract class HoeItemMixin {
         return false;
     }
 
-    // get age crop age property
-    private static IntProperty getAgeProperty(BlockState blockState) {
+    // get age 0 crop
+    private static BlockState getNewCrop(BlockState blockState) {
         Block block = blockState.getBlock();
 
         if(block instanceof CropBlock cropBlock) {
-            return cropBlock.getAgeProperty();
+            return cropBlock.withAge(0);
         }
         else if(block instanceof NetherWartBlock) {
-            return NetherWartBlock.AGE;
+            return blockState.with(NetherWartBlock.AGE, 0);
         }
         else if(block instanceof CocoaBlock) {
-            return CocoaBlock.AGE;
+            return blockState.with(CocoaBlock.AGE, 0);
         }
         return null;
     }
