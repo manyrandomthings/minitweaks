@@ -18,10 +18,10 @@ public class WaterBucketDispenserBehavior extends FallibleItemDispenserBehavior 
     protected ItemStack dispenseSilently(BlockPointer pointer, ItemStack stack) {
         this.setSuccess(true);
 
-        ServerWorld serverWorld = pointer.getWorld();
+        ServerWorld serverWorld = pointer.world();
 
         // get block in front of dispenser
-        BlockPos blockPos = pointer.getPos().offset(pointer.getBlockState().get(DispenserBlock.FACING));
+        BlockPos blockPos = pointer.pos().offset(pointer.state().get(DispenserBlock.FACING));
         // get all bucketable mobs in front of dispenser
         List<LivingEntity> list = serverWorld.getEntitiesByClass(LivingEntity.class, new Box(blockPos), EntityPredicates.VALID_LIVING_ENTITY.and((livingEntity) -> {
             return livingEntity instanceof Bucketable;

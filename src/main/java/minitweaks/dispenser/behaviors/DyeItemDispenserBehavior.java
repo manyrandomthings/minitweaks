@@ -27,9 +27,9 @@ public class DyeItemDispenserBehavior extends FallibleItemDispenserBehavior {
         DyeColor itemColor = ((DyeItem) stack.getItem()).getColor();
 
         // get block in front of dispenser
-        BlockPos blockPos = pointer.getPos().offset(pointer.getBlockState().get(DispenserBlock.FACING));
+        BlockPos blockPos = pointer.pos().offset(pointer.state().get(DispenserBlock.FACING));
         // get list of valid entities in front of dispenser
-        List<PathAwareEntity> list = pointer.getWorld().getEntitiesByClass(PathAwareEntity.class, new Box(blockPos), EntityPredicates.VALID_LIVING_ENTITY.and((entity) -> {
+        List<PathAwareEntity> list = pointer.world().getEntitiesByClass(PathAwareEntity.class, new Box(blockPos), EntityPredicates.VALID_LIVING_ENTITY.and((entity) -> {
             // sheep must not be sheared (if dyeableShearedSheep is not enabled) or match item color
             if(entity instanceof SheepEntity sheepEntity) {
                 return (MiniTweaksSettings.dyeableShearedSheep || !sheepEntity.isSheared()) && sheepEntity.getColor() != itemColor;
@@ -44,7 +44,7 @@ public class DyeItemDispenserBehavior extends FallibleItemDispenserBehavior {
         // check if there are valid entities
         if(!list.isEmpty()) {
             // choose random mob
-            PathAwareEntity randomMob = Util.getRandom(list, pointer.getWorld().getRandom());
+            PathAwareEntity randomMob = Util.getRandom(list, pointer.world().getRandom());
             // play dye sound
             randomMob.getWorld().playSoundFromEntity(null, randomMob, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
 

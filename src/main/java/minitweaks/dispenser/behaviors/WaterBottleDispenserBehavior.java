@@ -2,7 +2,6 @@ package minitweaks.dispenser.behaviors;
 
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
-import net.minecraft.block.entity.DispenserBlockEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.ShulkerEntity;
 import net.minecraft.item.ItemStack;
@@ -22,8 +21,8 @@ public class WaterBottleDispenserBehavior extends FallibleItemDispenserBehavior 
     protected ItemStack dispenseSilently(BlockPointer pointer, ItemStack stack) {
         this.setSuccess(true);
 
-        ServerWorld serverWorld = pointer.getWorld();
-        BlockPos blockPos = pointer.getPos().offset(pointer.getBlockState().get(DispenserBlock.FACING));
+        ServerWorld serverWorld = pointer.world();
+        BlockPos blockPos = pointer.pos().offset(pointer.state().get(DispenserBlock.FACING));
 
         // get all dyed shulkers in front of dispenser
         List<ShulkerEntity> list = serverWorld.getEntitiesByType(EntityType.SHULKER, new Box(blockPos), EntityPredicates.VALID_LIVING_ENTITY.and((livingEntity) -> {
@@ -46,7 +45,7 @@ public class WaterBottleDispenserBehavior extends FallibleItemDispenserBehavior 
             }
 
             // try to add new item to inventory, dispense if full
-            if(((DispenserBlockEntity) pointer.getBlockEntity()).addToFirstFreeSlot(newStack) < 0) {
+            if(pointer.blockEntity().addToFirstFreeSlot(newStack) < 0) {
                 super.dispenseSilently(pointer, newStack);
             }
 

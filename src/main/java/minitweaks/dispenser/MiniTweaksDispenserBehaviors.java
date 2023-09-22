@@ -42,7 +42,7 @@ public class MiniTweaksDispenserBehaviors {
     // get dispenser behavior
     public static DispenserBehavior getCustomDispenserBehavior(ServerWorld serverWorld, BlockPos pos, BlockPointer blockPointer, DispenserBlockEntity dispenserBlockEntity, ItemStack stack) {
         Item item = stack.getItem();
-        BlockPos frontPos = pos.offset(blockPointer.getBlockState().get(DispenserBlock.FACING));
+        BlockPos frontPos = pos.offset(blockPointer.state().get(DispenserBlock.FACING));
         Box frontBox = new Box(frontPos);
 
         // name tag (with name) behavior
