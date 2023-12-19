@@ -8,16 +8,22 @@ on: [pull_request, push]
 
 jobs:
   build:
+    strategy:
+      matrix:
+        java: [
+          17,    # Current Java LTS & minimum supported by Minecraft
+          21,    # Current Java LTS
+        ]
     runs-on: ubuntu-latest
     steps:
       - name: checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: validate gradle wrapper
         uses: gradle/wrapper-validation-action@v1
       - name: setup jdk
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
-          java-version: 17
+          java-version: ${{ matrix.java }}
           distribution: 'microsoft'
       - name: cache/uncache
         uses: actions/cache@v3
@@ -34,6 +40,7 @@ jobs:
       - name: build
         run: ./gradlew build
       - name: upload build artifacts
+        if: ${{ matrix.java == '21' }}
         uses: actions/upload-artifact@v3
         with:
           name: Artifacts
