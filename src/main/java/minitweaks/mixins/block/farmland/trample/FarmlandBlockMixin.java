@@ -1,5 +1,6 @@
 package minitweaks.mixins.block.farmland.trample;
 
+import com.llamalad7.mixinextras.injector.WrapWithCondition;
 import minitweaks.MiniTweaksSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -12,8 +13,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(FarmlandBlock.class)
 public abstract class FarmlandBlockMixin extends Block {
@@ -21,15 +20,8 @@ public abstract class FarmlandBlockMixin extends Block {
         super(settings);
     }
 
-    @Inject(method = "onLandedUpon", at = @At("HEAD"), cancellable = true)
-    private void featherFallingCheck(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance, CallbackInfo ci) {
-        if(MiniTweaksSettings.noFeatherFallingTrample && entity instanceof LivingEntity livingEntity) {
-            // check for feather falling level of 1 or more
-            if(EnchantmentHelper.getEquipmentLevel(Enchantments.FEATHER_FALLING, livingEntity) > 0) {
-                // required for fall damage
-                super.onLandedUpon(world, state, pos, entity, fallDistance);
-                ci.cancel();
-            }
-        }
+    @WrapWithCondition(method = "onLandedUpon", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/FarmlandBlock;setToDirt(Lnet/minecraft/entity/Entity;Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V"))
+    private boolean featherFallingCheck(Entity entity, BlockState state, World world, BlockPos pos) {
+        return !(MiniTweaksSettings.noFeatherFallingTrample && entity instanceof LivingEntity livingEntity && EnchantmentHelper.getEquipmentLevel(Enchantments.FEATHER_FALLING, livingEntity) > 0);
     }
 }

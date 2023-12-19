@@ -1,21 +1,16 @@
 package minitweaks.mixins.mob.player.drops;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import minitweaks.MiniTweaksSettings;
 import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(value = PlayerInventory.class, priority = 999)
+@Mixin(PlayerInventory.class)
 public abstract class PlayerInventoryMixin {
-    @Redirect(method = "dropAll", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;dropItem(Lnet/minecraft/item/ItemStack;ZZ)Lnet/minecraft/entity/ItemEntity;"), require = 0)
-    private ItemEntity modifyAge(PlayerEntity player, ItemStack stack, boolean throwRandomly, boolean retainOwnership) {
-        // drops item
-        ItemEntity droppedItem = player.dropItem(stack, throwRandomly, retainOwnership);
-
+    @ModifyExpressionValue(method = "dropAll", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;dropItem(Lnet/minecraft/item/ItemStack;ZZ)Lnet/minecraft/entity/ItemEntity;"))
+    private ItemEntity modifyAge(ItemEntity droppedItem) {
         // check for null since player.dropItem() is nullable
         if(droppedItem != null) {
             // modifies age

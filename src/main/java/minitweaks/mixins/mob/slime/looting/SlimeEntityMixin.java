@@ -1,5 +1,6 @@
 package minitweaks.mixins.mob.slime.looting;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import minitweaks.MiniTweaksSettings;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityType;
@@ -8,7 +9,6 @@ import net.minecraft.entity.mob.SlimeEntity;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @Mixin(SlimeEntity.class)
 public abstract class SlimeEntityMixin extends MobEntity {
@@ -16,11 +16,8 @@ public abstract class SlimeEntityMixin extends MobEntity {
         super(type, world);
     }
 
-    @ModifyArg(method = "remove", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/random/Random;nextInt(I)I"))
+    @ModifyExpressionValue(method = "remove", at = @At(value = "CONSTANT", args = "intValue=3"))
     private int addLootingLevel(int original) {
-        if(this.attackingPlayer == null || !MiniTweaksSettings.slimeLooting) {
-            return original;
-        }
-        return original + EnchantmentHelper.getLooting(this.attackingPlayer);
+        return original + (MiniTweaksSettings.slimeLooting && this.attackingPlayer != null ? EnchantmentHelper.getLooting(this.attackingPlayer) : 0);
     }
 }
