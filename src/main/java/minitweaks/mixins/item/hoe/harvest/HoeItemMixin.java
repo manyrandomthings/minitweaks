@@ -27,12 +27,12 @@ public abstract class HoeItemMixin {
     @Inject(method = "useOnBlock", at = @At("HEAD"), cancellable = true)
     private void harvestCrop(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
         World world = context.getWorld();
-        BlockPos pos = context.getBlockPos();
-        BlockState state = world.getBlockState(pos);
-        PlayerEntity player = context.getPlayer();
-
         // check if rule is enabled and action is server side
         if(MiniTweaksSettings.quickHarvesting && !world.isClient) {
+            BlockPos pos = context.getBlockPos();
+            BlockState state = world.getBlockState(pos);
+            PlayerEntity player = context.getPlayer();
+
             // check if crop is mature
             if(isMature(state)) {
                 // get usage tool (for fortune to apply)
