@@ -11,6 +11,8 @@ import minitweaks.dispenser.behaviors.WaterBucketDispenserBehavior;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.DispenserBehavior;
 import net.minecraft.block.entity.DispenserBlockEntity;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.entity.Bucketable;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -22,7 +24,6 @@ import net.minecraft.item.DyeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.potion.PotionUtil;
 import net.minecraft.potion.Potions;
 import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.server.world.ServerWorld;
@@ -46,7 +47,7 @@ public class MiniTweaksDispenserBehaviors {
         Box frontBox = new Box(frontPos);
 
         // name tag (with name) behavior
-        if(MiniTweaksSettings.dispensersNameMobs && stack.isOf(Items.NAME_TAG) && stack.hasCustomName()) {
+        if(MiniTweaksSettings.dispensersNameMobs && stack.isOf(Items.NAME_TAG) && stack.contains(DataComponentTypes.CUSTOM_NAME)) {
             boolean hasNameableMobs = !serverWorld.getEntitiesByClass(LivingEntity.class, frontBox, EntityPredicates.VALID_LIVING_ENTITY.and(entity -> !(entity instanceof PlayerEntity))).isEmpty();
 
             if(hasNameableMobs) {
@@ -64,7 +65,7 @@ public class MiniTweaksDispenserBehaviors {
             }
         }
         // undye shulker behavior
-        else if(MiniTweaksSettings.dyeableShulkers && MiniTweaksSettings.dispensersDyeMobs && stack.isOf(Items.POTION) && PotionUtil.getPotion(stack) == Potions.WATER) {
+        else if(MiniTweaksSettings.dyeableShulkers && MiniTweaksSettings.dispensersDyeMobs && stack.isOf(Items.POTION) && stack.getOrDefault(DataComponentTypes.POTION_CONTENTS, PotionContentsComponent.DEFAULT).matches(Potions.WATER)) {
             boolean hasShulkers = !serverWorld.getEntitiesByType(EntityType.SHULKER, frontBox, EntityPredicates.VALID_LIVING_ENTITY).isEmpty();
 
             if(hasShulkers) {

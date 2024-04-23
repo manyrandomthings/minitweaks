@@ -1,11 +1,14 @@
 plugins {
-	id 'fabric-loom' version '1.4-SNAPSHOT'
+	id 'fabric-loom' version '1.6-SNAPSHOT'
 	id 'maven-publish'
 }
 
-archivesBaseName = "${project.archives_base_name}-${project.minecraft_version}"
 version = project.mod_version
 group = project.maven_group
+
+base {
+	archivesName = "${project.archives_base_name}-${project.minecraft_version}"
+}
 
 repositories {
 	// Add repositories to retrieve artifacts from in here.
@@ -16,6 +19,17 @@ repositories {
 	maven {
 		url 'https://masa.dy.fi/maven'
 	}
+}
+
+loom {
+    splitEnvironmentSourceSets()
+
+	mods {
+		"minitweaks" {
+			sourceSet sourceSets.main
+		}
+	}
+
 }
 
 dependencies {
@@ -35,8 +49,7 @@ processResources {
 }
 
 tasks.withType(JavaCompile).configureEach {
-	// Minecraft 1.18 (1.18-pre2) upwards uses Java 17.
-	it.options.release = 17
+	it.options.release = 21
 }
 
 java {
@@ -45,20 +58,21 @@ java {
 	// If you remove this line, sources will not be generated.
 	withSourcesJar()
 
-	sourceCompatibility = JavaVersion.VERSION_17
-	targetCompatibility = JavaVersion.VERSION_17
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
 }
 
 jar {
 	from("LICENSE") {
-		rename { "${it}_${project.archives_base_name}"}
+		rename { "${it}_${project.base.archivesName.get()}"}
 	}
 }
 
 // configure the maven publication
 publishing {
 	publications {
-		mavenJava(MavenPublication) {
+		create("mavenJava", MavenPublication) {
+			artifactId = project.archives_base_name
 			from components.java
 		}
 	}

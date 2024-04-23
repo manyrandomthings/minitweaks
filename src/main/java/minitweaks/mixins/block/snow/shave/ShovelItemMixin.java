@@ -7,6 +7,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.SnowBlock;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
@@ -44,9 +45,7 @@ public abstract class ShovelItemMixin {
 
             // damage tool
             if(playerEntity != null) {
-                tool.damage(1, playerEntity, (p) -> {
-                    p.sendToolBreakStatus(context.getHand());
-                });
+                tool.damage(1, playerEntity, LivingEntity.getSlotForHand(context.getHand()));
             }
 
             // return success (swing arm)

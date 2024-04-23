@@ -1,6 +1,6 @@
 package minitweaks.mixins.block.farmland.trample;
 
-import com.llamalad7.mixinextras.injector.WrapWithCondition;
+import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import minitweaks.MiniTweaksSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

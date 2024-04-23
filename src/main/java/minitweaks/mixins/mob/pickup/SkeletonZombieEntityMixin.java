@@ -8,7 +8,6 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.mob.AbstractSkeletonEntity;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.ZombieEntity;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
@@ -27,7 +26,7 @@ public abstract class SkeletonZombieEntityMixin extends HostileEntity {
     }
 
     @Inject(method = "initialize", at = @At("TAIL"))
-    private void modifyLootPickup(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, EntityData entityData, NbtCompound entityNbt, CallbackInfoReturnable<EntityData> cir) {
+    private void modifyLootPickup(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, EntityData entityData, CallbackInfoReturnable<EntityData> cir) {
         // checks if rule is enabled (not default)
         if(MiniTweaksSettings.mobItemPickup != ItemPickupType.DEFAULT) {
             // sets the mob's item pickup ability (true if always, false if never)

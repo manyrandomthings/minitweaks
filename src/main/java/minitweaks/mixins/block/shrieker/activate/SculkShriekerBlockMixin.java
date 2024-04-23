@@ -19,18 +19,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(SculkShriekerBlock.class)
 public abstract class SculkShriekerBlockMixin extends AbstractBlockMixin {
     @Override
-    protected void onUseInject(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir) {
+    protected void onUseWithItemInject(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir) {
         // if rule is enabled
         if(MiniTweaksSettings.echoShardsEnableShriekers) {
-            ItemStack heldItem = player.getStackInHand(hand);
-
             // check if item is echo shard and being used on a sculk shrieker
-            if(heldItem.isOf(Items.ECHO_SHARD) && state.isOf(Blocks.SCULK_SHRIEKER)) {
+            if(stack.isOf(Items.ECHO_SHARD) && state.isOf(Blocks.SCULK_SHRIEKER)) {
                 // check if shrieker can already summon wardens
                 if(!state.get(SculkShriekerBlock.CAN_SUMMON)) {
                     // remove echo shard if in survival
                     if(!player.getAbilities().creativeMode) {
-                        heldItem.decrement(1);
+                        stack.decrement(1);
                     }
                     // set can_summon state to true
                     world.setBlockState(pos, state.with(SculkShriekerBlock.CAN_SUMMON, true));

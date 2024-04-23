@@ -2,6 +2,8 @@ package minitweaks.mixins.mob.shulker.dye;
 
 import minitweaks.MiniTweaksSettings;
 import minitweaks.mixins.mob.all.interact.MobEntityMixin;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.ShulkerEntity;
@@ -9,7 +11,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
 import net.minecraft.item.Items;
-import net.minecraft.potion.PotionUtil;
 import net.minecraft.potion.Potions;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -42,7 +43,7 @@ public abstract class ShulkerEntityMixin extends MobEntityMixin {
             ItemStack stack = player.getStackInHand(hand);
 
             // check if item used is a water bottle
-            if(stack.isOf(Items.POTION) && PotionUtil.getPotion(stack) == Potions.WATER) {
+            if(stack.isOf(Items.POTION) && stack.getOrDefault(DataComponentTypes.POTION_CONTENTS, PotionContentsComponent.DEFAULT).matches(Potions.WATER)) {
                 // set color to none
                 this.setVariant(Optional.empty());
 

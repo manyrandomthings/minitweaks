@@ -199,12 +199,6 @@ public class MiniTweaksSettings {
     )
     public static boolean noGhastBlockBreaking = false;
 
-    // no repair cost
-    @Rule(
-        categories = {MODNAME, RuleCategory.SURVIVAL}
-    )
-    public static boolean noRepairCost = false;
-
     // no snow golem melting
     @Rule(
         categories = {MODNAME, MOBS}

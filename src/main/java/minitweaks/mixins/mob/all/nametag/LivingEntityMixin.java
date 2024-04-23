@@ -1,6 +1,7 @@
 package minitweaks.mixins.mob.all.nametag;
 
 import minitweaks.MiniTweaksSettings;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -26,7 +27,7 @@ public abstract class LivingEntityMixin extends Entity {
             // create name tag
             ItemStack nameTag = new ItemStack(Items.NAME_TAG);
             // set name tag to mob's name
-            nameTag.setCustomName(this.getCustomName());
+            nameTag.set(DataComponentTypes.CUSTOM_NAME, this.getCustomName());
             // drop item
             this.dropStack(nameTag);
         }
