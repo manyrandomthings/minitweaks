@@ -142,12 +142,6 @@ public class MiniTweaksSettings {
     )
     public static boolean fasterOxidation = false;
 
-    // infinity+mending stacking
-    @Rule(
-        categories = {MODNAME, ENCHANTMENT, RuleCategory.SURVIVAL}
-    )
-    public static boolean infinityMendingStacking = false;
-
     // lightning glowifies squids
     @Rule(
         categories = {MODNAME, MOBS}
@@ -218,12 +212,6 @@ public class MiniTweaksSettings {
         categories = {MODNAME, MOBS, RuleCategory.SURVIVAL}
     )
     public static int phantomSpawningTime = 72000;
-
-    // protection stacking
-    @Rule(
-        categories = {MODNAME, ENCHANTMENT, RuleCategory.SURVIVAL}
-    )
-    public static boolean protectionStacking = false;
 
     // quick harvesting
     @Rule(

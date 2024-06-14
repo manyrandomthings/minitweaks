@@ -14,8 +14,6 @@
     "block.snow.shave.ShovelItemMixin",
     "command.seed.permission.SeedCommandMixin",
     "crafting.curses.RepairItemRecipeMixin",
-    "enchant.armor.ProtectionEnchantmentMixin",
-    "enchant.bow.InfinityEnchantmentMixin",
     "item.hoe.harvest.HoeItemMixin",
     "mob.all.interact.MobEntityMixin",
     "mob.all.lightning.EntityMixin",

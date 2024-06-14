@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.Items;
 import net.minecraft.item.ShovelItem;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
@@ -32,7 +33,7 @@ public abstract class ShovelItemMixin {
         if(MiniTweaksSettings.shaveSnowLayers && !world.isClient && blockState.isOf(Blocks.SNOW)) {
             int layers = blockState.get(SnowBlock.LAYERS);
             ItemStack tool = context.getStack();
-            boolean hasSilkTouch = EnchantmentHelper.getLevel(Enchantments.SILK_TOUCH, tool) > 0;
+            boolean hasSilkTouch = EnchantmentHelper.getLevel(world.getRegistryManager().get(RegistryKeys.ENCHANTMENT).getEntry(Enchantments.SILK_TOUCH).get(), tool) > 0;
             // set to air if only one snow layer remains, otherwise remove one layer
             BlockState shavedBlockState = layers > 1 ? blockState.with(SnowBlock.LAYERS, layers - 1) : Blocks.AIR.getDefaultState();
 

@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 public abstract class GrindstoneScreenHandlerMixin {
     // .filter() lambda in grind
     @SuppressWarnings("target")
-    @ModifyExpressionValue(method = "method_58073(Lnet/minecraft/registry/entry/RegistryEntry;)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/enchantment/Enchantment;isCursed()Z"))
+    @ModifyExpressionValue(method = "method_58073", at = @At(value = "INVOKE", target = "Lnet/minecraft/registry/entry/RegistryEntry;isIn(Lnet/minecraft/registry/tag/TagKey;)Z"))
     private static boolean grindCursedFilter(boolean original) {
         // filter out curses too
         return original && !MiniTweaksSettings.removableCurses;

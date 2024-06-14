@@ -35,21 +35,8 @@ public class WaterBottleDispenserBehavior extends FallibleItemDispenserBehavior 
             ShulkerEntity randomShulker = Util.getRandom(list, serverWorld.getRandom());
             randomShulker.setVariant(Optional.empty());
 
-            // decrement water bottle, create glass bottle
-            stack.decrement(1);
-            ItemStack newStack = new ItemStack(Items.GLASS_BOTTLE);
-
-            // return glass bottle if stack is empty
-            if(stack.isEmpty()) {
-                return newStack;
-            }
-
             // try to add new item to inventory, dispense if full
-            if(pointer.blockEntity().addToFirstFreeSlot(newStack) < 0) {
-                super.dispenseSilently(pointer, newStack);
-            }
-
-            return stack;
+            return this.decrementStackWithRemainder(pointer, stack, new ItemStack(Items.GLASS_BOTTLE));
         }
 
         // no dyed shulkers in front of dispenser

@@ -8,6 +8,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -21,7 +22,7 @@ public abstract class LivingEntityMixin extends Entity {
     }
 
     @Inject(method = "drop", at = @At("TAIL"))
-    private void dropNameTag(DamageSource source, CallbackInfo ci) {
+    private void dropNameTag(ServerWorld world, DamageSource damageSource, CallbackInfo ci) {
         // if rule is enabled and mob has custom name
         if(MiniTweaksSettings.mobsDropNametag && this.hasCustomName()) {
             // create name tag
