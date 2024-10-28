@@ -6,8 +6,8 @@ import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import minitweaks.MiniTweaksSettings;
 import minitweaks.MiniTweaksSettings.BlockBreakingType;
 import net.minecraft.entity.boss.dragon.EnderDragonEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
@@ -22,8 +22,8 @@ public abstract class EnderDragonEntityMixin {
         };
     }
 
-    @WrapOperation(method = "destroyBlocks", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;removeBlock(Lnet/minecraft/util/math/BlockPos;Z)Z"))
-    private boolean destroyType(World world, BlockPos pos, boolean move, Operation<Boolean> original) {
+    @WrapOperation(method = "destroyBlocks", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ServerWorld;removeBlock(Lnet/minecraft/util/math/BlockPos;Z)Z"))
+    private boolean destroyType(ServerWorld world, BlockPos pos, boolean move, Operation<Boolean> original) {
         if(MiniTweaksSettings.dragonBlockDamage == BlockBreakingType.BREAK) {
             // break block and drop as item
             return world.breakBlock(pos, true, (EnderDragonEntity) (Object) this);

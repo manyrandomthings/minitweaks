@@ -60,7 +60,7 @@ public abstract class HoeItemMixin {
                 world.setBlockState(pos, postHarvestState);
 
                 // return success (swing arm)
-                cir.setReturnValue(ActionResult.SUCCESS);
+                cir.setReturnValue(ActionResult.SUCCESS_SERVER);
             }
         }
     }

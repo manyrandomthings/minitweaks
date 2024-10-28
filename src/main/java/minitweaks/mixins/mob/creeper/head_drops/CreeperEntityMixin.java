@@ -12,11 +12,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class CreeperEntityMixin {
 
     @Shadow
-    abstract boolean shouldRenderOverlay();
+    abstract boolean isCharged();
 
     @Inject(method = "shouldDropHead", at = @At("HEAD"), cancellable = true)
     private void allHeadsDrop(CallbackInfoReturnable<Boolean> cir) {
-        if(this.shouldRenderOverlay() && MiniTweaksSettings.allChargedCreeperHeadsDrop) {
+        if(this.isCharged() && MiniTweaksSettings.allChargedCreeperHeadsDrop) {
             cir.setReturnValue(true);
         }
     }

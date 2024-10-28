@@ -23,6 +23,6 @@ public abstract class FarmlandBlockMixin extends Block {
 
     @WrapWithCondition(method = "onLandedUpon", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/FarmlandBlock;setToDirt(Lnet/minecraft/entity/Entity;Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V"))
     private boolean featherFallingCheck(Entity entity, BlockState state, World world, BlockPos pos) {
-        return !(MiniTweaksSettings.noFeatherFallingTrample && entity instanceof LivingEntity livingEntity && EnchantmentHelper.getEquipmentLevel(world.getRegistryManager().get(RegistryKeys.ENCHANTMENT).getEntry(Enchantments.FEATHER_FALLING).get(), livingEntity) > 0);
+        return !(MiniTweaksSettings.noFeatherFallingTrample && entity instanceof LivingEntity livingEntity && EnchantmentHelper.getEquipmentLevel(world.getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT).getEntry(Enchantments.FEATHER_FALLING.getValue()).get(), livingEntity) > 0);
     }
 }

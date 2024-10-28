@@ -33,7 +33,7 @@ public abstract class ShovelItemMixin {
         if(MiniTweaksSettings.shaveSnowLayers && !world.isClient && blockState.isOf(Blocks.SNOW)) {
             int layers = blockState.get(SnowBlock.LAYERS);
             ItemStack tool = context.getStack();
-            boolean hasSilkTouch = EnchantmentHelper.getLevel(world.getRegistryManager().get(RegistryKeys.ENCHANTMENT).getEntry(Enchantments.SILK_TOUCH).get(), tool) > 0;
+            boolean hasSilkTouch = EnchantmentHelper.getLevel(world.getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT).getEntry(Enchantments.SILK_TOUCH.getValue()).get(), tool) > 0;
             // set to air if only one snow layer remains, otherwise remove one layer
             BlockState shavedBlockState = layers > 1 ? blockState.with(SnowBlock.LAYERS, layers - 1) : Blocks.AIR.getDefaultState();
 
@@ -50,7 +50,7 @@ public abstract class ShovelItemMixin {
             }
 
             // return success (swing arm)
-            cir.setReturnValue(ActionResult.SUCCESS);
+            cir.setReturnValue(ActionResult.SUCCESS_SERVER);
         }
     }
 }

@@ -30,7 +30,7 @@ public abstract class LivingEntityMixin extends Entity {
             // set name tag to mob's name
             nameTag.set(DataComponentTypes.CUSTOM_NAME, this.getCustomName());
             // drop item
-            this.dropStack(nameTag);
+            this.dropStack(world, nameTag);
         }
     }
 }

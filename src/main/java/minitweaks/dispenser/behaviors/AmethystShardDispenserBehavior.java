@@ -7,6 +7,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.AllayEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.predicate.entity.EntityPredicates;
+import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -28,7 +29,7 @@ public class AmethystShardDispenserBehavior extends FallibleItemDispenserBehavio
         List<AllayEntity> list = pointer.world().getEntitiesByType(EntityType.ALLAY, new Box(blockPos), EntityPredicates.VALID_LIVING_ENTITY.and((entity) -> {
             AllayEntity allayEntity = (AllayEntity) entity;
             AllayEntityInvoker allayEntityInvoker = (AllayEntityInvoker) allayEntity;
-            return allayEntity.isDancing() && allayEntityInvoker.invokeMatchesDuplicationIngredient(stack) && allayEntityInvoker.invokeCanDuplicate();
+            return allayEntity.isDancing() && stack.isIn(ItemTags.DUPLICATES_ALLAYS) && allayEntityInvoker.invokeCanDuplicate();
         }));
 
         if(!list.isEmpty()) {
