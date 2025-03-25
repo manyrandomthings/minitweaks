@@ -7,6 +7,7 @@ import carpet.api.settings.InvalidRuleValueException;
 import carpet.api.settings.SettingsManager;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.Strictness;
 import com.google.gson.reflect.TypeToken;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
@@ -69,7 +70,7 @@ public class MiniTweaksCarpetExtension implements CarpetExtension {
         } catch (IOException e) {
             return Collections.emptyMap();
         }
-        Gson gson = new GsonBuilder().setLenient().create();
+        Gson gson = new GsonBuilder().setStrictness(Strictness.LENIENT).create();
 
         Map<String, String> map = gson.fromJson(jsonData, new TypeToken<Map<String, String>>() {}.getType());
         Map<String, String> map2 = new HashMap<>();

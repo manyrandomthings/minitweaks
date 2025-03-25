@@ -7,6 +7,8 @@ import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.SlimeEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,6 +22,12 @@ public abstract class SlimeEntityMixin extends MobEntity {
 
     @ModifyExpressionValue(method = "remove", at = @At(value = "CONSTANT", args = "intValue=3"))
     private int addLootingLevel(int original) {
-        return original + (MiniTweaksSettings.slimeLooting && this.attackingPlayer != null ? EnchantmentHelper.getLevel(this.getWorld().getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT).getEntry(Enchantments.LOOTING.getValue()).get(), this.attackingPlayer.getWeaponStack()) : 0);
+        if(MiniTweaksSettings.slimeLooting && this.attackingPlayer != null) {
+            PlayerEntity playerEntity = this.attackingPlayer.resolve(this.getWorld(), PlayerEntity.class);
+            ItemStack weapon = playerEntity.getWeaponStack();
+            int lootingLevel = EnchantmentHelper.getLevel(this.getWorld().getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT).getEntry(Enchantments.LOOTING.getValue()).get(), weapon);
+            return original + lootingLevel;
+        }
+        return original;
     }
 }

@@ -31,8 +31,6 @@ public abstract class ShulkerEntityMixin extends MobEntityMixin {
     }
 
     @Shadow
-    abstract void setVariant(Optional<DyeColor> optional);
-    @Shadow
     abstract DyeColor getColor();
 
 
@@ -45,7 +43,7 @@ public abstract class ShulkerEntityMixin extends MobEntityMixin {
             // check if item used is a water bottle
             if(stack.isOf(Items.POTION) && stack.getOrDefault(DataComponentTypes.POTION_CONTENTS, PotionContentsComponent.DEFAULT).matches(Potions.WATER)) {
                 // set color to none
-                this.setVariant(Optional.empty());
+                ((ShulkerEntityInvoker) this).invokeSetColor(Optional.empty());
 
                 // play sound, give empty bottle
                 this.getWorld().playSound(null, this.getBlockPos(), SoundEvents.ITEM_BOTTLE_EMPTY, SoundCategory.BLOCKS, 1.0f, 1.0f);

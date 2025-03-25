@@ -1,6 +1,7 @@
 package minitweaks.dispenser.behaviors;
 
 import minitweaks.MiniTweaksSettings;
+import minitweaks.mixins.mob.shulker.dye.ShulkerEntityInvoker;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
 import net.minecraft.entity.mob.PathAwareEntity;
@@ -53,7 +54,7 @@ public class DyeItemDispenserBehavior extends FallibleItemDispenserBehavior {
                 sheepEntity.setColor(itemColor);
             }
             else if(randomMob instanceof ShulkerEntity shulkerEntity) {
-                shulkerEntity.setVariant(Optional.of(itemColor));
+                ((ShulkerEntityInvoker) shulkerEntity).invokeSetColor(Optional.of(itemColor));
             }
 
             stack.decrement(1);

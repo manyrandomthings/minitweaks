@@ -32,6 +32,7 @@
     "mob.player.xp.PlayerEntityMixin",
     "mob.sheep.dye.DyeItemMixin",
     "mob.shulker.dye.DyeItemMixin",
+    "mob.shulker.dye.ShulkerEntityInvoker",
     "mob.shulker.dye.ShulkerEntityMixin",
     "mob.slime.looting.SlimeEntityMixin",
     "mob.snowgolem.melt.SnowGolemEntityMixin",

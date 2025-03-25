@@ -1,5 +1,6 @@
 package minitweaks.dispenser.behaviors;
 
+import minitweaks.mixins.mob.shulker.dye.ShulkerEntityInvoker;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
 import net.minecraft.entity.EntityType;
@@ -33,7 +34,7 @@ public class WaterBottleDispenserBehavior extends FallibleItemDispenserBehavior 
         if(!list.isEmpty()) {
             // get random shulker, set its color to undyed
             ShulkerEntity randomShulker = Util.getRandom(list, serverWorld.getRandom());
-            randomShulker.setVariant(Optional.empty());
+            ((ShulkerEntityInvoker) randomShulker).invokeSetColor(Optional.empty());
 
             // try to add new item to inventory, dispense if full
             return this.decrementStackWithRemainder(pointer, stack, new ItemStack(Items.GLASS_BOTTLE));

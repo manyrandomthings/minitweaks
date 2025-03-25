@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin {
-    @ModifyConstant(method = "getXpToDrop", constant = @Constant(intValue = 100), expect = 2)
+    @ModifyConstant(method = "getExperienceToDrop", constant = @Constant(intValue = 100), expect = 2)
     private int modifyDropCount(int original) {
         return MiniTweaksSettings.maxPlayerXpDrop;
     }
