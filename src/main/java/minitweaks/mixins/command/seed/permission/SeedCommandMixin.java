@@ -1,6 +1,8 @@
 package minitweaks.mixins.command.seed.permission;
 
 import carpet.utils.CommandHelper;
+import com.mojang.brigadier.builder.ArgumentBuilder;
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import minitweaks.MiniTweaksSettings;
 import net.minecraft.server.command.SeedCommand;
 import net.minecraft.server.command.ServerCommandSource;
@@ -8,12 +10,12 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+import java.util.function.Predicate;
+
 @Mixin(SeedCommand.class)
 public abstract class SeedCommandMixin {
-    // .requres() lambda in register method
-    @SuppressWarnings("target")
-    @Redirect(method = "method_13618(ZLnet/minecraft/server/command/ServerCommandSource;)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/command/ServerCommandSource;hasPermissionLevel(I)Z"))
-    private static boolean permissionLevelCheck(ServerCommandSource serverCommandSource, int original) {
-        return CommandHelper.canUseCommand(serverCommandSource, MiniTweaksSettings.commandSeed);
+    @Redirect(method = "register", at = @At(value = "INVOKE", target = "Lcom/mojang/brigadier/builder/LiteralArgumentBuilder;requires(Ljava/util/function/Predicate;)Lcom/mojang/brigadier/builder/ArgumentBuilder;"))
+    private static ArgumentBuilder<?, ?> permissionLevelCheck(LiteralArgumentBuilder<ServerCommandSource> instance, Predicate<?> predicate) {
+        return instance.requires((player) -> CommandHelper.canUseCommand(player, MiniTweaksSettings.commandSeed));
     }
 }
