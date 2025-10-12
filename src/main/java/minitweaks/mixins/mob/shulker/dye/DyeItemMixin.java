@@ -32,8 +32,8 @@ public abstract class DyeItemMixin {
 
             // checks if shulker is alive and current color is different than the dye's color
             if(shulkerEntity.isAlive() && currentShulkerColor != dyeItemColor) {
-                shulkerEntity.getWorld().playSoundFromEntity(user, shulkerEntity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
-                if(!user.getWorld().isClient) {
+                shulkerEntity.getEntityWorld().playSoundFromEntity(user, shulkerEntity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                if(!user.getEntityWorld().isClient()) {
                     ((ShulkerEntityInvoker) shulkerEntity).invokeSetColor(Optional.of(dyeItemColor));
                     stack.decrement(1);
                 }

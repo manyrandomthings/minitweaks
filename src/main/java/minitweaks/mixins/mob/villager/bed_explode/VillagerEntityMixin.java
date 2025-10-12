@@ -22,7 +22,7 @@ public abstract class VillagerEntityMixin extends MerchantEntity {
 
     @Inject(method = "sleep", at = @At("HEAD"), cancellable = true)
     private void explodeBed(BlockPos pos, CallbackInfo ci) {
-        World world = this.getWorld();
+        World world = this.getEntityWorld();
         // if rule enabled and beds explode in dimension
         if(MiniTweaksSettings.villagersExplodeBeds && !world.getDimension().bedWorks()) {
             // remove bed

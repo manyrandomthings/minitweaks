@@ -7,7 +7,6 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.SnowBlock;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
@@ -30,7 +29,7 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 public abstract class ShovelItemMixin {
     @Inject(method = "useOnBlock", at = @At(value = "INVOKE", target = "Ljava/util/Map;get(Ljava/lang/Object;)Ljava/lang/Object;"), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
     private void shaveSnowLayer(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir, World world, BlockPos blockPos, BlockState blockState, PlayerEntity playerEntity) {
-        if(MiniTweaksSettings.shaveSnowLayers && !world.isClient && blockState.isOf(Blocks.SNOW)) {
+        if(MiniTweaksSettings.shaveSnowLayers && !world.isClient() && blockState.isOf(Blocks.SNOW)) {
             int layers = blockState.get(SnowBlock.LAYERS);
             ItemStack tool = context.getStack();
             boolean hasSilkTouch = EnchantmentHelper.getLevel(world.getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT).getEntry(Enchantments.SILK_TOUCH.getValue()).get(), tool) > 0;
@@ -46,7 +45,7 @@ public abstract class ShovelItemMixin {
 
             // damage tool
             if(playerEntity != null) {
-                tool.damage(1, playerEntity, LivingEntity.getSlotForHand(context.getHand()));
+                tool.damage(1, playerEntity, context.getHand().getEquipmentSlot());
             }
 
             // return success (swing arm)

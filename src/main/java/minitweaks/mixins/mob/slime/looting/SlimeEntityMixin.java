@@ -22,10 +22,10 @@ public abstract class SlimeEntityMixin extends MobEntity {
 
     @ModifyExpressionValue(method = "remove", at = @At(value = "CONSTANT", args = "intValue=3"))
     private int addLootingLevel(int original) {
-        if(MiniTweaksSettings.slimeLooting && this.attackingPlayer != null) {
-            PlayerEntity playerEntity = this.attackingPlayer.resolve(this.getWorld(), PlayerEntity.class);
+        PlayerEntity playerEntity = this.getAttackingPlayer();
+        if(MiniTweaksSettings.slimeLooting && playerEntity != null) {
             ItemStack weapon = playerEntity.getWeaponStack();
-            int lootingLevel = EnchantmentHelper.getLevel(this.getWorld().getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT).getEntry(Enchantments.LOOTING.getValue()).get(), weapon);
+            int lootingLevel = EnchantmentHelper.getLevel(this.getEntityWorld().getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT).getEntry(Enchantments.LOOTING.getValue()).get(), weapon);
             return original + lootingLevel;
         }
         return original;

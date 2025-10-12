@@ -28,7 +28,7 @@ public abstract class HoeItemMixin {
     private void harvestCrop(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
         World world = context.getWorld();
         // check if rule is enabled and action is server side
-        if(MiniTweaksSettings.quickHarvesting && !world.isClient) {
+        if(MiniTweaksSettings.quickHarvesting && !world.isClient()) {
             BlockPos pos = context.getBlockPos();
             BlockState state = world.getBlockState(pos);
             PlayerEntity player = context.getPlayer();

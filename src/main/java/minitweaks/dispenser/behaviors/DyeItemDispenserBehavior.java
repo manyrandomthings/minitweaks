@@ -47,7 +47,7 @@ public class DyeItemDispenserBehavior extends FallibleItemDispenserBehavior {
             // choose random mob
             PathAwareEntity randomMob = Util.getRandom(list, pointer.world().getRandom());
             // play dye sound
-            randomMob.getWorld().playSoundFromEntity(null, randomMob, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
+            randomMob.getEntityWorld().playSoundFromEntity(null, randomMob, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
 
             // set color of sheep or shulker
             if(randomMob instanceof SheepEntity sheepEntity) {
