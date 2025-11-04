@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(OxidizableBlock.class)
+@Mixin(Oxidizable.class)
 public abstract class OxidizableBlockMixin {
     @Inject(method = "randomTick", at = @At("HEAD"), cancellable = true)
     private void onRandomTick(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci) {
