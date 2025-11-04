@@ -1,6 +1,7 @@
 package minitweaks.mixins.block.oxidizable;
 
 import minitweaks.MiniTweaksSettings;
+import minitweaks.util.OxidationHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Oxidizable;
 import net.minecraft.block.OxidizableBlock;
