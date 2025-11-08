@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(OxidizableLanternBlock.class)
-public abstract class OxidizableDoorBlockMixin {
+public abstract class OxidizableLanternBlockMixin {
     @Inject(method = "randomTick", at = @At("HEAD"), cancellable = true)
     private void onRandomTick(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci) {
         OxidationHelper.applyOxidation(state, world, pos, random, ci);
