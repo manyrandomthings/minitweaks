@@ -8,6 +8,7 @@
     "block.dispenser.behavior.DispenserBlockMixin",
     "block.farmland.trample.FarmlandBlockMixin",
     "block.grindstone.curses.GrindstoneScreenHandlerMixin",
+    "block.oxidizable.OxidizableBarsBlockMixin",
     "block.oxidizable.OxidizableBlockMixin",
     "block.oxidizable.OxidizableBulbBlockMixin",
     "block.oxidizable.OxidizableChainBlockMixin",
