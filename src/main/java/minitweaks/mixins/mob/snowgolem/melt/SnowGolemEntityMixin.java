@@ -8,8 +8,8 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(SnowGolemEntity.class)
 public abstract class SnowGolemEntityMixin {
-    @ModifyExpressionValue(method = "tickMovement", at = @At(value = "INVOKE", target = "Lnet/minecraft/registry/entry/RegistryEntry;isIn(Lnet/minecraft/registry/tag/TagKey;)Z"))
-    private boolean isHotRedirect(boolean original) {
-        return original && !MiniTweaksSettings.noSnowGolemMelting;
+    @ModifyExpressionValue(method = "tickMovement", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/attribute/WorldEnvironmentAttributeAccess;getAttributeValue(Lnet/minecraft/world/attribute/EnvironmentAttribute;Lnet/minecraft/util/math/Vec3d;)Ljava/lang/Object;"))
+    private Object isHotRedirect(Object original) {
+        return (Boolean) original && !MiniTweaksSettings.noSnowGolemMelting;
     }
 }

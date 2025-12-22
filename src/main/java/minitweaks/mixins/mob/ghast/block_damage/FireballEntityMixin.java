@@ -14,8 +14,8 @@ public abstract class FireballEntityMixin {
         return MiniTweaksSettings.noGhastBlockBreaking ? ExplosionSourceType.NONE : original;
     }
 
-    @ModifyExpressionValue(method = "onCollision", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/GameRules;getBoolean(Lnet/minecraft/world/GameRules$Key;)Z"))
-    private boolean modifyCreateFire(boolean createFire) {
-        return createFire && !MiniTweaksSettings.disableGhastFire;
+    @ModifyExpressionValue(method = "onCollision", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/rule/GameRules;getValue(Lnet/minecraft/world/rule/GameRule;)Ljava/lang/Object;"))
+    private Object modifyCreateFire(Object createFire) {
+        return (Boolean) createFire && !MiniTweaksSettings.disableGhastFire;
     }
 }

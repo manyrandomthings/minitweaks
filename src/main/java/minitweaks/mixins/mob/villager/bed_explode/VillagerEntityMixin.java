@@ -9,6 +9,7 @@ import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraft.world.attribute.EnvironmentAttributes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -24,7 +25,7 @@ public abstract class VillagerEntityMixin extends MerchantEntity {
     private void explodeBed(BlockPos pos, CallbackInfo ci) {
         World world = this.getEntityWorld();
         // if rule enabled and beds explode in dimension
-        if(MiniTweaksSettings.villagersExplodeBeds && !world.getDimension().bedWorks()) {
+        if(MiniTweaksSettings.villagersExplodeBeds && world.getEnvironmentAttributes().getAttributeValue(EnvironmentAttributes.BED_RULE_GAMEPLAY, pos).explodes()) {
             // remove bed
             BlockState state = world.getBlockState(pos);
             world.removeBlock(pos, false);

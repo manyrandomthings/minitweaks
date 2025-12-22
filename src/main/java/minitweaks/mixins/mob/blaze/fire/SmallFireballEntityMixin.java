@@ -8,8 +8,8 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(SmallFireballEntity.class)
 public abstract class SmallFireballEntityMixin {
-    @ModifyExpressionValue(method = "onBlockHit", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/GameRules;getBoolean(Lnet/minecraft/world/GameRules$Key;)Z"))
-    private boolean preventFire(boolean original) {
-        return original && !MiniTweaksSettings.disableBlazeFire;
+    @ModifyExpressionValue(method = "onBlockHit", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/rule/GameRules;getValue(Lnet/minecraft/world/rule/GameRule;)Ljava/lang/Object;"))
+    private Object preventFire(Object original) {
+        return (Boolean) original && !MiniTweaksSettings.disableBlazeFire;
     }
 }

@@ -13,8 +13,8 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(EnderDragonEntity.class)
 public abstract class EnderDragonEntityMixin {
-    @ModifyExpressionValue(method = "destroyBlocks", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/GameRules;getBoolean(Lnet/minecraft/world/GameRules$Key;)Z"))
-    private boolean gameruleCheck(boolean original) {
+    @ModifyExpressionValue(method = "destroyBlocks", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/rule/GameRules;getValue(Lnet/minecraft/world/rule/GameRule;)Ljava/lang/Object;"))
+    private Object gameruleCheck(Object original) {
         return switch(MiniTweaksSettings.dragonBlockDamage) {
             case NONE -> false;
             case BREAK, DESTROY -> true;
