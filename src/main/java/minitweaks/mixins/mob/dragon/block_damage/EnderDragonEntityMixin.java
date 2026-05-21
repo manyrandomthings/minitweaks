@@ -5,15 +5,15 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import minitweaks.MiniTweaksSettings;
 import minitweaks.MiniTweaksSettings.BlockBreakingType;
-import net.minecraft.entity.boss.dragon.EnderDragonEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(EnderDragonEntity.class)
+@Mixin(EnderDragon.class)
 public abstract class EnderDragonEntityMixin {
-    @ModifyExpressionValue(method = "destroyBlocks", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/rule/GameRules;getValue(Lnet/minecraft/world/rule/GameRule;)Ljava/lang/Object;"))
+    @ModifyExpressionValue(method = "checkWalls", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/gamerules/GameRules;get(Lnet/minecraft/world/level/gamerules/GameRule;)Ljava/lang/Object;"))
     private Object gameruleCheck(Object original) {
         return switch(MiniTweaksSettings.dragonBlockDamage) {
             case NONE -> false;
@@ -22,11 +22,11 @@ public abstract class EnderDragonEntityMixin {
         };
     }
 
-    @WrapOperation(method = "destroyBlocks", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ServerWorld;removeBlock(Lnet/minecraft/util/math/BlockPos;Z)Z"))
-    private boolean destroyType(ServerWorld world, BlockPos pos, boolean move, Operation<Boolean> original) {
+    @WrapOperation(method = "checkWalls", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerLevel;removeBlock(Lnet/minecraft/core/BlockPos;Z)Z"))
+    private boolean destroyType(ServerLevel world, BlockPos pos, boolean move, Operation<Boolean> original) {
         if(MiniTweaksSettings.dragonBlockDamage == BlockBreakingType.BREAK) {
             // break block and drop as item
-            return world.breakBlock(pos, true, (EnderDragonEntity) (Object) this);
+            return world.destroyBlock(pos, true, (EnderDragon) (Object) this);
         }
 
         // default block removal

@@ -8,47 +8,47 @@ import minitweaks.dispenser.behaviors.IronIngotDispenserBehavior;
 import minitweaks.dispenser.behaviors.NameTagDispenserBehavior;
 import minitweaks.dispenser.behaviors.WaterBottleDispenserBehavior;
 import minitweaks.dispenser.behaviors.WaterBucketDispenserBehavior;
-import net.minecraft.block.DispenserBlock;
-import net.minecraft.block.dispenser.DispenserBehavior;
-import net.minecraft.block.entity.DispenserBlockEntity;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.PotionContentsComponent;
-import net.minecraft.entity.Bucketable;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.mob.PathAwareEntity;
-import net.minecraft.entity.mob.ShulkerEntity;
-import net.minecraft.entity.passive.SheepEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.DyeItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.potion.Potions;
-import net.minecraft.predicate.entity.EntityPredicates;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPointer;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.dispenser.BlockSource;
+import net.minecraft.core.dispenser.DispenseItemBehavior;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.EntitySelector;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.animal.Bucketable;
+import net.minecraft.world.entity.animal.sheep.Sheep;
+import net.minecraft.world.entity.monster.Shulker;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.DyeItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionContents;
+import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.level.block.DispenserBlock;
+import net.minecraft.world.level.block.entity.DispenserBlockEntity;
+import net.minecraft.world.phys.AABB;
 
 public class MiniTweaksDispenserBehaviors {
-    public static final DispenserBehavior NAME_TAG = new NameTagDispenserBehavior();
-    public static final DispenserBehavior DYE_ITEM = new DyeItemDispenserBehavior();
-    public static final DispenserBehavior GOLDEN_APPLE = new GoldenAppleDispenserBehavior();
-    public static final DispenserBehavior IRON_INGOT = new IronIngotDispenserBehavior();
-    public static final DispenserBehavior WATER_BUCKET = new WaterBucketDispenserBehavior();
-    public static final DispenserBehavior AMETHYST_SHARD = new AmethystShardDispenserBehavior();
-    public static final DispenserBehavior WATER_BOTTLE = new WaterBottleDispenserBehavior();
+    public static final DispenseItemBehavior NAME_TAG = new NameTagDispenserBehavior();
+    public static final DispenseItemBehavior DYE_ITEM = new DyeItemDispenserBehavior();
+    public static final DispenseItemBehavior GOLDEN_APPLE = new GoldenAppleDispenserBehavior();
+    public static final DispenseItemBehavior IRON_INGOT = new IronIngotDispenserBehavior();
+    public static final DispenseItemBehavior WATER_BUCKET = new WaterBucketDispenserBehavior();
+    public static final DispenseItemBehavior AMETHYST_SHARD = new AmethystShardDispenserBehavior();
+    public static final DispenseItemBehavior WATER_BOTTLE = new WaterBottleDispenserBehavior();
 
     // get dispenser behavior
-    public static DispenserBehavior getCustomDispenserBehavior(ServerWorld serverWorld, BlockPos pos, BlockPointer blockPointer, DispenserBlockEntity dispenserBlockEntity, ItemStack stack) {
+    public static DispenseItemBehavior getCustomDispenserBehavior(ServerLevel serverWorld, BlockPos pos, BlockSource blockPointer, DispenserBlockEntity dispenserBlockEntity, ItemStack stack) {
         Item item = stack.getItem();
-        BlockPos frontPos = pos.offset(blockPointer.state().get(DispenserBlock.FACING));
-        Box frontBox = new Box(frontPos);
+        BlockPos frontPos = pos.relative(blockPointer.state().getValue(DispenserBlock.FACING));
+        AABB frontBox = new AABB(frontPos);
 
         // name tag (with name) behavior
-        if(MiniTweaksSettings.dispensersNameMobs && stack.isOf(Items.NAME_TAG) && stack.contains(DataComponentTypes.CUSTOM_NAME)) {
-            boolean hasNameableMobs = !serverWorld.getEntitiesByClass(LivingEntity.class, frontBox, EntityPredicates.VALID_LIVING_ENTITY.and(entity -> !(entity instanceof PlayerEntity))).isEmpty();
+        if(MiniTweaksSettings.dispensersNameMobs && stack.is(Items.NAME_TAG) && stack.has(DataComponents.CUSTOM_NAME)) {
+            boolean hasNameableMobs = !serverWorld.getEntitiesOfClass(LivingEntity.class, frontBox, EntitySelector.LIVING_ENTITY_STILL_ALIVE.and(entity -> !(entity instanceof Player))).isEmpty();
 
             if(hasNameableMobs) {
                 return NAME_TAG;
@@ -56,8 +56,8 @@ public class MiniTweaksDispenserBehaviors {
         }
         // dye items behavior
         else if(MiniTweaksSettings.dispensersDyeMobs && item instanceof DyeItem) {
-            boolean hasDyeableMobs = !serverWorld.getEntitiesByClass(PathAwareEntity.class, frontBox, EntityPredicates.VALID_LIVING_ENTITY.and(entity -> {
-                return entity instanceof SheepEntity || (MiniTweaksSettings.dyeableShulkers && entity instanceof ShulkerEntity);
+            boolean hasDyeableMobs = !serverWorld.getEntitiesOfClass(PathfinderMob.class, frontBox, EntitySelector.LIVING_ENTITY_STILL_ALIVE.and(entity -> {
+                return entity instanceof Sheep || (MiniTweaksSettings.dyeableShulkers && entity instanceof Shulker);
             })).isEmpty();
 
             if(hasDyeableMobs) {
@@ -65,32 +65,32 @@ public class MiniTweaksDispenserBehaviors {
             }
         }
         // undye shulker behavior
-        else if(MiniTweaksSettings.dyeableShulkers && MiniTweaksSettings.dispensersDyeMobs && stack.isOf(Items.POTION) && stack.getOrDefault(DataComponentTypes.POTION_CONTENTS, PotionContentsComponent.DEFAULT).matches(Potions.WATER)) {
-            boolean hasShulkers = !serverWorld.getEntitiesByType(EntityType.SHULKER, frontBox, EntityPredicates.VALID_LIVING_ENTITY).isEmpty();
+        else if(MiniTweaksSettings.dyeableShulkers && MiniTweaksSettings.dispensersDyeMobs && stack.is(Items.POTION) && stack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY).is(Potions.WATER)) {
+            boolean hasShulkers = !serverWorld.getEntities(EntityType.SHULKER, frontBox, EntitySelector.LIVING_ENTITY_STILL_ALIVE).isEmpty();
 
             if(hasShulkers) {
                 return WATER_BOTTLE;
             }
         }
         // golden apple behavior
-        else if(MiniTweaksSettings.dispensersCureVillagers && stack.isOf(Items.GOLDEN_APPLE)) {
-            boolean hasZombieVillagers = !serverWorld.getEntitiesByType(EntityType.ZOMBIE_VILLAGER, frontBox, EntityPredicates.VALID_LIVING_ENTITY).isEmpty();
+        else if(MiniTweaksSettings.dispensersCureVillagers && stack.is(Items.GOLDEN_APPLE)) {
+            boolean hasZombieVillagers = !serverWorld.getEntities(EntityType.ZOMBIE_VILLAGER, frontBox, EntitySelector.LIVING_ENTITY_STILL_ALIVE).isEmpty();
 
             if(hasZombieVillagers) {
                 return GOLDEN_APPLE;
             }
         }
         // iron ingot behavior
-        else if(MiniTweaksSettings.dispensersRepairGolems && stack.isOf(Items.IRON_INGOT)) {
-            boolean hasIronGolems = !serverWorld.getEntitiesByType(EntityType.IRON_GOLEM, frontBox, EntityPredicates.VALID_LIVING_ENTITY).isEmpty();
+        else if(MiniTweaksSettings.dispensersRepairGolems && stack.is(Items.IRON_INGOT)) {
+            boolean hasIronGolems = !serverWorld.getEntities(EntityType.IRON_GOLEM, frontBox, EntitySelector.LIVING_ENTITY_STILL_ALIVE).isEmpty();
 
             if(hasIronGolems) {
                 return IRON_INGOT;
             }
         }
         // pick up bucketable mob
-        else if(MiniTweaksSettings.dispensersBucketMobs && stack.isOf(Items.WATER_BUCKET)) {
-            boolean hasBucketableMobs = !serverWorld.getEntitiesByClass(LivingEntity.class, frontBox, EntityPredicates.VALID_LIVING_ENTITY.and(entity -> {
+        else if(MiniTweaksSettings.dispensersBucketMobs && stack.is(Items.WATER_BUCKET)) {
+            boolean hasBucketableMobs = !serverWorld.getEntitiesOfClass(LivingEntity.class, frontBox, EntitySelector.LIVING_ENTITY_STILL_ALIVE.and(entity -> {
                 return entity instanceof Bucketable;
             })).isEmpty();
 
@@ -98,8 +98,8 @@ public class MiniTweaksDispenserBehaviors {
                 return WATER_BUCKET;
             }
         }
-        else if(MiniTweaksSettings.dispensersDuplicateAllays && stack.isOf(Items.AMETHYST_SHARD)) {
-            boolean hasAllays = !serverWorld.getEntitiesByType(EntityType.ALLAY, frontBox, EntityPredicates.VALID_LIVING_ENTITY).isEmpty();
+        else if(MiniTweaksSettings.dispensersDuplicateAllays && stack.is(Items.AMETHYST_SHARD)) {
+            boolean hasAllays = !serverWorld.getEntities(EntityType.ALLAY, frontBox, EntitySelector.LIVING_ENTITY_STILL_ALIVE).isEmpty();
 
             if(hasAllays) {
                 return AMETHYST_SHARD;

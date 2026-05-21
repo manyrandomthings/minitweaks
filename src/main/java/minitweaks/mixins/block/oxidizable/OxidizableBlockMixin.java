@@ -1,60 +1,60 @@
 package minitweaks.mixins.block.oxidizable;
 
 import minitweaks.MiniTweaksSettings;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Oxidizable;
-import net.minecraft.block.OxidizableBlock;
-import net.minecraft.block.OxidizableBulbBlock;
-import net.minecraft.block.OxidizableChainBlock;
-import net.minecraft.block.OxidizableCopperChestBlock;
-import net.minecraft.block.OxidizableCopperGolemStatueBlock;
-import net.minecraft.block.OxidizableDoorBlock;
-import net.minecraft.block.OxidizableGrateBlock;
-import net.minecraft.block.OxidizableLanternBlock;
-import net.minecraft.block.OxidizableLightningRodBlock;
-import net.minecraft.block.OxidizablePaneBlock;
-import net.minecraft.block.OxidizableSlabBlock;
-import net.minecraft.block.OxidizableStairsBlock;
-import net.minecraft.block.OxidizableTrapdoorBlock;
-import net.minecraft.registry.tag.FluidTags;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.block.WeatheringCopper;
+import net.minecraft.world.level.block.WeatheringCopperBarsBlock;
+import net.minecraft.world.level.block.WeatheringCopperBulbBlock;
+import net.minecraft.world.level.block.WeatheringCopperChainBlock;
+import net.minecraft.world.level.block.WeatheringCopperChestBlock;
+import net.minecraft.world.level.block.WeatheringCopperDoorBlock;
+import net.minecraft.world.level.block.WeatheringCopperFullBlock;
+import net.minecraft.world.level.block.WeatheringCopperGolemStatueBlock;
+import net.minecraft.world.level.block.WeatheringCopperGrateBlock;
+import net.minecraft.world.level.block.WeatheringCopperSlabBlock;
+import net.minecraft.world.level.block.WeatheringCopperStairBlock;
+import net.minecraft.world.level.block.WeatheringCopperTrapDoorBlock;
+import net.minecraft.world.level.block.WeatheringLanternBlock;
+import net.minecraft.world.level.block.WeatheringLightningRodBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin({
-    OxidizableBlock.class,
-    OxidizableBulbBlock.class,
-    OxidizableChainBlock.class,
-    OxidizableCopperChestBlock.class,
-    OxidizableCopperGolemStatueBlock.class,
-    OxidizableDoorBlock.class,
-    OxidizableGrateBlock.class,
-    OxidizableLanternBlock.class,
-    OxidizableLightningRodBlock.class,
-    OxidizablePaneBlock.class,
-    OxidizableSlabBlock.class,
-    OxidizableStairsBlock.class,
-    OxidizableTrapdoorBlock.class
+    WeatheringCopperFullBlock.class,
+    WeatheringCopperBulbBlock.class,
+    WeatheringCopperChainBlock.class,
+    WeatheringCopperChestBlock.class,
+    WeatheringCopperGolemStatueBlock.class,
+    WeatheringCopperDoorBlock.class,
+    WeatheringCopperGrateBlock.class,
+    WeatheringLanternBlock.class,
+    WeatheringLightningRodBlock.class,
+    WeatheringCopperBarsBlock.class,
+    WeatheringCopperSlabBlock.class,
+    WeatheringCopperStairBlock.class,
+    WeatheringCopperTrapDoorBlock.class
 })
 public abstract class OxidizableBlockMixin {
     @Inject(method = "randomTick", at = @At("HEAD"), cancellable = true)
-    private void onRandomTick(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci) {
+    private void onRandomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random, CallbackInfo ci) {
         // if rule is enabled, loop through adjacent blocks
         if(MiniTweaksSettings.fasterOxidation) {
             for(Direction dir : Direction.values()) {
                 // instead of checking down, check the block itself, for waterlogged blocks
-                BlockPos waterOffset = dir == Direction.DOWN ? pos : pos.offset(dir);
+                BlockPos waterOffset = dir == Direction.DOWN ? pos : pos.relative(dir);
 
                 // check if any touching block has water (except down)
                 // down isn't included due to water not touching the blocks above it visually
-                if(world.getFluidState(waterOffset).isIn(FluidTags.WATER) && state.getBlock() instanceof Oxidizable oxidizable) {
+                if(world.getFluidState(waterOffset).is(FluidTags.WATER) && state.getBlock() instanceof WeatheringCopper oxidizable) {
                     // get oxidation result and place block
-                    oxidizable.getDegradationResult(state).ifPresent(oxidizeState -> world.setBlockState(pos, oxidizeState));
+                    oxidizable.getNext(state).ifPresent(oxidizeState -> world.setBlockAndUpdate(pos, oxidizeState));
                     ci.cancel();
                 }
             }

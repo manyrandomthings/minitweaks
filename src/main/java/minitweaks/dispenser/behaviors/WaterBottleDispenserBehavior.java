@@ -1,43 +1,42 @@
 package minitweaks.dispenser.behaviors;
 
 import minitweaks.mixins.mob.shulker.dye.ShulkerEntityInvoker;
-import net.minecraft.block.DispenserBlock;
-import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.mob.ShulkerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.predicate.entity.EntityPredicates;
-import net.minecraft.server.world.ServerWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.dispenser.BlockSource;
+import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Util;
-import net.minecraft.util.math.BlockPointer;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
-
+import net.minecraft.world.entity.EntitySelector;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.monster.Shulker;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.DispenserBlock;
+import net.minecraft.world.phys.AABB;
 import java.util.List;
 import java.util.Optional;
 
-public class WaterBottleDispenserBehavior extends FallibleItemDispenserBehavior {
+public class WaterBottleDispenserBehavior extends OptionalDispenseItemBehavior {
     @Override
-    protected ItemStack dispenseSilently(BlockPointer pointer, ItemStack stack) {
+    protected ItemStack execute(BlockSource pointer, ItemStack stack) {
         this.setSuccess(true);
 
-        ServerWorld serverWorld = pointer.world();
-        BlockPos blockPos = pointer.pos().offset(pointer.state().get(DispenserBlock.FACING));
+        ServerLevel serverWorld = pointer.level();
+        BlockPos blockPos = pointer.pos().relative(pointer.state().getValue(DispenserBlock.FACING));
 
         // get all dyed shulkers in front of dispenser
-        List<ShulkerEntity> list = serverWorld.getEntitiesByType(EntityType.SHULKER, new Box(blockPos), EntityPredicates.VALID_LIVING_ENTITY.and((livingEntity) -> {
-            return ((ShulkerEntity) livingEntity).getColor() != null;
+        List<Shulker> list = serverWorld.getEntities(EntityType.SHULKER, new AABB(blockPos), EntitySelector.LIVING_ENTITY_STILL_ALIVE.and((livingEntity) -> {
+            return ((Shulker) livingEntity).getColor() != null;
         }));
 
         // check if there are any shulkers
         if(!list.isEmpty()) {
             // get random shulker, set its color to undyed
-            ShulkerEntity randomShulker = Util.getRandom(list, serverWorld.getRandom());
+            Shulker randomShulker = Util.getRandom(list, serverWorld.getRandom());
             ((ShulkerEntityInvoker) randomShulker).invokeSetColor(Optional.empty());
 
             // try to add new item to inventory, dispense if full
-            return this.decrementStackWithRemainder(pointer, stack, new ItemStack(Items.GLASS_BOTTLE));
+            return this.consumeWithRemainder(pointer, stack, new ItemStack(Items.GLASS_BOTTLE));
         }
 
         // no dyed shulkers in front of dispenser

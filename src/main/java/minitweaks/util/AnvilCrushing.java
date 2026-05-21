@@ -1,10 +1,10 @@
 package minitweaks.util;
 
 import com.google.common.collect.ImmutableMap;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 
 import java.util.Map;
 
@@ -21,15 +21,15 @@ public class AnvilCrushing {
     // create map
     .build();
 
-    public static void tryRawOreCrush(World world, BlockPos pos) {
+    public static void tryRawOreCrush(Level world, BlockPos pos) {
         // get block below landing position
         Block convertedBlock = ANVIL_BLOCK_TO_RAW_ORES.get(world.getBlockState(pos).getBlock());
 
         // check if converted
         if(convertedBlock != null) {
             // break block and set to new block
-            world.breakBlock(pos, false);
-            world.setBlockState(pos, convertedBlock.getDefaultState());
+            world.destroyBlock(pos, false);
+            world.setBlockAndUpdate(pos, convertedBlock.defaultBlockState());
         }
     }
 }

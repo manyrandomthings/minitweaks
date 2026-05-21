@@ -1,29 +1,28 @@
 package minitweaks.dispenser.behaviors;
 
-import net.minecraft.block.DispenserBlock;
-import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
-import net.minecraft.entity.Bucketable;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.predicate.entity.EntityPredicates;
-import net.minecraft.server.world.ServerWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.dispenser.BlockSource;
+import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Util;
-import net.minecraft.util.math.BlockPointer;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
-
+import net.minecraft.world.entity.EntitySelector;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.animal.Bucketable;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.DispenserBlock;
+import net.minecraft.world.phys.AABB;
 import java.util.List;
 
-public class WaterBucketDispenserBehavior extends FallibleItemDispenserBehavior {
-    protected ItemStack dispenseSilently(BlockPointer pointer, ItemStack stack) {
+public class WaterBucketDispenserBehavior extends OptionalDispenseItemBehavior {
+    protected ItemStack execute(BlockSource pointer, ItemStack stack) {
         this.setSuccess(true);
 
-        ServerWorld serverWorld = pointer.world();
+        ServerLevel serverWorld = pointer.level();
 
         // get block in front of dispenser
-        BlockPos blockPos = pointer.pos().offset(pointer.state().get(DispenserBlock.FACING));
+        BlockPos blockPos = pointer.pos().relative(pointer.state().getValue(DispenserBlock.FACING));
         // get all bucketable mobs in front of dispenser
-        List<LivingEntity> list = serverWorld.getEntitiesByClass(LivingEntity.class, new Box(blockPos), EntityPredicates.VALID_LIVING_ENTITY.and((livingEntity) -> {
+        List<LivingEntity> list = serverWorld.getEntitiesOfClass(LivingEntity.class, new AABB(blockPos), EntitySelector.LIVING_ENTITY_STILL_ALIVE.and((livingEntity) -> {
             return livingEntity instanceof Bucketable;
         }));
 
@@ -33,9 +32,9 @@ public class WaterBucketDispenserBehavior extends FallibleItemDispenserBehavior 
             Bucketable bucketable = (Bucketable) livingEntity;
 
             // play bucket sound, get bucket item
-            livingEntity.playSound(bucketable.getBucketFillSound(), 1.0F, 1.0F);
-            ItemStack mobBucketItem = bucketable.getBucketItem();
-            bucketable.copyDataToStack(mobBucketItem);
+            livingEntity.playSound(bucketable.getPickupSound(), 1.0F, 1.0F);
+            ItemStack mobBucketItem = bucketable.getBucketItemStack();
+            bucketable.saveToBucketTag(mobBucketItem);
 
             // remove bucketed mob
             livingEntity.discard();

@@ -7,7 +7,7 @@ import carpet.api.settings.Validator;
 import carpet.api.settings.Validators;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.commands.CommandSourceStack;
 
 public class MiniTweaksSettings {
     // rule categories
@@ -34,7 +34,7 @@ public class MiniTweaksSettings {
 
     private static class ItemDespawnTimeValidator extends Validator<Integer> {
         @Override
-        public Integer validate(ServerCommandSource source, CarpetRule<Integer> currentRule, Integer newValue, String typedString) {
+        public Integer validate(CommandSourceStack source, CarpetRule<Integer> currentRule, Integer newValue, String typedString) {
             if(newValue >= -1 && newValue <= 32) {
                 return newValue;
             }

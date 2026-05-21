@@ -1,16 +1,16 @@
 package minitweaks.mixins.mob.shulker.dye;
 
 import minitweaks.MiniTweaksSettings;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.mob.ShulkerEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.DyeItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.Hand;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.Shulker;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.DyeItem;
+import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -22,23 +22,23 @@ import java.util.Optional;
 @Mixin(DyeItem.class)
 public abstract class DyeItemMixin {
     @Shadow
-    abstract DyeColor getColor();
+    abstract DyeColor getDyeColor();
 
-    @Inject(method = "useOnEntity", at = @At("HEAD"), cancellable = true)
-    private void dyeShulkers(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
-        if(MiniTweaksSettings.dyeableShulkers && entity instanceof ShulkerEntity shulkerEntity) {
-            DyeColor dyeItemColor = this.getColor();
+    @Inject(method = "interactLivingEntity", at = @At("HEAD"), cancellable = true)
+    private void dyeShulkers(ItemStack stack, Player user, LivingEntity entity, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir) {
+        if(MiniTweaksSettings.dyeableShulkers && entity instanceof Shulker shulkerEntity) {
+            DyeColor dyeItemColor = this.getDyeColor();
             DyeColor currentShulkerColor = shulkerEntity.getColor();
 
             // checks if shulker is alive and current color is different than the dye's color
             if(shulkerEntity.isAlive() && currentShulkerColor != dyeItemColor) {
-                shulkerEntity.getEntityWorld().playSoundFromEntity(user, shulkerEntity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
-                if(!user.getEntityWorld().isClient()) {
+                shulkerEntity.level().playSound(user, shulkerEntity, SoundEvents.DYE_USE, SoundSource.PLAYERS, 1.0F, 1.0F);
+                if(!user.level().isClientSide()) {
                     ((ShulkerEntityInvoker) shulkerEntity).invokeSetColor(Optional.of(dyeItemColor));
-                    stack.decrement(1);
+                    stack.shrink(1);
                 }
 
-                cir.setReturnValue(ActionResult.SUCCESS);
+                cir.setReturnValue(InteractionResult.SUCCESS);
             }
         }
     }

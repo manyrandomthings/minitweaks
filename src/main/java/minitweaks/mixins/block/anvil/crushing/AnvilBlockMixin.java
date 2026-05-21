@@ -2,12 +2,12 @@ package minitweaks.mixins.block.anvil.crushing;
 
 import minitweaks.MiniTweaksSettings;
 import minitweaks.util.AnvilCrushing;
-import net.minecraft.block.AnvilBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.FallingBlock;
-import net.minecraft.entity.FallingBlockEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.item.FallingBlockEntity;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.AnvilBlock;
+import net.minecraft.world.level.block.FallingBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -15,19 +15,19 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(AnvilBlock.class)
 public abstract class AnvilBlockMixin {
-    @Inject(method = "onLanding", at = @At("HEAD"))
-    private void convertBlocks(World world, BlockPos pos, BlockState fallingBlockState, BlockState currentStateInPos, FallingBlockEntity fallingBlockEntity, CallbackInfo ci) {
+    @Inject(method = "onLand", at = @At("HEAD"))
+    private void convertBlocks(Level world, BlockPos pos, BlockState fallingBlockState, BlockState currentStateInPos, FallingBlockEntity fallingBlockEntity, CallbackInfo ci) {
         // check if rule enabled
         if(MiniTweaksSettings.renewableRawOres) {
-            AnvilCrushing.tryRawOreCrush(world, pos.down());
+            AnvilCrushing.tryRawOreCrush(world, pos.below());
         }
     }
 
-    @Inject(method = "onDestroyedOnLanding", at = @At("HEAD"))
-    private void convertLandingDestroyed(World world, BlockPos pos, FallingBlockEntity fallingBlockEntity, CallbackInfo ci) {
+    @Inject(method = "onBrokenAfterFall", at = @At("HEAD"))
+    private void convertLandingDestroyed(Level world, BlockPos pos, FallingBlockEntity fallingBlockEntity, CallbackInfo ci) {
         // check if rule enabled and anvil can fall through block
-        if(MiniTweaksSettings.renewableRawOres && FallingBlock.canFallThrough(world.getBlockState(pos))) {
-            AnvilCrushing.tryRawOreCrush(world, pos.down());
+        if(MiniTweaksSettings.renewableRawOres && FallingBlock.isFree(world.getBlockState(pos))) {
+            AnvilCrushing.tryRawOreCrush(world, pos.below());
         }
     }
 }

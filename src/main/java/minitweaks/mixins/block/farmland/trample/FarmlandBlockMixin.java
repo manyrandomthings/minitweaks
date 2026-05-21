@@ -2,27 +2,27 @@ package minitweaks.mixins.block.farmland.trample;
 
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import minitweaks.MiniTweaksSettings;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.FarmlandBlock;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.FarmBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(FarmlandBlock.class)
+@Mixin(FarmBlock.class)
 public abstract class FarmlandBlockMixin extends Block {
-    protected FarmlandBlockMixin(Settings settings) {
+    protected FarmlandBlockMixin(Properties settings) {
         super(settings);
     }
 
-    @WrapWithCondition(method = "onLandedUpon", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/FarmlandBlock;setToDirt(Lnet/minecraft/entity/Entity;Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V"))
-    private boolean featherFallingCheck(Entity entity, BlockState state, World world, BlockPos pos) {
-        return !(MiniTweaksSettings.noFeatherFallingTrample && entity instanceof LivingEntity livingEntity && EnchantmentHelper.getEquipmentLevel(world.getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT).getEntry(Enchantments.FEATHER_FALLING.getValue()).get(), livingEntity) > 0);
+    @WrapWithCondition(method = "fallOn", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/FarmBlock;turnToDirt(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V"))
+    private boolean featherFallingCheck(Entity entity, BlockState state, Level world, BlockPos pos) {
+        return !(MiniTweaksSettings.noFeatherFallingTrample && entity instanceof LivingEntity livingEntity && EnchantmentHelper.getEnchantmentLevel(world.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).get(Enchantments.FEATHER_FALLING.identifier()).get(), livingEntity) > 0);
     }
 }

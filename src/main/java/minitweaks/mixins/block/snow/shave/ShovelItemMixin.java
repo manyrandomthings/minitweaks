@@ -1,24 +1,24 @@
 package minitweaks.mixins.block.snow.shave;
 
 import minitweaks.MiniTweaksSettings;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.SnowBlock;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.item.Items;
-import net.minecraft.item.ShovelItem;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.ShovelItem;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SnowLayerBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -27,29 +27,29 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(ShovelItem.class)
 public abstract class ShovelItemMixin {
-    @Inject(method = "useOnBlock", at = @At(value = "INVOKE", target = "Ljava/util/Map;get(Ljava/lang/Object;)Ljava/lang/Object;"), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
-    private void shaveSnowLayer(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir, World world, BlockPos blockPos, BlockState blockState, PlayerEntity playerEntity) {
-        if(MiniTweaksSettings.shaveSnowLayers && !world.isClient() && blockState.isOf(Blocks.SNOW)) {
-            int layers = blockState.get(SnowBlock.LAYERS);
-            ItemStack tool = context.getStack();
-            boolean hasSilkTouch = EnchantmentHelper.getLevel(world.getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT).getEntry(Enchantments.SILK_TOUCH.getValue()).get(), tool) > 0;
+    @Inject(method = "useOn", at = @At(value = "INVOKE", target = "Ljava/util/Map;get(Ljava/lang/Object;)Ljava/lang/Object;"), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
+    private void shaveSnowLayer(UseOnContext context, CallbackInfoReturnable<InteractionResult> cir, Level world, BlockPos blockPos, BlockState blockState, Player playerEntity) {
+        if(MiniTweaksSettings.shaveSnowLayers && !world.isClientSide() && blockState.is(Blocks.SNOW)) {
+            int layers = blockState.getValue(SnowLayerBlock.LAYERS);
+            ItemStack tool = context.getItemInHand();
+            boolean hasSilkTouch = EnchantmentHelper.getItemEnchantmentLevel(world.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).get(Enchantments.SILK_TOUCH.identifier()).get(), tool) > 0;
             // set to air if only one snow layer remains, otherwise remove one layer
-            BlockState shavedBlockState = layers > 1 ? blockState.with(SnowBlock.LAYERS, layers - 1) : Blocks.AIR.getDefaultState();
+            BlockState shavedBlockState = layers > 1 ? blockState.setValue(SnowLayerBlock.LAYERS, layers - 1) : Blocks.AIR.defaultBlockState();
 
-            world.setBlockState(blockPos, shavedBlockState, Block.NOTIFY_ALL_AND_REDRAW);
-            world.emitGameEvent(GameEvent.BLOCK_CHANGE, blockPos, GameEvent.Emitter.of(playerEntity, shavedBlockState));
+            world.setBlock(blockPos, shavedBlockState, Block.UPDATE_ALL_IMMEDIATE);
+            world.gameEvent(GameEvent.BLOCK_CHANGE, blockPos, GameEvent.Context.of(playerEntity, shavedBlockState));
 
             // drop snow layer if silk touch is used, otherwise drop snowball
-            Block.dropStack(world, blockPos, new ItemStack(hasSilkTouch ? Items.SNOW : Items.SNOWBALL));
-            world.playSound(null, blockPos, SoundEvents.BLOCK_SNOW_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            Block.popResource(world, blockPos, new ItemStack(hasSilkTouch ? Items.SNOW : Items.SNOWBALL));
+            world.playSound(null, blockPos, SoundEvents.SNOW_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F);
 
             // damage tool
             if(playerEntity != null) {
-                tool.damage(1, playerEntity, context.getHand().getEquipmentSlot());
+                tool.hurtAndBreak(1, playerEntity, context.getHand().asEquipmentSlot());
             }
 
             // return success (swing arm)
-            cir.setReturnValue(ActionResult.SUCCESS_SERVER);
+            cir.setReturnValue(InteractionResult.SUCCESS_SERVER);
         }
     }
 }

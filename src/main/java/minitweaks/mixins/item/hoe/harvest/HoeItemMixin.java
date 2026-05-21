@@ -1,20 +1,20 @@
 package minitweaks.mixins.item.hoe.harvest;
 
 import minitweaks.MiniTweaksSettings;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.CocoaBlock;
-import net.minecraft.block.CropBlock;
-import net.minecraft.block.NetherWartBlock;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.HoeItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.HoeItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CocoaBlock;
+import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.NetherWartBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -24,43 +24,43 @@ import java.util.List;
 
 @Mixin(HoeItem.class)
 public abstract class HoeItemMixin {
-    @Inject(method = "useOnBlock", at = @At("HEAD"), cancellable = true)
-    private void harvestCrop(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
-        World world = context.getWorld();
+    @Inject(method = "useOn", at = @At("HEAD"), cancellable = true)
+    private void harvestCrop(UseOnContext context, CallbackInfoReturnable<InteractionResult> cir) {
+        Level world = context.getLevel();
         // check if rule is enabled and action is server side
-        if(MiniTweaksSettings.quickHarvesting && !world.isClient()) {
-            BlockPos pos = context.getBlockPos();
+        if(MiniTweaksSettings.quickHarvesting && !world.isClientSide()) {
+            BlockPos pos = context.getClickedPos();
             BlockState state = world.getBlockState(pos);
-            PlayerEntity player = context.getPlayer();
+            Player player = context.getPlayer();
 
             // check if crop is mature
             if(isMature(state)) {
                 // get usage tool (for fortune to apply)
-                ItemStack tool = player != null ? player.getStackInHand(context.getHand()) : ItemStack.EMPTY;
+                ItemStack tool = player != null ? player.getItemInHand(context.getHand()) : ItemStack.EMPTY;
                 // get loot drops for crop
-                List<ItemStack> droppedItems = Block.getDroppedStacks(state, (ServerWorld) world, pos, null, player, tool);
+                List<ItemStack> droppedItems = Block.getDrops(state, (ServerLevel) world, pos, null, player, tool);
                 boolean removedSeed = false;
                 for(ItemStack itemStack : droppedItems) {
                     // if a seed hasn't been removed and item being dropped is the same as the crop being harvested, remove seed
-                    if(!removedSeed && state.isOf(Block.getBlockFromItem(itemStack.getItem()))) {
+                    if(!removedSeed && state.is(Block.byItem(itemStack.getItem()))) {
                         // remove seed and set removed to true
-                        itemStack.decrement(1);
+                        itemStack.shrink(1);
                         removedSeed = true;
                     }
                     // drop item
-                    Block.dropStack(world, pos, itemStack);
+                    Block.popResource(world, pos, itemStack);
                 }
 
                 // create block breaking sound and particles
-                world.breakBlock(pos, false, player);
+                world.destroyBlock(pos, false, player);
 
                 // if seed was removed from drops, update seed age to 0, otherwise place air
                 BlockState newCropState = getNewCrop(state);
-                BlockState postHarvestState = removedSeed && newCropState != null ? newCropState : Blocks.AIR.getDefaultState();
-                world.setBlockState(pos, postHarvestState);
+                BlockState postHarvestState = removedSeed && newCropState != null ? newCropState : Blocks.AIR.defaultBlockState();
+                world.setBlockAndUpdate(pos, postHarvestState);
 
                 // return success (swing arm)
-                cir.setReturnValue(ActionResult.SUCCESS_SERVER);
+                cir.setReturnValue(InteractionResult.SUCCESS_SERVER);
             }
         }
     }
@@ -69,13 +69,13 @@ public abstract class HoeItemMixin {
     private static boolean isMature(BlockState state) {
         Block block = state.getBlock();
         if(block instanceof CropBlock cropBlock) {
-            return cropBlock.isMature(state);
+            return cropBlock.isMaxAge(state);
         }
         else if(block instanceof NetherWartBlock) {
-            return state.get(NetherWartBlock.AGE) == 3;
+            return state.getValue(NetherWartBlock.AGE) == 3;
         }
         else if(block instanceof CocoaBlock) {
-            return state.get(CocoaBlock.AGE) == 2;
+            return state.getValue(CocoaBlock.AGE) == 2;
         }
         return false;
     }
@@ -85,13 +85,13 @@ public abstract class HoeItemMixin {
         Block block = blockState.getBlock();
 
         if(block instanceof CropBlock cropBlock) {
-            return cropBlock.withAge(0);
+            return cropBlock.getStateForAge(0);
         }
         else if(block instanceof NetherWartBlock) {
-            return blockState.with(NetherWartBlock.AGE, 0);
+            return blockState.setValue(NetherWartBlock.AGE, 0);
         }
         else if(block instanceof CocoaBlock) {
-            return blockState.with(CocoaBlock.AGE, 0);
+            return blockState.setValue(CocoaBlock.AGE, 0);
         }
         return null;
     }
