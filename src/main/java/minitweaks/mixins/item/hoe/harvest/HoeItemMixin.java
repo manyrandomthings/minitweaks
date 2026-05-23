@@ -72,10 +72,10 @@ public abstract class HoeItemMixin {
             return cropBlock.isMaxAge(state);
         }
         else if(block instanceof NetherWartBlock) {
-            return state.getValue(NetherWartBlock.AGE) == 3;
+            return state.getValue(NetherWartBlock.AGE) == NetherWartBlock.MAX_AGE;
         }
         else if(block instanceof CocoaBlock) {
-            return state.getValue(CocoaBlock.AGE) == 2;
+            return state.getValue(CocoaBlock.AGE) == CocoaBlock.MAX_AGE;
         }
         return false;
     }

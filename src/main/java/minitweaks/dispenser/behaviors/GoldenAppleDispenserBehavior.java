@@ -7,6 +7,7 @@ import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
 import net.minecraft.util.Util;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntitySelector;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.zombie.ZombieVillager;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.DispenserBlock;
@@ -20,7 +21,7 @@ public class GoldenAppleDispenserBehavior extends OptionalDispenseItemBehavior {
         // get block in front of dispenser
         BlockPos blockPos = blockSource.pos().relative(blockSource.state().getValue(DispenserBlock.FACING));
         // get valid zombie villagers in front of dispenser
-        List<ZombieVillager> list = blockSource.level().getEntitiesOfClass(ZombieVillager.class, new AABB(blockPos), EntitySelector.LIVING_ENTITY_STILL_ALIVE.and((entity) -> {
+        List<ZombieVillager> list = blockSource.level().getEntities(EntityType.ZOMBIE_VILLAGER, new AABB(blockPos), EntitySelector.LIVING_ENTITY_STILL_ALIVE.and((entity) -> {
             ZombieVillager zombieVillager = (ZombieVillager) entity;
             return !zombieVillager.isConverting() && zombieVillager.hasEffect(MobEffects.WEAKNESS);
         }));

@@ -27,9 +27,13 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(ShovelItem.class)
 public abstract class ShovelItemMixin {
-    @Inject(method = "useOn", at = @At(value = "INVOKE", target = "Ljava/util/Map;get(Ljava/lang/Object;)Ljava/lang/Object;"), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
-    private void shaveSnowLayer(UseOnContext context, CallbackInfoReturnable<InteractionResult> cir, Level level, BlockPos blockPos, BlockState blockState, Player player) {
+    @Inject(method = "useOn", at = @At(value = "INVOKE", target = "Ljava/util/Map;get(Ljava/lang/Object;)Ljava/lang/Object;"), cancellable = true)
+    private void shaveSnowLayer(UseOnContext context, CallbackInfoReturnable<InteractionResult> cir) {
+        Level level = context.getLevel();
+        BlockPos blockPos = context.getClickedPos();
+        BlockState blockState = level.getBlockState(blockPos);
         if(MiniTweaksSettings.shaveSnowLayers && !level.isClientSide() && blockState.is(Blocks.SNOW)) {
+            Player player = context.getPlayer();
             int layers = blockState.getValue(SnowLayerBlock.LAYERS);
             ItemStack tool = context.getItemInHand();
             boolean hasSilkTouch = EnchantmentHelper.getItemEnchantmentLevel(level.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).get(Enchantments.SILK_TOUCH.identifier()).get(), tool) > 0;
