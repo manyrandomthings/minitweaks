@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(LargeFireball.class)
-public abstract class FireballEntityMixin {
+public abstract class LargeFireballMixin {
     @ModifyExpressionValue(method = "onHit", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/Level$ExplosionInteraction;MOB:Lnet/minecraft/world/level/Level$ExplosionInteraction;"))
     private ExplosionInteraction modifyDestructionType(ExplosionInteraction original) {
         return MiniTweaksSettings.noGhastBlockBreaking ? ExplosionInteraction.NONE : original;

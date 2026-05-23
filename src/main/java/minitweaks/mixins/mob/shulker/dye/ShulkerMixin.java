@@ -1,7 +1,7 @@
 package minitweaks.mixins.mob.shulker.dye;
 
 import minitweaks.MiniTweaksSettings;
-import minitweaks.mixins.mob.all.interact.MobEntityMixin;
+import minitweaks.mixins.mob.all.interact.MobMixin;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -25,8 +25,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.Optional;
 
 @Mixin(Shulker.class)
-public abstract class ShulkerEntityMixin extends MobEntityMixin {
-    protected ShulkerEntityMixin(EntityType<? extends LivingEntity> entityType, Level world) {
+public abstract class ShulkerMixin extends MobMixin {
+    protected ShulkerMixin(EntityType<? extends LivingEntity> entityType, Level world) {
         super(entityType, world);
     }
 
@@ -43,7 +43,7 @@ public abstract class ShulkerEntityMixin extends MobEntityMixin {
             // check if item used is a water bottle
             if(stack.is(Items.POTION) && stack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY).is(Potions.WATER)) {
                 // set color to none
-                ((ShulkerEntityInvoker) this).invokeSetColor(Optional.empty());
+                ((ShulkerInvoker) this).invokeSetVariant(Optional.empty());
 
                 // play sound, give empty bottle
                 this.level().playSound(null, this.blockPosition(), SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0f, 1.0f);

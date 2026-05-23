@@ -41,9 +41,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
     WeatheringCopperStairBlock.class,
     WeatheringCopperTrapDoorBlock.class
 })
-public abstract class OxidizableBlockMixin {
+public abstract class WeatheringCopperBlocksMixin {
     @Inject(method = "randomTick", at = @At("HEAD"), cancellable = true)
-    private void onRandomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random, CallbackInfo ci) {
+    private void onRandomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random, CallbackInfo ci) {
         // if rule is enabled, loop through adjacent blocks
         if(MiniTweaksSettings.fasterOxidation) {
             for(Direction dir : Direction.values()) {
@@ -52,9 +52,9 @@ public abstract class OxidizableBlockMixin {
 
                 // check if any touching block has water (except down)
                 // down isn't included due to water not touching the blocks above it visually
-                if(world.getFluidState(waterOffset).is(FluidTags.WATER) && state.getBlock() instanceof WeatheringCopper oxidizable) {
+                if(level.getFluidState(waterOffset).is(FluidTags.WATER) && state.getBlock() instanceof WeatheringCopper weatheringCopper) {
                     // get oxidation result and place block
-                    oxidizable.getNext(state).ifPresent(oxidizeState -> world.setBlockAndUpdate(pos, oxidizeState));
+                    weatheringCopper.getNext(state).ifPresent(oxidizeState -> level.setBlockAndUpdate(pos, oxidizeState));
                     ci.cancel();
                 }
             }

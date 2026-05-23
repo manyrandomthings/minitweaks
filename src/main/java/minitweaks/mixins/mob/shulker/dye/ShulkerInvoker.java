@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 import java.util.Optional;
 
 @Mixin(Shulker.class)
-public interface ShulkerEntityInvoker {
+public interface ShulkerInvoker {
     @Invoker("setVariant")
-    void invokeSetColor(Optional<DyeColor> color);
+    void invokeSetVariant(Optional<DyeColor> color);
 }

@@ -20,13 +20,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
     AbstractSkeleton.class,
     Zombie.class
 })
-public abstract class SkeletonZombieEntityMixin extends Monster {
-    protected SkeletonZombieEntityMixin(EntityType<? extends Monster> entityType, Level world) {
+public abstract class SkeletonZombieMixin extends Monster {
+    protected SkeletonZombieMixin(EntityType<? extends Monster> entityType, Level world) {
         super(entityType, world);
     }
 
     @Inject(method = "finalizeSpawn", at = @At("TAIL"))
-    private void modifyLootPickup(ServerLevelAccessor world, DifficultyInstance difficulty, EntitySpawnReason spawnReason, SpawnGroupData entityData, CallbackInfoReturnable<SpawnGroupData> cir) {
+    private void modifyLootPickup(ServerLevelAccessor serverLevel, DifficultyInstance difficulty, EntitySpawnReason spawnReason, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
         // checks if rule is enabled (not default)
         if(MiniTweaksSettings.mobItemPickup != ItemPickupType.DEFAULT) {
             // sets the mob's item pickup ability (true if always, false if never)

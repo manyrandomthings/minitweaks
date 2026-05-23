@@ -28,24 +28,24 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 @Mixin(ShovelItem.class)
 public abstract class ShovelItemMixin {
     @Inject(method = "useOn", at = @At(value = "INVOKE", target = "Ljava/util/Map;get(Ljava/lang/Object;)Ljava/lang/Object;"), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
-    private void shaveSnowLayer(UseOnContext context, CallbackInfoReturnable<InteractionResult> cir, Level world, BlockPos blockPos, BlockState blockState, Player playerEntity) {
-        if(MiniTweaksSettings.shaveSnowLayers && !world.isClientSide() && blockState.is(Blocks.SNOW)) {
+    private void shaveSnowLayer(UseOnContext context, CallbackInfoReturnable<InteractionResult> cir, Level level, BlockPos blockPos, BlockState blockState, Player player) {
+        if(MiniTweaksSettings.shaveSnowLayers && !level.isClientSide() && blockState.is(Blocks.SNOW)) {
             int layers = blockState.getValue(SnowLayerBlock.LAYERS);
             ItemStack tool = context.getItemInHand();
-            boolean hasSilkTouch = EnchantmentHelper.getItemEnchantmentLevel(world.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).get(Enchantments.SILK_TOUCH.identifier()).get(), tool) > 0;
+            boolean hasSilkTouch = EnchantmentHelper.getItemEnchantmentLevel(level.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).get(Enchantments.SILK_TOUCH.identifier()).get(), tool) > 0;
             // set to air if only one snow layer remains, otherwise remove one layer
             BlockState shavedBlockState = layers > 1 ? blockState.setValue(SnowLayerBlock.LAYERS, layers - 1) : Blocks.AIR.defaultBlockState();
 
-            world.setBlock(blockPos, shavedBlockState, Block.UPDATE_ALL_IMMEDIATE);
-            world.gameEvent(GameEvent.BLOCK_CHANGE, blockPos, GameEvent.Context.of(playerEntity, shavedBlockState));
+            level.setBlock(blockPos, shavedBlockState, Block.UPDATE_ALL_IMMEDIATE);
+            level.gameEvent(GameEvent.BLOCK_CHANGE, blockPos, GameEvent.Context.of(player, shavedBlockState));
 
             // drop snow layer if silk touch is used, otherwise drop snowball
-            Block.popResource(world, blockPos, new ItemStack(hasSilkTouch ? Items.SNOW : Items.SNOWBALL));
-            world.playSound(null, blockPos, SoundEvents.SNOW_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F);
+            Block.popResource(level, blockPos, new ItemStack(hasSilkTouch ? Items.SNOW : Items.SNOWBALL));
+            level.playSound(null, blockPos, SoundEvents.SNOW_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F);
 
             // damage tool
-            if(playerEntity != null) {
-                tool.hurtAndBreak(1, playerEntity, context.getHand().asEquipmentSlot());
+            if(player != null) {
+                tool.hurtAndBreak(1, player, context.getHand().asEquipmentSlot());
             }
 
             // return success (swing arm)

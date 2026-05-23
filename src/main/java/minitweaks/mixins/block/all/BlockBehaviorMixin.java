@@ -15,9 +15,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(BlockBehaviour.class)
-public abstract class AbstractBlockMixin {
+public abstract class BlockBehaviorMixin {
     @Inject(method = "useItemOn", at = @At("HEAD"), cancellable = true)
-    protected void onUseWithItemInject(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit, CallbackInfoReturnable<InteractionResult> cir) {
+    protected void onUseWithItemInject(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit, CallbackInfoReturnable<InteractionResult> cir) {
         // blank
     }
 }

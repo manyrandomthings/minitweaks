@@ -15,16 +15,16 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(Slime.class)
-public abstract class SlimeEntityMixin extends Mob {
-    protected SlimeEntityMixin(EntityType<? extends Mob> type, Level world) {
-        super(type, world);
+public abstract class SlimeMixin extends Mob {
+    protected SlimeMixin(EntityType<? extends Mob> type, Level level) {
+        super(type, level);
     }
 
     @ModifyExpressionValue(method = "remove", at = @At(value = "CONSTANT", args = "intValue=3"))
     private int addLootingLevel(int original) {
-        Player playerEntity = this.getLastHurtByPlayer();
-        if(MiniTweaksSettings.slimeLooting && playerEntity != null) {
-            ItemStack weapon = playerEntity.getWeaponItem();
+        Player player = this.getLastHurtByPlayer();
+        if(MiniTweaksSettings.slimeLooting && player != null) {
+            ItemStack weapon = player.getWeaponItem();
             int lootingLevel = EnchantmentHelper.getItemEnchantmentLevel(this.level().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).get(Enchantments.LOOTING.identifier()).get(), weapon);
             return original + lootingLevel;
         }

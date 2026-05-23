@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Entity.class)
 public abstract class EntityMixin {
     @Inject(method = "thunderHit", at = @At("HEAD"), cancellable = true)
-    protected void lightningStrikeInject(ServerLevel world, LightningBolt lightning, CallbackInfo ci) {
+    protected void lightningStrikeInject(ServerLevel serverLevel, LightningBolt lightning, CallbackInfo ci) {
         // blank
     }
 }

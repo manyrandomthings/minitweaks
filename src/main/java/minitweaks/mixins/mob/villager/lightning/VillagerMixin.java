@@ -11,8 +11,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(Villager.class)
-public abstract class VillagerEntityMixin extends AbstractVillager {
-    public VillagerEntityMixin(EntityType<? extends AbstractVillager> entityType, Level world) {
+public abstract class VillagerMixin extends AbstractVillager {
+    public VillagerMixin(EntityType<? extends AbstractVillager> entityType, Level world) {
         super(entityType, world);
     }
 

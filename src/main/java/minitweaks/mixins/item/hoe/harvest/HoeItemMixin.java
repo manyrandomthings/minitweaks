@@ -26,11 +26,11 @@ import java.util.List;
 public abstract class HoeItemMixin {
     @Inject(method = "useOn", at = @At("HEAD"), cancellable = true)
     private void harvestCrop(UseOnContext context, CallbackInfoReturnable<InteractionResult> cir) {
-        Level world = context.getLevel();
+        Level level = context.getLevel();
         // check if rule is enabled and action is server side
-        if(MiniTweaksSettings.quickHarvesting && !world.isClientSide()) {
+        if(MiniTweaksSettings.quickHarvesting && !level.isClientSide()) {
             BlockPos pos = context.getClickedPos();
-            BlockState state = world.getBlockState(pos);
+            BlockState state = level.getBlockState(pos);
             Player player = context.getPlayer();
 
             // check if crop is mature
@@ -38,7 +38,7 @@ public abstract class HoeItemMixin {
                 // get usage tool (for fortune to apply)
                 ItemStack tool = player != null ? player.getItemInHand(context.getHand()) : ItemStack.EMPTY;
                 // get loot drops for crop
-                List<ItemStack> droppedItems = Block.getDrops(state, (ServerLevel) world, pos, null, player, tool);
+                List<ItemStack> droppedItems = Block.getDrops(state, (ServerLevel) level, pos, null, player, tool);
                 boolean removedSeed = false;
                 for(ItemStack itemStack : droppedItems) {
                     // if a seed hasn't been removed and item being dropped is the same as the crop being harvested, remove seed
@@ -48,16 +48,16 @@ public abstract class HoeItemMixin {
                         removedSeed = true;
                     }
                     // drop item
-                    Block.popResource(world, pos, itemStack);
+                    Block.popResource(level, pos, itemStack);
                 }
 
                 // create block breaking sound and particles
-                world.destroyBlock(pos, false, player);
+                level.destroyBlock(pos, false, player);
 
                 // if seed was removed from drops, update seed age to 0, otherwise place air
                 BlockState newCropState = getNewCrop(state);
                 BlockState postHarvestState = removedSeed && newCropState != null ? newCropState : Blocks.AIR.defaultBlockState();
-                world.setBlockAndUpdate(pos, postHarvestState);
+                level.setBlockAndUpdate(pos, postHarvestState);
 
                 // return success (swing arm)
                 cir.setReturnValue(InteractionResult.SUCCESS_SERVER);

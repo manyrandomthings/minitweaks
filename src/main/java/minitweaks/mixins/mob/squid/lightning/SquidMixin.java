@@ -11,10 +11,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Squid.class)
-public abstract class SquidEntityMixin extends EntityMixin {
+public abstract class SquidMixin extends EntityMixin {
 
     @Override
-    protected void lightningStrikeInject(ServerLevel world, LightningBolt lightning, CallbackInfo ci) {
+    protected void lightningStrikeInject(ServerLevel serverLevel, LightningBolt lightning, CallbackInfo ci) {
         if(MiniTweaksSettings.lightningGlowifiesSquids) {
             Squid squid = (Squid) (Object) this;
             squid.convertTo(EntityType.GLOW_SQUID, ConversionParams.single(squid, true, true), (glowSquid) -> {});

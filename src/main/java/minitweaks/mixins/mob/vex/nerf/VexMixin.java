@@ -13,9 +13,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Vex.class)
-public abstract class VexEntityMixin extends Monster {
-    protected VexEntityMixin(EntityType<? extends Monster> entityType, Level world) {
-        super(entityType, world);
+public abstract class VexMixin extends Monster {
+    protected VexMixin(EntityType<? extends Monster> entityType, Level level) {
+        super(entityType, level);
     }
 
     @Shadow

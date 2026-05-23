@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(EnderDragon.class)
-public abstract class EnderDragonEntityMixin {
+public abstract class EnderDragonMixin {
     @ModifyExpressionValue(method = "checkWalls", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/gamerules/GameRules;get(Lnet/minecraft/world/level/gamerules/GameRule;)Ljava/lang/Object;"))
     private Object gameruleCheck(Object original) {
         return switch(MiniTweaksSettings.dragonBlockDamage) {
@@ -23,13 +23,13 @@ public abstract class EnderDragonEntityMixin {
     }
 
     @WrapOperation(method = "checkWalls", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerLevel;removeBlock(Lnet/minecraft/core/BlockPos;Z)Z"))
-    private boolean destroyType(ServerLevel world, BlockPos pos, boolean move, Operation<Boolean> original) {
+    private boolean destroyType(ServerLevel serverLevel, BlockPos pos, boolean move, Operation<Boolean> original) {
         if(MiniTweaksSettings.dragonBlockDamage == BlockBreakingType.BREAK) {
             // break block and drop as item
-            return world.destroyBlock(pos, true, (EnderDragon) (Object) this);
+            return serverLevel.destroyBlock(pos, true, (EnderDragon) (Object) this);
         }
 
         // default block removal
-        return original.call(world, pos, move);
+        return original.call(serverLevel, pos, move);
     }
 }

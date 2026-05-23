@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
 @Mixin(Player.class)
-public abstract class PlayerEntityMixin {
+public abstract class PlayerMixin {
     @ModifyConstant(method = "getBaseExperienceReward", constant = @Constant(intValue = 100), expect = 2)
     private int modifyDropCount(int original) {
         return MiniTweaksSettings.maxPlayerXpDrop;

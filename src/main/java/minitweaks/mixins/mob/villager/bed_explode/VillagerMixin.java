@@ -16,27 +16,27 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Villager.class)
-public abstract class VillagerEntityMixin extends AbstractVillager {
-    public VillagerEntityMixin(EntityType<? extends AbstractVillager> entityType, Level world) {
+public abstract class VillagerMixin extends AbstractVillager {
+    public VillagerMixin(EntityType<? extends AbstractVillager> entityType, Level world) {
         super(entityType, world);
     }
 
     @Inject(method = "startSleeping", at = @At("HEAD"), cancellable = true)
     private void explodeBed(BlockPos pos, CallbackInfo ci) {
-        Level world = this.level();
+        Level level = this.level();
         // if rule enabled and beds explode in dimension
-        if(MiniTweaksSettings.villagersExplodeBeds && world.environmentAttributes().getValue(EnvironmentAttributes.BED_RULE, pos).explodes()) {
+        if(MiniTweaksSettings.villagersExplodeBeds && level.environmentAttributes().getValue(EnvironmentAttributes.BED_RULE, pos).explodes()) {
             // remove bed
-            BlockState state = world.getBlockState(pos);
-            world.removeBlock(pos, false);
+            BlockState state = level.getBlockState(pos);
+            level.removeBlock(pos, false);
             BlockPos blockPos = pos.relative((state.getValue(BedBlock.FACING)).getOpposite());
-            if(world.getBlockState(blockPos).getBlock() instanceof BedBlock) {
-                world.removeBlock(blockPos, false);
+            if(level.getBlockState(blockPos).getBlock() instanceof BedBlock) {
+                level.removeBlock(blockPos, false);
             }
 
             // create explosion
             Vec3 vec3d = pos.getCenter();
-            world.explode(null, world.damageSources().badRespawnPointExplosion(vec3d), null, vec3d, 5.0F, true, Level.ExplosionInteraction.BLOCK);
+            level.explode(null, level.damageSources().badRespawnPointExplosion(vec3d), null, vec3d, 5.0F, true, Level.ExplosionInteraction.BLOCK);
 
             // cancel sleeping
             ci.cancel();

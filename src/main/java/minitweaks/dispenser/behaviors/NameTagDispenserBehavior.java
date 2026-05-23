@@ -14,18 +14,18 @@ import net.minecraft.world.phys.AABB;
 import java.util.List;
 
 public class NameTagDispenserBehavior extends OptionalDispenseItemBehavior {
-    protected ItemStack execute(BlockSource pointer, ItemStack stack) {
+    protected ItemStack execute(BlockSource blockSource, ItemStack stack) {
         this.setSuccess(true);
 
         // get block in front of dispenser
-        BlockPos blockPos = pointer.pos().relative(pointer.state().getValue(DispenserBlock.FACING));
+        BlockPos blockPos = blockSource.pos().relative(blockSource.state().getValue(DispenserBlock.FACING));
         // get all non-player living entities in front of dispenser
-        List<LivingEntity> list = pointer.level().getEntitiesOfClass(LivingEntity.class, new AABB(blockPos), EntitySelector.LIVING_ENTITY_STILL_ALIVE.and((livingEntity) -> !(livingEntity instanceof Player)));
+        List<LivingEntity> list = blockSource.level().getEntitiesOfClass(LivingEntity.class, new AABB(blockPos), EntitySelector.LIVING_ENTITY_STILL_ALIVE.and((livingEntity) -> !(livingEntity instanceof Player)));
 
         // if mobs found
         if(!list.isEmpty()) {
             // get random entity
-            LivingEntity entity = Util.getRandom(list, pointer.level().getRandom());
+            LivingEntity entity = Util.getRandom(list, blockSource.level().getRandom());
             // set name to nametag's name
             entity.setCustomName(stack.getHoverName());
             // if entity is MobEntity, prevent it from despawning

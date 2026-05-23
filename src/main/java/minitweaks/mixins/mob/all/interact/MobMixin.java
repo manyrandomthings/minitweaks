@@ -13,9 +13,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Mob.class)
-public abstract class MobEntityMixin extends LivingEntity {
-    protected MobEntityMixin(EntityType<? extends LivingEntity> entityType, Level world) {
-        super(entityType, world);
+public abstract class MobMixin extends LivingEntity {
+    protected MobMixin(EntityType<? extends LivingEntity> entityType, Level level) {
+        super(entityType, level);
     }
 
     @Inject(method = "mobInteract", at = @At("HEAD"), cancellable = true)

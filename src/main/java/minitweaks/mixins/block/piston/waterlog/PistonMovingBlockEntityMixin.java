@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(PistonMovingBlockEntity.class)
-public abstract class PistonBlockEntityMixin {
+public abstract class PistonMovingBlockEntityMixin {
     @ModifyExpressionValue(method = "tick", at = @At(value = "INVOKE", target = "Ljava/lang/Boolean;booleanValue()Z"))
     private static boolean checkWaterloggedState(boolean original) {
         return original && !MiniTweaksSettings.moveableWaterloggedBlocks;

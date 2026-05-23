@@ -1,7 +1,7 @@
 package minitweaks.dispenser.behaviors;
 
 import minitweaks.MiniTweaksSettings;
-import minitweaks.mixins.mob.shulker.dye.ShulkerEntityInvoker;
+import minitweaks.mixins.mob.shulker.dye.ShulkerInvoker;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
@@ -21,22 +21,22 @@ import java.util.List;
 import java.util.Optional;
 
 public class DyeItemDispenserBehavior extends OptionalDispenseItemBehavior {
-    protected ItemStack execute(BlockSource pointer, ItemStack stack) {
+    protected ItemStack execute(BlockSource blockSource, ItemStack stack) {
         this.setSuccess(true);
         // get color of item
-        DyeColor itemColor = ((DyeItem) stack.getItem()).getDyeColor();
+        DyeColor dyeColor = ((DyeItem) stack.getItem()).getDyeColor();
 
         // get block in front of dispenser
-        BlockPos blockPos = pointer.pos().relative(pointer.state().getValue(DispenserBlock.FACING));
+        BlockPos blockPos = blockSource.pos().relative(blockSource.state().getValue(DispenserBlock.FACING));
         // get list of valid entities in front of dispenser
-        List<PathfinderMob> list = pointer.level().getEntitiesOfClass(PathfinderMob.class, new AABB(blockPos), EntitySelector.LIVING_ENTITY_STILL_ALIVE.and((entity) -> {
+        List<PathfinderMob> list = blockSource.level().getEntitiesOfClass(PathfinderMob.class, new AABB(blockPos), EntitySelector.LIVING_ENTITY_STILL_ALIVE.and((entity) -> {
             // sheep must not be sheared (if dyeableShearedSheep is not enabled) or match item color
-            if(entity instanceof Sheep sheepEntity) {
-                return (MiniTweaksSettings.dyeableShearedSheep || !sheepEntity.isSheared()) && sheepEntity.getColor() != itemColor;
+            if(entity instanceof Sheep sheep) {
+                return (MiniTweaksSettings.dyeableShearedSheep || !sheep.isSheared()) && sheep.getColor() != dyeColor;
             }
             // dyeableShulkers rule must be enabled and shulker must not match item color
-            else if(MiniTweaksSettings.dyeableShulkers && entity instanceof Shulker shulkerEntity) {
-                return shulkerEntity.getColor() != itemColor;
+            else if(MiniTweaksSettings.dyeableShulkers && entity instanceof Shulker shulker) {
+                return shulker.getColor() != dyeColor;
             }
             return false;
         }));
@@ -44,16 +44,16 @@ public class DyeItemDispenserBehavior extends OptionalDispenseItemBehavior {
         // check if there are valid entities
         if(!list.isEmpty()) {
             // choose random mob
-            PathfinderMob randomMob = Util.getRandom(list, pointer.level().getRandom());
+            PathfinderMob randomMob = Util.getRandom(list, blockSource.level().getRandom());
             // play dye sound
             randomMob.level().playSound(null, randomMob, SoundEvents.DYE_USE, SoundSource.PLAYERS, 1.0F, 1.0F);
 
             // set color of sheep or shulker
-            if(randomMob instanceof Sheep sheepEntity) {
-                sheepEntity.setColor(itemColor);
+            if(randomMob instanceof Sheep sheep) {
+                sheep.setColor(dyeColor);
             }
-            else if(randomMob instanceof Shulker shulkerEntity) {
-                ((ShulkerEntityInvoker) shulkerEntity).invokeSetColor(Optional.of(itemColor));
+            else if(randomMob instanceof Shulker shulker) {
+                ((ShulkerInvoker) shulker).invokeSetVariant(Optional.of(dyeColor));
             }
 
             stack.shrink(1);

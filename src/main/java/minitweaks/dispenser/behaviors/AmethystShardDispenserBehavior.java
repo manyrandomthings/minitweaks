@@ -1,6 +1,6 @@
 package minitweaks.dispenser.behaviors;
 
-import minitweaks.mixins.mob.allay.duplicate.AllayEntityInvoker;
+import minitweaks.mixins.mob.allay.duplicate.AllayInvoker;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
@@ -19,26 +19,26 @@ import java.util.List;
 
 public class AmethystShardDispenserBehavior extends OptionalDispenseItemBehavior {
     @Override
-    protected ItemStack execute(BlockSource pointer, ItemStack stack) {
+    protected ItemStack execute(BlockSource blockSource, ItemStack stack) {
         this.setSuccess(true);
 
         // get block in front of dispenser
-        BlockPos blockPos = pointer.pos().relative(pointer.state().getValue(DispenserBlock.FACING));
+        BlockPos blockPos = blockSource.pos().relative(blockSource.state().getValue(DispenserBlock.FACING));
         // get valid allays in front of dispenser
-        List<Allay> list = pointer.level().getEntities(EntityType.ALLAY, new AABB(blockPos), EntitySelector.LIVING_ENTITY_STILL_ALIVE.and((entity) -> {
-            Allay allayEntity = (Allay) entity;
-            AllayEntityInvoker allayEntityInvoker = (AllayEntityInvoker) allayEntity;
-            return allayEntity.isDancing() && stack.is(ItemTags.DUPLICATES_ALLAYS) && allayEntityInvoker.invokeCanDuplicate();
+        List<Allay> list = blockSource.level().getEntities(EntityType.ALLAY, new AABB(blockPos), EntitySelector.LIVING_ENTITY_STILL_ALIVE.and((entity) -> {
+            Allay allay = (Allay) entity;
+            AllayInvoker allayInvoker = (AllayInvoker) allay;
+            return allay.isDancing() && stack.is(ItemTags.DUPLICATES_ALLAYS) && allayInvoker.invokeCanDuplicate();
         }));
 
         if(!list.isEmpty()) {
-            ServerLevel serverWorld = pointer.level();
-            Allay randomAllay = Util.getRandom(list, serverWorld.getRandom());
-            AllayEntityInvoker allayInvoker = (AllayEntityInvoker) randomAllay;
+            ServerLevel serverLevel = blockSource.level();
+            Allay randomAllay = Util.getRandom(list, serverLevel.getRandom());
+            AllayInvoker allayInvoker = (AllayInvoker) randomAllay;
 
-            allayInvoker.invokeDuplicate();
-            serverWorld.broadcastEntityEvent(randomAllay, (byte) 18);
-            serverWorld.playSound(null, randomAllay, SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.NEUTRAL, 2.0F, 1.0F);
+            allayInvoker.invokeDuplicateAllay();
+            serverLevel.broadcastEntityEvent(randomAllay, (byte) 18);
+            serverLevel.playSound(null, randomAllay, SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.NEUTRAL, 2.0F, 1.0F);
 
             stack.shrink(1);
             return stack;

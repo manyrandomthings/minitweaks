@@ -41,14 +41,14 @@ public class MiniTweaksDispenserBehaviors {
     public static final DispenseItemBehavior WATER_BOTTLE = new WaterBottleDispenserBehavior();
 
     // get dispenser behavior
-    public static DispenseItemBehavior getCustomDispenserBehavior(ServerLevel serverWorld, BlockPos pos, BlockSource blockPointer, DispenserBlockEntity dispenserBlockEntity, ItemStack stack) {
+    public static DispenseItemBehavior getCustomDispenserBehavior(ServerLevel serverLevel, BlockPos pos, BlockSource blockSource, DispenserBlockEntity dispenserBlockEntity, ItemStack stack) {
         Item item = stack.getItem();
-        BlockPos frontPos = pos.relative(blockPointer.state().getValue(DispenserBlock.FACING));
-        AABB frontBox = new AABB(frontPos);
+        BlockPos frontPos = pos.relative(blockSource.state().getValue(DispenserBlock.FACING));
+        AABB frontArea = new AABB(frontPos);
 
         // name tag (with name) behavior
         if(MiniTweaksSettings.dispensersNameMobs && stack.is(Items.NAME_TAG) && stack.has(DataComponents.CUSTOM_NAME)) {
-            boolean hasNameableMobs = !serverWorld.getEntitiesOfClass(LivingEntity.class, frontBox, EntitySelector.LIVING_ENTITY_STILL_ALIVE.and(entity -> !(entity instanceof Player))).isEmpty();
+            boolean hasNameableMobs = !serverLevel.getEntitiesOfClass(LivingEntity.class, frontArea, EntitySelector.LIVING_ENTITY_STILL_ALIVE.and(entity -> !(entity instanceof Player))).isEmpty();
 
             if(hasNameableMobs) {
                 return NAME_TAG;
@@ -56,7 +56,7 @@ public class MiniTweaksDispenserBehaviors {
         }
         // dye items behavior
         else if(MiniTweaksSettings.dispensersDyeMobs && item instanceof DyeItem) {
-            boolean hasDyeableMobs = !serverWorld.getEntitiesOfClass(PathfinderMob.class, frontBox, EntitySelector.LIVING_ENTITY_STILL_ALIVE.and(entity -> {
+            boolean hasDyeableMobs = !serverLevel.getEntitiesOfClass(PathfinderMob.class, frontArea, EntitySelector.LIVING_ENTITY_STILL_ALIVE.and(entity -> {
                 return entity instanceof Sheep || (MiniTweaksSettings.dyeableShulkers && entity instanceof Shulker);
             })).isEmpty();
 
@@ -66,7 +66,7 @@ public class MiniTweaksDispenserBehaviors {
         }
         // undye shulker behavior
         else if(MiniTweaksSettings.dyeableShulkers && MiniTweaksSettings.dispensersDyeMobs && stack.is(Items.POTION) && stack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY).is(Potions.WATER)) {
-            boolean hasShulkers = !serverWorld.getEntities(EntityType.SHULKER, frontBox, EntitySelector.LIVING_ENTITY_STILL_ALIVE).isEmpty();
+            boolean hasShulkers = !serverLevel.getEntities(EntityType.SHULKER, frontArea, EntitySelector.LIVING_ENTITY_STILL_ALIVE).isEmpty();
 
             if(hasShulkers) {
                 return WATER_BOTTLE;
@@ -74,7 +74,7 @@ public class MiniTweaksDispenserBehaviors {
         }
         // golden apple behavior
         else if(MiniTweaksSettings.dispensersCureVillagers && stack.is(Items.GOLDEN_APPLE)) {
-            boolean hasZombieVillagers = !serverWorld.getEntities(EntityType.ZOMBIE_VILLAGER, frontBox, EntitySelector.LIVING_ENTITY_STILL_ALIVE).isEmpty();
+            boolean hasZombieVillagers = !serverLevel.getEntities(EntityType.ZOMBIE_VILLAGER, frontArea, EntitySelector.LIVING_ENTITY_STILL_ALIVE).isEmpty();
 
             if(hasZombieVillagers) {
                 return GOLDEN_APPLE;
@@ -82,7 +82,7 @@ public class MiniTweaksDispenserBehaviors {
         }
         // iron ingot behavior
         else if(MiniTweaksSettings.dispensersRepairGolems && stack.is(Items.IRON_INGOT)) {
-            boolean hasIronGolems = !serverWorld.getEntities(EntityType.IRON_GOLEM, frontBox, EntitySelector.LIVING_ENTITY_STILL_ALIVE).isEmpty();
+            boolean hasIronGolems = !serverLevel.getEntities(EntityType.IRON_GOLEM, frontArea, EntitySelector.LIVING_ENTITY_STILL_ALIVE).isEmpty();
 
             if(hasIronGolems) {
                 return IRON_INGOT;
@@ -90,7 +90,7 @@ public class MiniTweaksDispenserBehaviors {
         }
         // pick up bucketable mob
         else if(MiniTweaksSettings.dispensersBucketMobs && stack.is(Items.WATER_BUCKET)) {
-            boolean hasBucketableMobs = !serverWorld.getEntitiesOfClass(LivingEntity.class, frontBox, EntitySelector.LIVING_ENTITY_STILL_ALIVE.and(entity -> {
+            boolean hasBucketableMobs = !serverLevel.getEntitiesOfClass(LivingEntity.class, frontArea, EntitySelector.LIVING_ENTITY_STILL_ALIVE.and(entity -> {
                 return entity instanceof Bucketable;
             })).isEmpty();
 
@@ -99,7 +99,7 @@ public class MiniTweaksDispenserBehaviors {
             }
         }
         else if(MiniTweaksSettings.dispensersDuplicateAllays && stack.is(Items.AMETHYST_SHARD)) {
-            boolean hasAllays = !serverWorld.getEntities(EntityType.ALLAY, frontBox, EntitySelector.LIVING_ENTITY_STILL_ALIVE).isEmpty();
+            boolean hasAllays = !serverLevel.getEntities(EntityType.ALLAY, frontArea, EntitySelector.LIVING_ENTITY_STILL_ALIVE).isEmpty();
 
             if(hasAllays) {
                 return AMETHYST_SHARD;

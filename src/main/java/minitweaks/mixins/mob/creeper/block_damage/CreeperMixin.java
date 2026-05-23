@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(value = Creeper.class, priority = 1001)
-public abstract class CreeperEntityMixin {
+public abstract class CreeperMixin {
     @ModifyExpressionValue(method = "explodeCreeper", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/Level$ExplosionInteraction;MOB:Lnet/minecraft/world/level/Level$ExplosionInteraction;"))
     private ExplosionInteraction modifiedExplode(ExplosionInteraction original) {
         return MiniTweaksSettings.noCreeperBlockBreaking ? ExplosionInteraction.NONE : original;

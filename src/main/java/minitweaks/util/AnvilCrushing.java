@@ -21,15 +21,15 @@ public class AnvilCrushing {
     // create map
     .build();
 
-    public static void tryRawOreCrush(Level world, BlockPos pos) {
+    public static void tryRawOreCrush(Level level, BlockPos pos) {
         // get block below landing position
-        Block convertedBlock = ANVIL_BLOCK_TO_RAW_ORES.get(world.getBlockState(pos).getBlock());
+        Block convertedBlock = ANVIL_BLOCK_TO_RAW_ORES.get(level.getBlockState(pos).getBlock());
 
         // check if converted
         if(convertedBlock != null) {
             // break block and set to new block
-            world.destroyBlock(pos, false);
-            world.setBlockAndUpdate(pos, convertedBlock.defaultBlockState());
+            level.destroyBlock(pos, false);
+            level.setBlockAndUpdate(pos, convertedBlock.defaultBlockState());
         }
     }
 }

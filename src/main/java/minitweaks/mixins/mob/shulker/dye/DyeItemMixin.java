@@ -34,7 +34,7 @@ public abstract class DyeItemMixin {
             if(shulkerEntity.isAlive() && currentShulkerColor != dyeItemColor) {
                 shulkerEntity.level().playSound(user, shulkerEntity, SoundEvents.DYE_USE, SoundSource.PLAYERS, 1.0F, 1.0F);
                 if(!user.level().isClientSide()) {
-                    ((ShulkerEntityInvoker) shulkerEntity).invokeSetColor(Optional.of(dyeItemColor));
+                    ((ShulkerInvoker) shulkerEntity).invokeSetVariant(Optional.of(dyeItemColor));
                     stack.shrink(1);
                 }
 

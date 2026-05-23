@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(GrindstoneMenu.class)
-public abstract class GrindstoneScreenHandlerMixin {
+public abstract class GrindstoneMenuMixin {
     // .filter() lambda in grind
     @SuppressWarnings("target")
     @ModifyExpressionValue(method = "method_58073", at = @At(value = "INVOKE", target = "Lnet/minecraft/core/Holder;is(Lnet/minecraft/tags/TagKey;)Z"))

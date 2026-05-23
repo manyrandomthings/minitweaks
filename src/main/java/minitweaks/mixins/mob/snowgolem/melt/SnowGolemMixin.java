@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(SnowGolem.class)
-public abstract class SnowGolemEntityMixin {
+public abstract class SnowGolemMixin {
     @ModifyExpressionValue(method = "aiStep", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/attribute/EnvironmentAttributeSystem;getValue(Lnet/minecraft/world/attribute/EnvironmentAttribute;Lnet/minecraft/world/phys/Vec3;)Ljava/lang/Object;"))
     private Object isHotRedirect(Object original) {
         return (Boolean) original && !MiniTweaksSettings.noSnowGolemMelting;

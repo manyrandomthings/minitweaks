@@ -1,6 +1,6 @@
 package minitweaks.dispenser.behaviors;
 
-import minitweaks.mixins.mob.zombie.convert.ZombieVillagerEntityInvoker;
+import minitweaks.mixins.mob.zombie.convert.ZombieVillagerInvoker;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
@@ -14,22 +14,22 @@ import net.minecraft.world.phys.AABB;
 import java.util.List;
 
 public class GoldenAppleDispenserBehavior extends OptionalDispenseItemBehavior {
-    protected ItemStack execute(BlockSource pointer, ItemStack stack) {
+    protected ItemStack execute(BlockSource blockSource, ItemStack stack) {
         this.setSuccess(true);
 
         // get block in front of dispenser
-        BlockPos blockPos = pointer.pos().relative(pointer.state().getValue(DispenserBlock.FACING));
+        BlockPos blockPos = blockSource.pos().relative(blockSource.state().getValue(DispenserBlock.FACING));
         // get valid zombie villagers in front of dispenser
-        List<ZombieVillager> list = pointer.level().getEntitiesOfClass(ZombieVillager.class, new AABB(blockPos), EntitySelector.LIVING_ENTITY_STILL_ALIVE.and((entity) -> {
-            ZombieVillager zombieVillagerEntity = (ZombieVillager) entity;
-            return !zombieVillagerEntity.isConverting() && zombieVillagerEntity.hasEffect(MobEffects.WEAKNESS);
+        List<ZombieVillager> list = blockSource.level().getEntitiesOfClass(ZombieVillager.class, new AABB(blockPos), EntitySelector.LIVING_ENTITY_STILL_ALIVE.and((entity) -> {
+            ZombieVillager zombieVillager = (ZombieVillager) entity;
+            return !zombieVillager.isConverting() && zombieVillager.hasEffect(MobEffects.WEAKNESS);
         }));
 
         if(!list.isEmpty()) {
             // choose random zombie villager
-            ZombieVillager zombieVillager = Util.getRandom(list, pointer.level().getRandom());
+            ZombieVillager zombieVillager = Util.getRandom(list, blockSource.level().getRandom());
             // set converting
-            ((ZombieVillagerEntityInvoker) zombieVillager).invokeSetConverting(null, zombieVillager.getRandom().nextInt(2401) + 3600);
+            ((ZombieVillagerInvoker) zombieVillager).invokeStartConverting(null, zombieVillager.getRandom().nextInt(2401) + 3600);
 
             stack.shrink(1);
             return stack;

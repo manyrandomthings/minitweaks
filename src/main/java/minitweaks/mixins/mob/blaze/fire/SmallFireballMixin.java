@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(SmallFireball.class)
-public abstract class SmallFireballEntityMixin {
+public abstract class SmallFireballMixin {
     @ModifyExpressionValue(method = "onHitBlock", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/gamerules/GameRules;get(Lnet/minecraft/world/level/gamerules/GameRule;)Ljava/lang/Object;"))
     private Object preventFire(Object original) {
         return (Boolean) original && !MiniTweaksSettings.disableBlazeFire;
