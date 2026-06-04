@@ -5,6 +5,7 @@ import minitweaks.MiniTweaksSettings;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(Inventory.class)
@@ -19,6 +20,7 @@ public abstract class InventoryMixin {
         return droppedItem;
     }
 
+    @Unique
     private static int minutesToTicks(int despawnMinutes) {
         // if minutes is -1, return -32768 (infinite age, see ItemEntity.tick())
         if (despawnMinutes == -1) {

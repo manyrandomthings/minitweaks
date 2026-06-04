@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
 import net.minecraft.util.Util;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -12,15 +13,18 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.phys.AABB;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class NameTagDispenserBehavior extends OptionalDispenseItemBehavior {
+    public static final Predicate<Entity> NON_PLAYER = EntitySelector.LIVING_ENTITY_STILL_ALIVE.and(entity -> !(entity instanceof Player));
+
     protected ItemStack execute(BlockSource blockSource, ItemStack stack) {
         this.setSuccess(true);
 
         // get block in front of dispenser
         BlockPos blockPos = blockSource.pos().relative(blockSource.state().getValue(DispenserBlock.FACING));
         // get all non-player living entities in front of dispenser
-        List<LivingEntity> list = blockSource.level().getEntitiesOfClass(LivingEntity.class, new AABB(blockPos), EntitySelector.LIVING_ENTITY_STILL_ALIVE.and((livingEntity) -> !(livingEntity instanceof Player)));
+        List<LivingEntity> list = blockSource.level().getEntitiesOfClass(LivingEntity.class, new AABB(blockPos), NON_PLAYER);
 
         // if mobs found
         if(!list.isEmpty()) {

@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
 import net.minecraft.util.Util;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Shulker;
@@ -15,8 +16,10 @@ import net.minecraft.world.phys.AABB;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 public class WaterBottleDispenserBehavior extends OptionalDispenseItemBehavior {
+    private static final Predicate<Entity> SHULKER_HAS_COLOR = EntitySelector.LIVING_ENTITY_STILL_ALIVE.and((livingEntity) -> ((Shulker) livingEntity).getColor() != null);
     @Override
     protected ItemStack execute(BlockSource blockSource, ItemStack stack) {
         this.setSuccess(true);
@@ -24,9 +27,7 @@ public class WaterBottleDispenserBehavior extends OptionalDispenseItemBehavior {
         // get block in front of dispenser
         BlockPos blockPos = blockSource.pos().relative(blockSource.state().getValue(DispenserBlock.FACING));
         // get all dyed shulkers in front of dispenser
-        List<Shulker> list = blockSource.level().getEntities(EntityType.SHULKER, new AABB(blockPos), EntitySelector.LIVING_ENTITY_STILL_ALIVE.and((livingEntity) -> {
-            return ((Shulker) livingEntity).getColor() != null;
-        }));
+        List<Shulker> list = blockSource.level().getEntities(EntityType.SHULKER, new AABB(blockPos), SHULKER_HAS_COLOR);
 
         // check if there are any shulkers
         if(!list.isEmpty()) {

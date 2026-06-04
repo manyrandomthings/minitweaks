@@ -18,6 +18,7 @@ public abstract class MobMixin extends LivingEntity {
         super(entityType, level);
     }
 
+    @SuppressWarnings("CancellableInjectionUsage")
     @Inject(method = "mobInteract", at = @At("HEAD"), cancellable = true)
     protected void interactMobInject(Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir) {
         // blank

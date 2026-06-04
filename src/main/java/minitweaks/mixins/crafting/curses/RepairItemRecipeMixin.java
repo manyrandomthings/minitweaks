@@ -11,11 +11,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(RepairItemRecipe.class)
 public abstract class RepairItemRecipeMixin {
-    @Inject(method = "assemble", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;setDamageValue(I)V", shift = At.Shift.AFTER), cancellable = true)
-    private void craftCursedFilter(CallbackInfoReturnable<ItemStack> cir, @Local(ordinal = 2) ItemStack itemStack4) {
+    @Inject(method = "assemble(Lnet/minecraft/world/item/crafting/CraftingInput;)Lnet/minecraft/world/item/ItemStack;", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;setDamageValue(I)V", shift = At.Shift.AFTER), cancellable = true)
+    private void craftCursedFilter(CallbackInfoReturnable<ItemStack> cir, @Local(name = "itemStack") ItemStack itemStack) {
         // skip checking for curses and adding enchants to crafted item and just return output item
         if(MiniTweaksSettings.removableCurses) {
-            cir.setReturnValue(itemStack4);
+            cir.setReturnValue(itemStack);
         }
     }
 }

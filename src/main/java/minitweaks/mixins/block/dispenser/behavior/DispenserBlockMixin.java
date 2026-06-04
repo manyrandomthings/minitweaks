@@ -18,10 +18,10 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 @Mixin(DispenserBlock.class)
 public abstract class DispenserBlockMixin {
     @Inject(method = "dispenseFrom", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/DispenserBlock;getDispenseMethod(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/core/dispenser/DispenseItemBehavior;"), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
-    private void getBlockInFront(ServerLevel serverLevel, BlockState state, BlockPos pos, CallbackInfo ci, DispenserBlockEntity dispenserBlockEntity, BlockSource blockSource, int i, ItemStack itemStack) {
-        DispenseItemBehavior customBehavior = MiniTweaksDispenserBehaviors.getCustomDispenserBehavior(serverLevel, pos, blockSource, dispenserBlockEntity, itemStack);
+    private void getBlockInFront(ServerLevel level, BlockState state, BlockPos pos, CallbackInfo ci, DispenserBlockEntity dispenserBlockEntity, BlockSource blockSource, int slot, ItemStack itemStack) {
+        DispenseItemBehavior customBehavior = MiniTweaksDispenserBehaviors.getCustomDispenserBehavior(level, pos, blockSource, itemStack);
         if(customBehavior != null) {
-            dispenserBlockEntity.setItem(i, customBehavior.dispense(blockSource, itemStack));
+            dispenserBlockEntity.setItem(slot, customBehavior.dispense(blockSource, itemStack));
             ci.cancel();
         }
     }

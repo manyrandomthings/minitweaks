@@ -47,10 +47,11 @@ public abstract class ShulkerMixin extends MobMixin {
 
                 // play sound, give empty bottle
                 this.level().playSound(null, this.blockPosition(), SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0f, 1.0f);
-                player.setItemInHand(hand, ItemUtils.createFilledResult(stack, player, new ItemStack(Items.GLASS_BOTTLE)));
+                ItemStack item = new ItemStack(Items.GLASS_BOTTLE);
+                player.setItemInHand(hand, ItemUtils.createFilledResult(stack, player, item));
 
                 // swing hand
-                cir.setReturnValue(InteractionResult.SUCCESS);
+                cir.setReturnValue(InteractionResult.SUCCESS.heldItemTransformedTo(item));
             }
         }
     }

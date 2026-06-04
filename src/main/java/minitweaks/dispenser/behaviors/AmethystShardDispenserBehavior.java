@@ -27,8 +27,7 @@ public class AmethystShardDispenserBehavior extends OptionalDispenseItemBehavior
         // get valid allays in front of dispenser
         List<Allay> list = blockSource.level().getEntities(EntityType.ALLAY, new AABB(blockPos), EntitySelector.LIVING_ENTITY_STILL_ALIVE.and((entity) -> {
             Allay allay = (Allay) entity;
-            AllayInvoker allayInvoker = (AllayInvoker) allay;
-            return allay.isDancing() && stack.is(ItemTags.DUPLICATES_ALLAYS) && allayInvoker.invokeCanDuplicate();
+            return allay.isDancing() && stack.is(ItemTags.DUPLICATES_ALLAYS) && ((AllayInvoker) allay).invokeCanDuplicate();
         }));
 
         if(!list.isEmpty()) {

@@ -1,6 +1,7 @@
 package minitweaks.mixins.mob.shulker.dye;
 
 import minitweaks.MiniTweaksSettings;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -12,7 +13,6 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -21,21 +21,17 @@ import java.util.Optional;
 
 @Mixin(DyeItem.class)
 public abstract class DyeItemMixin {
-    @Shadow
-    abstract DyeColor getDyeColor();
-
     @Inject(method = "interactLivingEntity", at = @At("HEAD"), cancellable = true)
-    private void dyeShulkers(ItemStack stack, Player user, LivingEntity entity, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir) {
-        if(MiniTweaksSettings.dyeableShulkers && entity instanceof Shulker shulkerEntity) {
-            DyeColor dyeItemColor = this.getDyeColor();
-            DyeColor currentShulkerColor = shulkerEntity.getColor();
+    private void dyeShulkers(ItemStack itemStack, Player player, LivingEntity target, InteractionHand type, CallbackInfoReturnable<InteractionResult> cir) {
+        if(MiniTweaksSettings.dyeableShulkers && target instanceof Shulker shulkerEntity) {
+            DyeColor dyeItemColor = itemStack.get(DataComponents.DYE);
 
             // checks if shulker is alive and current color is different than the dye's color
-            if(shulkerEntity.isAlive() && currentShulkerColor != dyeItemColor) {
-                shulkerEntity.level().playSound(user, shulkerEntity, SoundEvents.DYE_USE, SoundSource.PLAYERS, 1.0F, 1.0F);
-                if(!user.level().isClientSide()) {
+            if(shulkerEntity.isAlive() && dyeItemColor != null && shulkerEntity.getColor() != dyeItemColor) {
+                shulkerEntity.level().playSound(player, shulkerEntity, SoundEvents.DYE_USE, SoundSource.PLAYERS, 1.0F, 1.0F);
+                if(!player.level().isClientSide()) {
                     ((ShulkerInvoker) shulkerEntity).invokeSetVariant(Optional.of(dyeItemColor));
-                    stack.shrink(1);
+                    itemStack.shrink(1);
                 }
 
                 cir.setReturnValue(InteractionResult.SUCCESS);

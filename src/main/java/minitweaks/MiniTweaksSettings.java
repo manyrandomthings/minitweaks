@@ -9,6 +9,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.commands.CommandSourceStack;
 
+@SuppressWarnings("CanBeFinal")
 public class MiniTweaksSettings {
     // rule categories
     public static final String MODNAME = "minitweaks";
@@ -46,7 +47,7 @@ public class MiniTweaksSettings {
     @Rule(
         categories = {MODNAME, MOBS}
     )
-    public static boolean allChargedCreeperHeadsDrop;
+    public static boolean allChargedCreeperHeadsDrop = false;
 
     // seed command
     @Rule(
@@ -260,10 +261,4 @@ public class MiniTweaksSettings {
         categories = {MODNAME, MOBS, RuleCategory.SURVIVAL}
     )
     public static boolean villagersAlwaysConvert = false;
-
-    // villagers explode beds
-    @Rule(
-        categories = {MODNAME, MOBS}
-    )
-    public static boolean villagersExplodeBeds = false;
 }

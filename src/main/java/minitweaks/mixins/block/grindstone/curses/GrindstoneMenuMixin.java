@@ -8,9 +8,8 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(GrindstoneMenu.class)
 public abstract class GrindstoneMenuMixin {
-    // .filter() lambda in grind
-    @SuppressWarnings("target")
-    @ModifyExpressionValue(method = "method_58073", at = @At(value = "INVOKE", target = "Lnet/minecraft/core/Holder;is(Lnet/minecraft/tags/TagKey;)Z"))
+    // .removeIf() lambda in removeNonCursesFrom
+    @ModifyExpressionValue(method = "lambda$removeNonCursesFrom$1", at = @At(value = "INVOKE", target = "Lnet/minecraft/core/Holder;is(Lnet/minecraft/tags/TagKey;)Z"))
     private static boolean grindCursedFilter(boolean original) {
         // filter out curses too
         return original && !MiniTweaksSettings.removableCurses;

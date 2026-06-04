@@ -297,11 +297,3 @@ Villagers will always convert to Zombie Villagers when killed by a zombie, even 
 * Default value: `false`
 * Required options: `true`, `false`
 * Categories: `minitweaks`, `mobs`, `survival`
-
-## villagersExplodeBeds
-Villagers cause explosions when trying to use beds in the nether or end, like players  
-"But why?" Idk, it's just a funny idea I had  
-* Type: `boolean`
-* Default value: `false`
-* Required options: `true`, `false`
-* Categories: `minitweaks`, `mobs`

@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
 @Mixin(PhantomSpawner.class)
 public abstract class PhantomSpawnerMixin {
-    @ModifyConstant(method = "tick", constant = @Constant(intValue = 72000), require = 0, expect = 1)
+    @ModifyConstant(method = "tick", constant = @Constant(intValue = 72000))
     private int phantomSpawnTime(int original) {
         return MiniTweaksSettings.phantomSpawningTime;
     }

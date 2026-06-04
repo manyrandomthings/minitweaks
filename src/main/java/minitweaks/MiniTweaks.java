@@ -6,7 +6,7 @@ import net.fabricmc.api.ModInitializer;
 
 public class MiniTweaks implements ModInitializer {
     public static final String MOD_ID = "minitweaks";
-    public static CarpetExtension EXTENSION = new MiniTweaksCarpetExtension();
+    public static final CarpetExtension EXTENSION = new MiniTweaksCarpetExtension();
 
     @Override
     public void onInitialize() {

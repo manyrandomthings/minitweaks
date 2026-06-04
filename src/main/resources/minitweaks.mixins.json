@@ -1,12 +1,12 @@
 {
   "required": true,
   "package": "minitweaks.mixins",
-  "compatibilityLevel": "JAVA_21",
+  "compatibilityLevel": "JAVA_25",
   "mixins": [
     "block.all.BlockBehaviorMixin",
     "block.anvil.crushing.AnvilBlockMixin",
     "block.dispenser.behavior.DispenserBlockMixin",
-    "block.farmland.trample.FarmBlockMixin",
+    "block.farmland.trample.FarmlandBlockMixin",
     "block.grindstone.curses.GrindstoneMenuMixin",
     "block.oxidizable.WeatheringCopperBlocksMixin",
     "block.piston.waterlog.PistonMovingBlockEntityMixin",
@@ -23,7 +23,7 @@
     "mob.creeper.block_damage.CreeperMixin",
     "mob.creeper.head_drops.CreeperMixin",
     "mob.dragon.block_damage.EnderDragonMixin",
-    "mob.dragon.egg.EndDragonFightMixin",
+    "mob.dragon.egg.EnderDragonFightMixin",
     "mob.ghast.block_damage.LargeFireballMixin",
     "mob.phantom.spawning.PhantomSpawnerMixin",
     "mob.pickup.SkeletonZombieMixin",
@@ -38,7 +38,6 @@
     "mob.snowgolem.melt.SnowGolemMixin",
     "mob.squid.lightning.SquidMixin",
     "mob.vex.nerf.VexMixin",
-    "mob.villager.bed_explode.VillagerMixin",
     "mob.villager.lightning.VillagerMixin",
     "mob.zombie.convert.ZombieMixin",
     "mob.zombie.convert.ZombieVillagerInvoker"

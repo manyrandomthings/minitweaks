@@ -26,7 +26,7 @@ public abstract class SkeletonZombieMixin extends Monster {
     }
 
     @Inject(method = "finalizeSpawn", at = @At("TAIL"))
-    private void modifyLootPickup(ServerLevelAccessor serverLevel, DifficultyInstance difficulty, EntitySpawnReason spawnReason, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
+    private void modifyLootPickup(ServerLevelAccessor level, DifficultyInstance difficulty, EntitySpawnReason spawnReason, SpawnGroupData groupData, CallbackInfoReturnable<SpawnGroupData> cir) {
         // checks if rule is enabled (not default)
         if(MiniTweaksSettings.mobItemPickup != ItemPickupType.DEFAULT) {
             // sets the mob's item pickup ability (true if always, false if never)

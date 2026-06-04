@@ -16,8 +16,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(BlockBehaviour.class)
 public abstract class BlockBehaviorMixin {
+    @SuppressWarnings("CancellableInjectionUsage")
     @Inject(method = "useItemOn", at = @At("HEAD"), cancellable = true)
-    protected void onUseWithItemInject(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit, CallbackInfoReturnable<InteractionResult> cir) {
+    protected void onUseWithItemInject(ItemStack itemStack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult, CallbackInfoReturnable<InteractionResult> cir) {
         // blank
     }
 }

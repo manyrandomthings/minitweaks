@@ -17,18 +17,12 @@ import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.entity.animal.Bucketable;
-import net.minecraft.world.entity.animal.sheep.Sheep;
-import net.minecraft.world.entity.monster.Shulker;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.DispenserBlock;
-import net.minecraft.world.level.block.entity.DispenserBlockEntity;
 import net.minecraft.world.phys.AABB;
 
 public class MiniTweaksDispenserBehaviors {
@@ -41,24 +35,21 @@ public class MiniTweaksDispenserBehaviors {
     public static final DispenseItemBehavior WATER_BOTTLE = new WaterBottleDispenserBehavior();
 
     // get dispenser behavior
-    public static DispenseItemBehavior getCustomDispenserBehavior(ServerLevel serverLevel, BlockPos pos, BlockSource blockSource, DispenserBlockEntity dispenserBlockEntity, ItemStack stack) {
-        Item item = stack.getItem();
+    public static DispenseItemBehavior getCustomDispenserBehavior(ServerLevel serverLevel, BlockPos pos, BlockSource blockSource, ItemStack stack) {
         BlockPos frontPos = pos.relative(blockSource.state().getValue(DispenserBlock.FACING));
         AABB frontArea = new AABB(frontPos);
 
         // name tag (with name) behavior
         if(MiniTweaksSettings.dispensersNameMobs && stack.is(Items.NAME_TAG) && stack.has(DataComponents.CUSTOM_NAME)) {
-            boolean hasNameableMobs = !serverLevel.getEntitiesOfClass(LivingEntity.class, frontArea, EntitySelector.LIVING_ENTITY_STILL_ALIVE.and(entity -> !(entity instanceof Player))).isEmpty();
+            boolean hasNameableMobs = !serverLevel.getEntitiesOfClass(LivingEntity.class, frontArea, NameTagDispenserBehavior.NON_PLAYER).isEmpty();
 
             if(hasNameableMobs) {
                 return NAME_TAG;
             }
         }
         // dye items behavior
-        else if(MiniTweaksSettings.dispensersDyeMobs && item instanceof DyeItem) {
-            boolean hasDyeableMobs = !serverLevel.getEntitiesOfClass(PathfinderMob.class, frontArea, EntitySelector.LIVING_ENTITY_STILL_ALIVE.and(entity -> {
-                return entity instanceof Sheep || (MiniTweaksSettings.dyeableShulkers && entity instanceof Shulker);
-            })).isEmpty();
+        else if(MiniTweaksSettings.dispensersDyeMobs && stack.getItem() instanceof DyeItem) {
+            boolean hasDyeableMobs = !serverLevel.getEntitiesOfClass(PathfinderMob.class, frontArea, DyeItemDispenserBehavior.DYEABLE_MOB).isEmpty();
 
             if(hasDyeableMobs) {
                 return DYE_ITEM;
@@ -90,9 +81,7 @@ public class MiniTweaksDispenserBehaviors {
         }
         // pick up bucketable mob
         else if(MiniTweaksSettings.dispensersBucketMobs && stack.is(Items.WATER_BUCKET)) {
-            boolean hasBucketableMobs = !serverLevel.getEntitiesOfClass(LivingEntity.class, frontArea, EntitySelector.LIVING_ENTITY_STILL_ALIVE.and(entity -> {
-                return entity instanceof Bucketable;
-            })).isEmpty();
+            boolean hasBucketableMobs = !serverLevel.getEntitiesOfClass(LivingEntity.class, frontArea, WaterBucketDispenserBehavior.BUCKETABLE).isEmpty();
 
             if(hasBucketableMobs) {
                 return WATER_BUCKET;

@@ -4,12 +4,13 @@ import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import minitweaks.MiniTweaksSettings;
 import net.minecraft.world.entity.projectile.hurtingprojectile.LargeFireball;
 import net.minecraft.world.level.Level.ExplosionInteraction;
+import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(LargeFireball.class)
 public abstract class LargeFireballMixin {
-    @ModifyExpressionValue(method = "onHit", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/Level$ExplosionInteraction;MOB:Lnet/minecraft/world/level/Level$ExplosionInteraction;"))
+    @ModifyExpressionValue(method = "onHit", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/Level$ExplosionInteraction;MOB:Lnet/minecraft/world/level/Level$ExplosionInteraction;", opcode = Opcodes.GETSTATIC))
     private ExplosionInteraction modifyDestructionType(ExplosionInteraction original) {
         return MiniTweaksSettings.noGhastBlockBreaking ? ExplosionInteraction.NONE : original;
     }

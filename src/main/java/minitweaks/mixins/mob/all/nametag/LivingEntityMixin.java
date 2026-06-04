@@ -22,7 +22,7 @@ public abstract class LivingEntityMixin extends Entity {
     }
 
     @Inject(method = "dropAllDeathLoot", at = @At("TAIL"))
-    private void dropNameTag(ServerLevel serverLevel, DamageSource damageSource, CallbackInfo ci) {
+    private void dropNameTag(ServerLevel level, DamageSource source, CallbackInfo ci) {
         // if rule is enabled and mob has custom name
         if(MiniTweaksSettings.mobsDropNametag && this.hasCustomName()) {
             // create name tag
@@ -30,7 +30,7 @@ public abstract class LivingEntityMixin extends Entity {
             // set name tag to mob's name
             nameTag.set(DataComponents.CUSTOM_NAME, this.getCustomName());
             // drop item
-            this.spawnAtLocation(serverLevel, nameTag);
+            this.spawnAtLocation(level, nameTag);
         }
     }
 }

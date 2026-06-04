@@ -16,6 +16,7 @@ import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.NetherWartBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -66,33 +67,24 @@ public abstract class HoeItemMixin {
     }
 
     // check if crop is mature. Also returns false for invalid blocks being clicked
+    @Unique
     private static boolean isMature(BlockState state) {
-        Block block = state.getBlock();
-        if(block instanceof CropBlock cropBlock) {
-            return cropBlock.isMaxAge(state);
-        }
-        else if(block instanceof NetherWartBlock) {
-            return state.getValue(NetherWartBlock.AGE) == NetherWartBlock.MAX_AGE;
-        }
-        else if(block instanceof CocoaBlock) {
-            return state.getValue(CocoaBlock.AGE) == CocoaBlock.MAX_AGE;
-        }
-        return false;
+        return switch(state.getBlock()) {
+            case CropBlock cropBlock -> cropBlock.isMaxAge(state);
+            case NetherWartBlock _ -> state.getValue(NetherWartBlock.AGE) == NetherWartBlock.MAX_AGE;
+            case CocoaBlock _ -> state.getValue(CocoaBlock.AGE) == CocoaBlock.MAX_AGE;
+            default -> false;
+        };
     }
 
     // get age 0 crop
+    @Unique
     private static BlockState getNewCrop(BlockState blockState) {
-        Block block = blockState.getBlock();
-
-        if(block instanceof CropBlock cropBlock) {
-            return cropBlock.getStateForAge(0);
-        }
-        else if(block instanceof NetherWartBlock) {
-            return blockState.setValue(NetherWartBlock.AGE, 0);
-        }
-        else if(block instanceof CocoaBlock) {
-            return blockState.setValue(CocoaBlock.AGE, 0);
-        }
-        return null;
+        return switch(blockState.getBlock()) {
+            case CropBlock cropBlock -> cropBlock.getStateForAge(0);
+            case NetherWartBlock _ -> blockState.setValue(NetherWartBlock.AGE, 0);
+            case CocoaBlock _ -> blockState.setValue(CocoaBlock.AGE, 0);
+            default -> null;
+        };
     }
 }
