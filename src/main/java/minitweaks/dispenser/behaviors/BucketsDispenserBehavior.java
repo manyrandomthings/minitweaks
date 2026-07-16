@@ -4,10 +4,10 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
 import net.minecraft.util.Util;
+import net.minecraft.world.entity.Bucketable;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.animal.Bucketable;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.phys.AABB;
@@ -15,8 +15,9 @@ import net.minecraft.world.phys.AABB;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class WaterBucketDispenserBehavior extends OptionalDispenseItemBehavior {
-    public static final Predicate<Entity> BUCKETABLE = EntitySelector.LIVING_ENTITY_STILL_ALIVE.and((entity) -> entity instanceof Bucketable);
+public class BucketsDispenserBehavior extends OptionalDispenseItemBehavior {
+    public static final Predicate<Entity> BUCKETABLE = EntitySelector.LIVING_ENTITY_STILL_ALIVE
+        .and((entity) -> entity instanceof Bucketable);
 
     protected ItemStack execute(BlockSource blockSource, ItemStack stack) {
         this.setSuccess(true);
@@ -24,7 +25,10 @@ public class WaterBucketDispenserBehavior extends OptionalDispenseItemBehavior {
         // get block in front of dispenser
         BlockPos blockPos = blockSource.pos().relative(blockSource.state().getValue(DispenserBlock.FACING));
         // get all bucketable mobs in front of dispenser
-        List<LivingEntity> list = blockSource.level().getEntitiesOfClass(LivingEntity.class, new AABB(blockPos), BUCKETABLE);
+        List<LivingEntity> list = blockSource.level().getEntitiesOfClass(LivingEntity.class, new AABB(blockPos),
+            BUCKETABLE
+                .and(entity -> ((Bucketable) entity).canBePickedUpWithBucket(stack))
+        );
 
         if(!list.isEmpty()) {
             // get random bucketable mob in list

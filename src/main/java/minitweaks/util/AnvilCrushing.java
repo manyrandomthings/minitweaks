@@ -14,10 +14,10 @@ public class AnvilCrushing {
     .put(Blocks.IRON_BLOCK, Blocks.RAW_IRON_BLOCK)
     .put(Blocks.GOLD_BLOCK, Blocks.RAW_GOLD_BLOCK)
     // (non-waxed) copper blocks
-    .put(Blocks.COPPER_BLOCK, Blocks.RAW_COPPER_BLOCK)
-    .put(Blocks.EXPOSED_COPPER, Blocks.RAW_COPPER_BLOCK)
-    .put(Blocks.WEATHERED_COPPER, Blocks.RAW_COPPER_BLOCK)
-    .put(Blocks.OXIDIZED_COPPER, Blocks.RAW_COPPER_BLOCK)
+    .put(Blocks.COPPER_BLOCK.weathering().unaffected(), Blocks.RAW_COPPER_BLOCK)
+    .put(Blocks.COPPER_BLOCK.weathering().exposed(), Blocks.RAW_COPPER_BLOCK)
+    .put(Blocks.COPPER_BLOCK.weathering().weathered(), Blocks.RAW_COPPER_BLOCK)
+    .put(Blocks.COPPER_BLOCK.weathering().oxidized(), Blocks.RAW_COPPER_BLOCK)
     // create map
     .build();
 

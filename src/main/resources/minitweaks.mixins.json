@@ -34,7 +34,7 @@
     "mob.shulker.dye.DyeItemMixin",
     "mob.shulker.dye.ShulkerInvoker",
     "mob.shulker.dye.ShulkerMixin",
-    "mob.slime.looting.SlimeMixin",
+    "mob.slime.looting.AbstractCubeMobMixin",
     "mob.snowgolem.melt.SnowGolemMixin",
     "mob.squid.lightning.SquidMixin",
     "mob.vex.nerf.VexMixin",

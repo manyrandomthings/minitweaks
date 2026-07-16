@@ -7,7 +7,7 @@ import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
 import net.minecraft.util.Util;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySelector;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.monster.Shulker;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -27,7 +27,7 @@ public class WaterBottleDispenserBehavior extends OptionalDispenseItemBehavior {
         // get block in front of dispenser
         BlockPos blockPos = blockSource.pos().relative(blockSource.state().getValue(DispenserBlock.FACING));
         // get all dyed shulkers in front of dispenser
-        List<Shulker> list = blockSource.level().getEntities(EntityType.SHULKER, new AABB(blockPos), SHULKER_HAS_COLOR);
+        List<Shulker> list = blockSource.level().getEntities(EntityTypes.SHULKER, new AABB(blockPos), SHULKER_HAS_COLOR);
 
         // check if there are any shulkers
         if(!list.isEmpty()) {

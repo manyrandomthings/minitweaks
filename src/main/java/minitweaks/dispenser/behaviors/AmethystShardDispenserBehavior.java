@@ -10,11 +10,12 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Util;
 import net.minecraft.world.entity.EntitySelector;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.animal.allay.Allay;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.phys.AABB;
+
 import java.util.List;
 
 public class AmethystShardDispenserBehavior extends OptionalDispenseItemBehavior {
@@ -25,7 +26,7 @@ public class AmethystShardDispenserBehavior extends OptionalDispenseItemBehavior
         // get block in front of dispenser
         BlockPos blockPos = blockSource.pos().relative(blockSource.state().getValue(DispenserBlock.FACING));
         // get valid allays in front of dispenser
-        List<Allay> list = blockSource.level().getEntities(EntityType.ALLAY, new AABB(blockPos), EntitySelector.LIVING_ENTITY_STILL_ALIVE.and((entity) -> {
+        List<Allay> list = blockSource.level().getEntities(EntityTypes.ALLAY, new AABB(blockPos), EntitySelector.LIVING_ENTITY_STILL_ALIVE.and((entity) -> {
             Allay allay = (Allay) entity;
             return allay.isDancing() && stack.is(ItemTags.DUPLICATES_ALLAYS) && ((AllayInvoker) allay).invokeCanDuplicate();
         }));

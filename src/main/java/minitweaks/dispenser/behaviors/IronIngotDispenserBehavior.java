@@ -7,11 +7,12 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.Util;
 import net.minecraft.world.entity.EntitySelector;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.animal.golem.IronGolem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.phys.AABB;
+
 import java.util.List;
 
 public class IronIngotDispenserBehavior extends OptionalDispenseItemBehavior {
@@ -21,7 +22,7 @@ public class IronIngotDispenserBehavior extends OptionalDispenseItemBehavior {
         // get block in front of dispenser
         BlockPos blockPos = blockSource.pos().relative(blockSource.state().getValue(DispenserBlock.FACING));
         // get all iron golems in front of dispenser
-        List<IronGolem> list = blockSource.level().getEntities(EntityType.IRON_GOLEM, new AABB(blockPos), EntitySelector.LIVING_ENTITY_STILL_ALIVE.and((entity) -> {
+        List<IronGolem> list = blockSource.level().getEntities(EntityTypes.IRON_GOLEM, new AABB(blockPos), EntitySelector.LIVING_ENTITY_STILL_ALIVE.and((entity) -> {
             IronGolem ironGolem = (IronGolem) entity;
             return ironGolem.getHealth() < ironGolem.getMaxHealth();
         }));

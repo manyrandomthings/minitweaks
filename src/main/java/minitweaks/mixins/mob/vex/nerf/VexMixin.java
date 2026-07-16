@@ -2,6 +2,7 @@ package minitweaks.mixins.mob.vex.nerf;
 
 import minitweaks.MiniTweaksSettings;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Vex;
@@ -19,7 +20,7 @@ public abstract class VexMixin extends Monster {
     }
 
     @Shadow
-    abstract Mob getOwner();
+    abstract LivingEntity getOwner();
 
     @Shadow
     abstract void setOwner(Mob owner);
@@ -31,7 +32,7 @@ public abstract class VexMixin extends Monster {
     @Inject(method = "tick", at = @At("HEAD"))
     private void checkOwnerDeath(CallbackInfo ci) {
         if(MiniTweaksSettings.vexesNerf) {
-            Mob owner = this.getOwner();
+            LivingEntity owner = this.getOwner();
             // check if owner is dead
             if(owner != null && !owner.isAlive()) {
                 // set owner to null so this code doesn't keep running
